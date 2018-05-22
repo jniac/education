@@ -3,8 +3,6 @@
 Techniques de rendu classique, utilisant les moteurs classiques (Standard / Physical) de Cinema4D.
 <br>
 
-[create an anchor]
-
 # étape 0
 Quelques objets, un cyclo...  
 rendu de base (pas de lumière, pas d'ombre, rien):
@@ -20,16 +18,17 @@ La meilleure source de lumière en 3D (quelque soit le moteur de rendu) est touj
 ![image](./rendu-2.png)
 
 La meilleure façon sous C4D d'ajuster une source de lumière reste de "*voir à travers la lumière*" :
-- activer : utiliser l'objet actif (le plan diffus) comme camera, [*Set Active Object as Camera*](./screenshots/SetActiveObjectAsCamera.png)
+- activer : utiliser l'objet actif (le plan diffus) comme camera, [*Set Active Object as Camera*](./Screen.md#SetActiveObjectAsCamera)
 - désactiver : il est important de "ressortir de la lumière" sans quoi l'on risque de modifier l'éclairage par accident, [Use Camera: Default Camera](./screenshots/BackToDefaultCamera.png)
 
 <br>
 
 # étape 2 : Ambience !
-Non, pas ambience, mais <i style='color:#f30'>Ambient</i>, ou aussi <i>Diffuse</i>, en CG, en compositing, c'est le nom de la passe de rendu qui affiche les matériaux brutes, intégralement éclairés. Cette passe peut paraître inutile, elle est fondamentale, c'est elle qui détermine les rapports de masses et de couleurs.
-- Ambient 100%
+Non, pas ambience, mais <span style='color:#f30'>Ambient</span>, ou aussi <i>Diffuse</i>, en CG, en compositing, c'est le nom de la passe de rendu qui affiche les matériaux brutes, intégralement éclairés. Cette image est obtenue en ajoutant à la scène [une lumière omnidirectionnelle en éclairage ambient]().
 
 ![image](./rendu-3.png)
+
+Cette passe peut paraître inutile, elle est fondamentale, c'est elle qui détermine les rapports de masses et de couleurs.
 
 <br>
 
