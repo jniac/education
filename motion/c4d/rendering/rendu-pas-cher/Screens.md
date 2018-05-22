@@ -8,5 +8,5 @@
 
 <br><br>
 
-[AmbientLight](#AmbientLight)
+[AmbientLight](#ambientlight)
 ![](./screenshots/AmbientLight.jpg)
