@@ -18,13 +18,13 @@ La meilleure source de lumière en 3D (quelque soit le moteur de rendu) est touj
 ![image](./rendu-2.png)
 
 La meilleure façon sous C4D d'ajuster une source de lumière reste de "*voir à travers la lumière*" :
-- activer : utiliser l'objet actif (le plan diffus) comme camera, [*Set Active Object as Camera*](./Screens.md#SetActiveObjectAsCamera)
-- désactiver : il est important de "ressortir de la lumière" sans quoi l'on risque de modifier l'éclairage par accident, [Use Camera: Default Camera](./Screens.md#BackToDefaultCamera)
+- activer : utiliser l'objet actif (le plan diffus) comme camera, [*Set Active Object as Camera*](./Screens.md#setactiveobjectascamera)
+- désactiver : il est important de "ressortir de la lumière" sans quoi l'on risque de modifier l'éclairage par accident, [Use Camera: Default Camera](./Screens.md#backtodefaultcamera)
 
 <br>
 
 # étape 2 : Ambience !
-Non, pas ambience, mais <span style='color:#f30'>Ambient</span>, ou aussi _Diffuse_, en CG, en compositing, c'est le nom de la passe de rendu qui affiche les matériaux brutes, intégralement éclairés. Cette image est obtenue en ajoutant à la scène [une lumière omnidirectionnelle en éclairage ambient]().
+Non, pas ambience, mais <span style='color:#f30'>Ambient</span>, ou aussi _Diffuse_, en CG, en compositing, c'est le nom de la passe de rendu qui affiche les matériaux brutes, intégralement éclairés. Cette image est obtenue en ajoutant à la scène [une lumière omnidirectionnelle en éclairage ambient](./Screens.md#ambientlight).
 
 - [ ] ~~_Area Light (+ Area Shadow)_~~
 - [x] Light Ambient 100%
@@ -43,7 +43,7 @@ Cette passe peut paraître inutile, elle est fondamentale, c'est elle qui déter
 
 ![image](./rendu-4.png)
 
-La longueur du rayon maximum ([Maximum Ray Length]()) est un paramètre important. Il permet de contrôler la quantité d'occlusion, la quantité d'ombre que l'on veut voir se dessiner à partir des espaces concaves.
+La longueur du rayon maximum ([Maximum Ray Length](./Screens.md#maximumraylength)) est un paramètre important. Il permet de contrôler la quantité d'occlusion, la quantité d'ombre que l'on veut voir se dessiner à partir des espaces concaves.
 
 En compositing la passe d'occlusion ambiente sera toujours rendu à part (rendu **multi-pass**), puis ajustée (opacité) pour obtenir l'image idéale.
 
@@ -71,7 +71,7 @@ Rien n'empêche à présent d'ajouter à la scène de nouvelles sources d'éclai
 
 L'étape 5 n'est pas à proprement un réglage de la lumière. Il s'agit à présent d'intervenir sur la modélisation en créant des biseaux pour mettre en valeur les arrêtes.
 
-Plusieurs outils sont à disposition dans Cinema4D. Les objets paramétriques ([primitives](), extrusion, [MoText]()) ont généralement un réglage **Fillet**. Il existe un [Deformer Bevel]() qui lisse de manière non destructive les arrêtes de n'importe quel maillage.
+Plusieurs outils sont à disposition dans Cinema4D. Les objets paramétriques ([primitives](./Screens.md#fillet-cube), extrusion, [MoText](./Screens.md#fillet-motext)) ont généralement un réglage **Fillet**. Il existe un [Deformer Bevel](./Screens.md#deformer-bevel) qui lisse de manière non destructive les arrêtes de n'importe quel maillage.
 
 - [x] Area Light (+ Area Shadow)
 - [x] Ambient 50%
