@@ -72,7 +72,7 @@ Plusieurs outils sont à disposition dans Cinema4D. Les objets paramétriques ([
 
 <br>
 <br>
----
+---  
 #### Notes :
 Cette note est rédigé en [Markdown]().  
 Pour avoir un aperçu d'un fichier markdown (file.md) dans Atom, le raccourci clavier est :  
