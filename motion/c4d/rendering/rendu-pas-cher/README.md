@@ -13,18 +13,21 @@ rendu de base (pas de lumière, pas d'ombre, rien):
 
 # étape 1 : Lumière !
 La meilleure source de lumière en 3D (quelque soit le moteur de rendu) est toujours un plan diffus (vs Point Light). Le plan diffus (Area) permet d'obtenir des ombres douces (diffuses). La **taille** et l'**orientation** du plan détermineront le dessin des ombres.
-- Area Light (+ Area Shadow)
+- [x] Area Light (+ Area Shadow)
 
 ![image](./rendu-2.png)
 
 La meilleure façon sous C4D d'ajuster une source de lumière reste de "*voir à travers la lumière*" :
-- activer : utiliser l'objet actif (le plan diffus) comme camera, [*Set Active Object as Camera*](./Screen.md#SetActiveObjectAsCamera)
-- désactiver : il est important de "ressortir de la lumière" sans quoi l'on risque de modifier l'éclairage par accident, [Use Camera: Default Camera](./screenshots/BackToDefaultCamera.png)
+- activer : utiliser l'objet actif (le plan diffus) comme camera, [*Set Active Object as Camera*](./Screens.md#SetActiveObjectAsCamera)
+- désactiver : il est important de "ressortir de la lumière" sans quoi l'on risque de modifier l'éclairage par accident, [Use Camera: Default Camera](./Screens.md#BackToDefaultCamera)
 
 <br>
 
 # étape 2 : Ambience !
-Non, pas ambience, mais <span style='color:#f30'>Ambient</span>, ou aussi <i>Diffuse</i>, en CG, en compositing, c'est le nom de la passe de rendu qui affiche les matériaux brutes, intégralement éclairés. Cette image est obtenue en ajoutant à la scène [une lumière omnidirectionnelle en éclairage ambient]().
+Non, pas ambience, mais <span style='color:#f30'>Ambient</span>, ou aussi _Diffuse_, en CG, en compositing, c'est le nom de la passe de rendu qui affiche les matériaux brutes, intégralement éclairés. Cette image est obtenue en ajoutant à la scène [une lumière omnidirectionnelle en éclairage ambient]().
+
+- [ ] ~~_Area Light (+ Area Shadow)_~~
+- [x] Light Ambient 100%
 
 ![image](./rendu-3.png)
 
@@ -34,8 +37,9 @@ Cette passe peut paraître inutile, elle est fondamentale, c'est elle qui déter
 
 # étape 3 : Ambient Occlusion !
 **FONDAMENTALE !** Quelque soit le moteur de rendu choisi (C4D, VRay, Octane), la passe d'occlusion ambiente est **FONDAMENTALE**. Elle permet de dessiner les volumes (modelés) sans même la moindre source de lumière.
-- Ambient 100%
-- Ambient Occlusion <i style='color:red'>(Maximum Ray Length 300cm)</i>
+- [ ] ~~_Area Light (+ Area Shadow)_~~
+- [x] Ambient 100%
+- [x] Ambient Occlusion <span style='color:red'>(Maximum Ray Length 300cm)</span>
 
 ![image](./rendu-4.png)
 
@@ -49,9 +53,9 @@ En compositing la passe d'occlusion ambiente sera toujours rendu à part (rendu 
 L'étape finale consiste à venir mixer l'occlusion ambiente avec la lumière classique. Un réglage rapide après avoir rétabli le plan diffus consiste à baisser l'intensité de la lumière ambiente à 50%.
 
 
-- Area Light (+ Area Shadow)
-- <i style='color:red'>Ambient 50%</i>
-- Ambient Occlusion (Maximum Ray Length 400cm)
+- [x] Area Light (+ Area Shadow)
+- [x] <span style='color:red'>Ambient 50%</span>
+- [x] Ambient Occlusion (Maximum Ray Length 400cm)
 
 ![image](./rendu-5.png)
 
@@ -69,10 +73,10 @@ L'étape 5 n'est pas à proprement un réglage de la lumière. Il s'agit à pré
 
 Plusieurs outils sont à disposition dans Cinema4D. Les objets paramétriques ([primitives](), extrusion, [MoText]()) ont généralement un réglage **Fillet**. Il existe un [Deformer Bevel]() qui lisse de manière non destructive les arrêtes de n'importe quel maillage.
 
-- Area Light (+ Area Shadow)
-- Ambient 50%
-- Ambient Occlusion (Maximum Ray Length 400cm)
-- Bevel / Chamfer / Fillet (lumière sur les arrêtes)
+- [x] Area Light (+ Area Shadow)
+- [x] Ambient 50%
+- [x] Ambient Occlusion (Maximum Ray Length 400cm)
+- [x] Bevel / Chamfer / Fillet (lumière sur les arrêtes)
 
 ![image](./rendu-6.png)
 
