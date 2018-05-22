@@ -59,7 +59,7 @@ L'étape finale consiste à venir mixer l'occlusion ambiente avec la lumière cl
 
 ![image](./rendu-5.png)
 
-Si l'on compare l'image avec celle de l'étape 1 le bénéfice des étapes 2 & 3 (Ambient Light + Ambient Occlusion) est évident : il n'y a plus de grandes ombres noires, la scène est entièrement éclairée.
+[Si l'on compare l'image avec celle de l'étape 1](./Screens.md#comparaison) le bénéfice des étapes 2 & 3 (Ambient Light + Ambient Occlusion) est évident : il n'y a plus de grandes ombres noires, la scène est entièrement éclairée.
 
 L'intensité de la lumière ambiente permet de contrôler la densité des ombres.
 

@@ -18,6 +18,11 @@
 
 <br><br>
 
+#### Comparaison
+![](./screenshots/compare.jpg)
+
+<br><br>
+
 #### Fillet-Cube
 ![](./screenshots/Fillet-Cube.jpg)
 
