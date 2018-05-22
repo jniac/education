@@ -29,6 +29,8 @@ Non, pas ambience, mais <i style='color:#f30'>Ambient</i>, ou aussi <i>Diffuse</
 
 ![image](./rendu-3.png)
 
+<br>
+
 # étape 3 : Ambient Occlusion !
 **FONDAMENTALE !** Quelque soit le moteur de rendu choisi (C4D, VRay, Octane), la passe d'occlusion ambiente est **FONDAMENTALE**. Elle permet de dessiner les volumes (modelés) sans même la moindre source de lumière.
 - Ambient 100%
@@ -40,6 +42,7 @@ La longueur du rayon maximum ([Maximum Ray Length]()) est un paramètre importan
 
 En compositing la passe d'occlusion ambiente sera toujours rendu à part (rendu **multi-pass**), puis ajustée (opacité) pour obtenir l'image idéale.
 
+<br>
 
 # étape 4 : Mix !
 L'étape finale consiste à venir mixer l'occlusion ambiente avec la lumière classique. Un réglage rapide après avoir rétabli le plan diffus consiste à baisser l'intensité de la lumière ambiente à 50%.
@@ -56,6 +59,8 @@ Si l'on compare l'image avec celle de l'étape 1 le bénéfice des étapes 2 & 3
 L'intensité de la lumière ambiente permet de contrôler la densité des ombres.
 
 Rien n'empêche à présent d'ajouter à la scène de nouvelles sources d'éclairage pour enrichir la composition (retour, éclairage latéral).
+
+<br>
 
 # étape 5
 
