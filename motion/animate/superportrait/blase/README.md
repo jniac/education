@@ -1,5 +1,8 @@
 # affiche ton blase !
 
+fichier démo:
+[blase.fla](https://github.com/jniac/e-artsup/blob/master/motion/animate/superportrait/blase/blase.fla?raw=true)
+
 ## Animate:
 
 Le projet :

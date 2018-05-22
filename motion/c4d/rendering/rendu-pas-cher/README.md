@@ -2,7 +2,7 @@
 
 Techniques de rendu classique, utilisant les moteurs classiques (Standard / Physical) de Cinema4D.
 
-fichier : [rendu-pas-cher.c4d](https://github.com/jniac/e-artsup/raw/master/motion/c4d/rendering/rendu-pas-cher/rendu-pas-cher.c4d)
+fichier démo : [rendu-pas-cher.c4d](https://github.com/jniac/e-artsup/raw/master/motion/c4d/rendering/rendu-pas-cher/rendu-pas-cher.c4d)
 
 <br>
 
