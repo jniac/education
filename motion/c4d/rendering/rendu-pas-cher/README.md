@@ -3,6 +3,8 @@
 Techniques de rendu classique, utilisant les moteurs classiques (Standard / Physical) de Cinema4D.
 <br>
 
+[create an anchor]
+
 # étape 0
 Quelques objets, un cyclo...  
 rendu de base (pas de lumière, pas d'ombre, rien):
@@ -77,10 +79,11 @@ Plusieurs outils sont à disposition dans Cinema4D. Les objets paramétriques ([
 
 <br>
 <br>
+
 ---  
 
 
 #### Notes :
 Cette note est rédigé en [Markdown]().  
-Pour avoir un aperçu d'un fichier markdown (file.md) dans Atom, le raccourci clavier est :  
+Pour avoir un aperçu d'un fichier markdown (`file.md`) dans Atom, le raccourci clavier est :  
 **ctrl + shift + M**
