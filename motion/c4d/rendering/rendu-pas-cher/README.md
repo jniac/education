@@ -62,7 +62,7 @@ Rien n'empêche à présent d'ajouter à la scène de nouvelles sources d'éclai
 
 <br>
 
-# étape 5
+# étape 5 : Fine tuning !
 
 L'étape 5 n'est pas à proprement un réglage de la lumière. Il s'agit à présent d'intervenir sur la modélisation en créant des biseaux pour mettre en valeur les arrêtes.
 
@@ -78,6 +78,8 @@ Plusieurs outils sont à disposition dans Cinema4D. Les objets paramétriques ([
 <br>
 <br>
 ---  
+
+
 #### Notes :
 Cette note est rédigé en [Markdown]().  
 Pour avoir un aperçu d'un fichier markdown (file.md) dans Atom, le raccourci clavier est :  
