@@ -42,8 +42,9 @@ régler [/] [+] comme commandes pour reculer / avancer d'une image :
 
 note:
 ### plugin Adobe Media Encoder
-Pour pouvoir encoder en [WebM (format open source Chrome Opera Firefox)](https://fr.wikipedia.org/wiki/WebM)
-http://www.fnordware.com/WebM/  
+Pour pouvoir encoder en [WebM (format open source Chrome Opera Firefox)](https://fr.wikipedia.org/wiki/WebM)  
+http://www.fnordware.com/WebM/    
+
 Pourquoi utiliser le format WebM ? C'est le seul format compressé qui encode le canal alpha (rgba, *a* pour alpha : transparence). Par ailleurs les codecs (vp8 et vp9) sont libres de droit, et les performances sont très proches du fameux H.264.
 
 Fun fact :  
