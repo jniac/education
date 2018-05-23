@@ -13,6 +13,18 @@ Le projet :
 
 
 ![](./animate-instructions-0.jpg)
+
+La technique :  
+
+Animer image par image veut dire lâcher le pad ou la souris pour prendre un stylet. Pour naviguer dans le projet il va être **indispensable** d'utiliser le clavier. Les actions importantes sont :
+- **F5** insérer une image (normale, c'est à dire prolonger une image d'une "frame")
+- **F6** insérer une image-clé (en dupliquant la clé précédente)
+- **F7** insérer une image-clé **vide** (vide ! ça veut dire devoir tout redessiner à chaque nouvelle frame... et oui !)
+- **/** (macOS) reculer d'une image (à configurer, voir ci dessous)
+- **+** (macOS) avancer d'une image (à configurer, voir ci dessous)
+- **Enter** jouer (ou arrêter) la séquence
+
+
 ![](./animate-instructions-1.jpg)
 
 <br><br>
