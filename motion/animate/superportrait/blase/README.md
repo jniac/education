@@ -44,7 +44,7 @@ note:
 ### plugin Adobe Media Encoder
 Pour pouvoir encoder en [WebM (format open source Chrome Opera Firefox)](https://fr.wikipedia.org/wiki/WebM)
 http://www.fnordware.com/WebM/  
-Pourquoi utiliser le format WebM ? C'est le seul format compressé qui encode le canal alpha (rgba, *a* pour alpha : transparence). Par ailleurs les codecs (vp8 et vp9) sont libres de droit, et les performances très proches du fameux H.264.
+Pourquoi utiliser le format WebM ? C'est le seul format compressé qui encode le canal alpha (rgba, *a* pour alpha : transparence). Par ailleurs les codecs (vp8 et vp9) sont libres de droit, et les performances sont très proches du fameux H.264.
 
 Fun fact :  
 Le seul format qui encodait aussi le canal alpha est le **[flv](https://fr.wikipedia.org/wiki/Flash_Video)** (qui n'est guère plus supporté par les navigateurs aujourd'hui). FLV stands for... Flash Video ! Et cela date de l'époque où Adobe dominait le web avec Flash, avant que Google & Apple ne viennent réclamer leur part du cool en rendant obsolète le player flash (Google en promouvant l'HTML5 à coup de site de propagandes et d'expériences sponsorisés, Apple en refusant l'exécution du player Flash sur ses premiers iPhones).
