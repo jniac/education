@@ -1,5 +1,7 @@
 # Texture animée dans Cinema4D
 
+[Animated-Texture.c4d](./Animated-Texture.c4d)
+
 ### Chemin
 Préciser à Cinema4D le chemin de la première image de la séquence d'image.  
 
