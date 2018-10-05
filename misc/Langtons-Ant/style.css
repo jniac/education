@@ -1,0 +1,8 @@
+body {
+    background-color: #f6edff;
+}
+canvas {
+    image-rendering: pixelated;
+    width: 600px;
+    height: 600px;
+}
