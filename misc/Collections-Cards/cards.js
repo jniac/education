@@ -9,6 +9,7 @@ let values = [
     'J',
     'Q',
     'K',
+    'A',
 ]
 
 class Card {
