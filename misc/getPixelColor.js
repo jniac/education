@@ -18,9 +18,10 @@ let getPixelColor = (x, y) => {
 
     let [r, g, b, a] = ctx.getImageData(x, y, 1, 1).data
 
-    let pixelColor = (r << 16) + (g << 8) + b
+    let rgb = (r << 16) + (g << 8) + b
+    let hex = rgb.toString(16).padStart(6, '0')
 
-    return pixelColor
+    return { r, g, b, a, rgb, hex }
 
 }
 
@@ -30,10 +31,11 @@ let getPixelColor = (x, y) => {
 
 let getPixelColor = (ctx, x, y) => {
 
-    let [r, g, b, a] = ctx.getImageData(x, y, 1, 1).data
+     let [r, g, b, a] = ctx.getImageData(x, y, 1, 1).data
 
-    let pixelColor = (r << 16) + (g << 8) + b
+    let rgb = (r << 16) + (g << 8) + b
+    let hex = rgb.toString(16).padStart(6, '0')
 
-    return pixelColor
+    return { r, g, b, a, rgb, hex }
 
 }
