@@ -38,7 +38,7 @@ class Card {
 
         div.textContent = this.value + ' ' + this.symbol
 
-        document.body.append(div)
+        document.querySelector('.card-container').append(div)
 
     }
 
