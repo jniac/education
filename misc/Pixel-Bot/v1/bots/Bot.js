@@ -1,4 +1,5 @@
 
+import namespace from './namespace.js'
 import settings from './settings.js'
 import { Color } from './color.js'
 
@@ -24,6 +25,7 @@ let init = () => {
 
 }
 
+let running = true
 let sampling = 1
 let frame = 0
 
@@ -65,7 +67,11 @@ let loop = () => {
 
     try {
 
-        update()
+        if (running) {
+
+            update()
+
+        }
 
         requestAnimationFrame(loop)
 
@@ -86,8 +92,6 @@ let orientations = 'NESW'
 
 
 
-let namespace = {}
-
 let define = (name, definition) => {
 
     let { constructor, ...prototype } = definition
@@ -98,19 +102,30 @@ let define = (name, definition) => {
 
     }
 
-    constructor = (new Function('newInstance', `return function ${name} (){ newInstance(this, arguments) }`))(newInstance)
+    constructor = (new Function('initInstance', `return function ${name} (){ initInstance(this, arguments) }`))(initInstance)
 
     Object.setPrototypeOf(constructor.prototype, Bot.prototype)
 
     Object.assign(constructor.prototype, prototype)
 
-    namespace[name] = constructor
+    register(constructor)
 
     return constructor
 
 }
 
-let newInstance = (instance, args) => {
+let register = (constructor) => {
+
+    let { name } = constructor
+
+    constructor.instances = new Set()
+    constructor.instancesCount = 0
+
+    namespace.add(name, constructor)
+
+}
+
+let initInstance = (instance, args) => {
 
     instance.pixelColor = new Color()
     instance.x = 0
@@ -120,8 +135,7 @@ let newInstance = (instance, args) => {
 
     if (!instance.constructor.instances) {
 
-        instance.constructor.instances = new Set()
-        instance.constructor.instancesCount = 0
+        register(instance.constructor)
 
     }
 
@@ -150,13 +164,22 @@ export default class Bot {
     static get sampling() { return sampling }
     static set sampling(value) { sampling = value }
 
+    static get running() { return running }
+    static set running(value) { running = value }
+
+    static get frame() { return frame }
+
     static new(name, ...args) {
 
-        let constructor = namespace[name]
+        let constructor = namespace.get(name)
 
         if (constructor) {
 
             return new constructor(...args)
+
+        } else {
+
+            console.warn(`Bot.new() Error, can not find definition for ${name}`)
 
         }
 
@@ -164,7 +187,7 @@ export default class Bot {
 
     constructor() {
 
-        newInstance(this, arguments)
+        initInstance(this, arguments)
 
     }
 
