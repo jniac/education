@@ -5,6 +5,11 @@
 
 body {
     background-color: #eee;
+    font-family: monospace;
+}
+
+p {
+    color: #ccc;
 }
 
 .card-container {
