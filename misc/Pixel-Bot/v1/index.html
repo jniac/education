@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            canvas {
+                image-rendering: pixelated;
+                box-shadow: #0000001c 1px 1px 50px 2px;
+            }
+            body {
+                background-color: #e8e8e8;
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas></canvas>
+        <script type="module">
+
+            import * as main from './main.js'
+            Object.assign(window, main)
+
+        </script>
+    </body>
+</html>
