@@ -150,6 +150,29 @@ let initInstance = (instance, args) => {
 
 }
 
+let exportCode = () => {
+
+    let definitions = []
+
+    for (let name of Object.keys(namespace.dict)) {
+
+        let Definition = namespace.get(name)
+
+        let methods = Object.getOwnPropertyNames(Definition.prototype)
+            .filter(v => v !== 'constructor')
+            .map(v => '\t' + Definition.prototype[v].toString())
+            .join('\n\n')
+
+        let str = `class ${name} extends Bot {\n\n${methods}\n\n}`
+
+        definitions.push(str)
+
+    }
+
+    return definitions.join('\n\n')
+
+}
+
 
 export default class Bot {
 
@@ -160,6 +183,8 @@ export default class Bot {
     static get define() { return define }
 
     static get namespace() { return namespace }
+
+    static get exportCode() { return exportCode }
 
     static get sampling() { return sampling }
     static set sampling(value) { sampling = value }
@@ -191,6 +216,14 @@ export default class Bot {
 
     }
 
+    set(props) {
+
+        Object.assign(this, props)
+
+        return this
+
+    }
+
     turnRight() {
 
         let index = orientations.indexOf(this.orientation)
@@ -204,6 +237,8 @@ export default class Bot {
         }
 
         this.orientation = orientations[index]
+
+        return this
 
     }
 
@@ -220,6 +255,24 @@ export default class Bot {
         }
 
         this.orientation = orientations[index]
+
+        return this
+
+    }
+
+    turn(toRight) {
+
+        if (toRight) {
+
+            this.turnRight()
+
+        } else {
+
+            this.turnLeft()
+
+        }
+
+        return this
 
     }
 
@@ -259,12 +312,16 @@ export default class Bot {
 
         Object.assign(this, { x, y })
 
+        return this
+
     }
 
     setPixelColor(color) {
 
         ctx.fillStyle = color
         ctx.fillRect(this.x, this.y, 1, 1)
+        
+        return this
 
     }
 

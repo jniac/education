@@ -36,6 +36,58 @@ class LangtonAnt extends Bot {
 
 }
 
+class Painter extends Bot {
+
+    start() {
+
+        this.x = 200
+        this.y = 200
+        this.count = 0
+        this.count2 = 0
+        this.color = '#f39'
+        this.turnRightNext = true
+
+    }
+
+    update() {
+
+        this.count++
+
+        this.setPixelColor(this.color)
+
+        if (this.count === 100) {
+
+            this.turn(this.turnRightNext)
+
+        }
+
+        if (this.count === 101) {
+
+            this.turn(this.turnRightNext)
+
+            this.count = 0
+            this.turnRightNext = !this.turnRightNext
+
+            if (this.count2++ === 50) {
+
+                this.count2 = 0
+
+                this.turnLeft()
+                this.move(Math.round(100 * Math.random()))
+
+            }
+
+        }
+
+        this.move()
+
+    }
+
+}
+
+new Painter().set({ color:'#7648ae' })
+new Painter().set({ color:'#764282' })
+
 
 
 
@@ -73,6 +125,7 @@ let Line = Bot.define('Line', {
 
 new LangtonAnt(150, 150, '#09f')
 new LangtonAnt(100, 100, '#03f')
+new LangtonAnt(200, 100, '#0ff')
 
 Bot.new('Line', '#fc0', .01, n => n % 3 < 2)
 new Line('#ffdda2', .1)
