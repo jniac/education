@@ -5,7 +5,7 @@ Bot.sampling = 1
 
 class Line extends Bot {
 
-	start(color = '#09f', threshold = .01, paintTest = () => true) {
+    start(color = '#09f', threshold = .01, paintTest = () => true) {
 
         this.x = 150
         this.y = 150
@@ -15,13 +15,13 @@ class Line extends Bot {
 
     }
 
-	update() {
+    update() {
 
-        if (this.paintTest(this.updateCount)) {
+        if (this.paintTest(this)) {
 
             this.setPixelColor(this.color)
 
-            if (Math.random() > 1 - this.threshold) {
+            if (Math.random() < this.threshold) {
 
                 this.turnLeft()
 
@@ -37,7 +37,7 @@ class Line extends Bot {
 
 class LangtonAnt extends Bot {
 
-	start(x, y, color) {
+    start(x, y, color) {
 
         this.x = x
         this.y = y
@@ -45,7 +45,7 @@ class LangtonAnt extends Bot {
 
     }
 
-	update() {
+    update() {
 
         if (this.pixelColor.r > .5) {
 
@@ -67,7 +67,7 @@ class LangtonAnt extends Bot {
 
 class Painter extends Bot {
 
-	start() {
+    start() {
 
         this.x = 200
         this.y = 200
@@ -86,7 +86,7 @@ class Painter extends Bot {
 
     }
 
-	sequenceTurn() {
+    sequenceTurn() {
 
         let n = this.turnCount % 4
 
@@ -96,7 +96,7 @@ class Painter extends Bot {
 
     }
 
-	paint() {
+    paint() {
 
         if (this.paintTest(this)) {
 
@@ -140,13 +140,13 @@ class Painter extends Bot {
 
         }
 
-        if (Math.random() > .95) {
+        if (Math.random() < 1 / 20) {
 
-            this.turn(Math.random() > .5)
+            this.turn(Math.random() < 1 / 2)
 
         }
 
-        if (Math.random() > .999) {
+        if (Math.random() < 1 / 1000) {
 
             this.mode = 'paint'
 
@@ -154,7 +154,7 @@ class Painter extends Bot {
 
     }
 
-	update() {
+    update() {
 
         if (this.mode === 'roam') {
 
@@ -175,111 +175,111 @@ class Painter extends Bot {
 // Line
 
 new Line().set({
-	x: 29,
-	y: 225,
-	orientation: 'W',
-	color: '#fc0',
-	threshold: 0.01,
-	paintTest: n => n % 3 < 2,
+    x: 29,
+    y: 225,
+    orientation: 'W',
+    color: '#fc0',
+    threshold: 0.01,
+    paintTest: bot => bot.updateCount % 3 > 0,
 })
 
 new Line().set({
-	x: 78,
-	y: 174,
-	orientation: 'N',
-	color: '#ffdda2',
-	threshold: 0.1,
-	paintTest: () => true,
+    x: 78,
+    y: 174,
+    orientation: 'N',
+    color: '#ffdda2',
+    threshold: 0.1,
+    paintTest: () => true,
 })
 
 // LangtonAnt
 
 new LangtonAnt().set({
-	x: 54,
-	y: 60,
-	orientation: 'W',
-	color: '#09f',
+    x: 54,
+    y: 60,
+    orientation: 'W',
+    color: '#09f',
 })
 
 new LangtonAnt().set({
-	x: 238,
-	y: 22,
-	orientation: 'W',
-	color: '#09f',
+    x: 238,
+    y: 22,
+    orientation: 'W',
+    color: '#09f',
 })
 
 new LangtonAnt().set({
-	x: 274,
-	y: 86,
-	orientation: 'W',
-	color: '#096',
+    x: 274,
+    y: 86,
+    orientation: 'W',
+    color: '#096',
 })
 
 new LangtonAnt().set({
-	x: 172,
-	y: 274,
-	orientation: 'E',
-	color: '#03f',
+    x: 172,
+    y: 274,
+    orientation: 'E',
+    color: '#03f',
 })
 
 new LangtonAnt().set({
-	x: 262,
-	y: 266,
-	orientation: 'E',
-	color: '#0ff',
+    x: 262,
+    y: 266,
+    orientation: 'E',
+    color: '#0ff',
 })
 
 new LangtonAnt().set({
-	x: 130,
-	y: 164,
-	orientation: 'E',
-	color: '#0ff',
+    x: 130,
+    y: 164,
+    orientation: 'E',
+    color: '#0ff',
 })
 
 new LangtonAnt().set({
-	x: 130,
-	y: 264,
-	orientation: 'E',
-	color: '#066',
+    x: 130,
+    y: 264,
+    orientation: 'E',
+    color: '#066',
 })
 
 // Painter
 
 new Painter().set({
-	x: 231,
-	y: 205,
-	orientation: 'E',
-	mode: 'roam',
-	unitMax: 60,
-	lineMax: 30,
-	unitCount: 0,
-	lineCount: 0,
-	color: '#ffbf9d',
-	turnCount: 9240,
+    x: 231,
+    y: 205,
+    orientation: 'E',
+    mode: 'roam',
+    unitMax: 60,
+    lineMax: 30,
+    unitCount: 0,
+    lineCount: 0,
+    color: '#ffbf9d',
+    turnCount: 9240,
 })
 
 new Painter().set({
-	x: 71,
-	y: 193,
-	orientation: 'N',
-	mode: 'roam',
-	unitMax: 60,
-	lineMax: 30,
-	unitCount: 0,
-	lineCount: 0,
-	color: '#fc0',
-	turnCount: 9480,
+    x: 71,
+    y: 193,
+    orientation: 'N',
+    mode: 'roam',
+    unitMax: 60,
+    lineMax: 30,
+    unitCount: 0,
+    lineCount: 0,
+    color: '#fc0',
+    turnCount: 9480,
 })
 
 new Painter().set({
-	x: 146,
-	y: 250,
-	orientation: 'S',
-	mode: 'paint',
-	unitMax: 60,
-	lineMax: 30,
-	unitCount: 7,
-	lineCount: 21,
-	color: '#ffff14',
-	turnCount: 8383,
+    x: 146,
+    y: 250,
+    orientation: 'S',
+    mode: 'paint',
+    unitMax: 60,
+    lineMax: 30,
+    unitCount: 7,
+    lineCount: 21,
+    color: '#ffff14',
+    turnCount: 8383,
 })
