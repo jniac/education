@@ -10,7 +10,13 @@
                 padding: 0;
             }
             canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
                 image-rendering: pixelated;
+            }
+            .canvas-container {
+                position: relative;
                 box-shadow: #0000001c 1px 1px 50px 2px;
             }
             body {
@@ -24,12 +30,16 @@
         </style>
     </head>
     <body>
-        <canvas></canvas>
+        <div class="canvas-container">
+            <canvas class="pixel-bot"></canvas>
+            <canvas class="grid"></canvas>
+        </div>
         <script type="module">
 
             import './init.js'
-            import * as main from './main.js'
-            Object.assign(window, main)
+            import './art-1.js'
+            // import * as main from './main.js'
+            // Object.assign(window, main)
 
         </script>
     </body>

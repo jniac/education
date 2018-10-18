@@ -11,12 +11,7 @@ let canvas, ctx
 
 let init = () => {
 
-    canvas = document.querySelector('canvas')
-
-    canvas.width = width
-    canvas.height = height
-    canvas.style.width = `${width * settings.canvasScaleRatio}px`
-    canvas.style.height = `${height * settings.canvasScaleRatio}px`
+    canvas = document.querySelector('canvas.pixel-bot')
 
     ctx = canvas.getContext('2d')
 
@@ -85,8 +80,12 @@ let loop = () => {
 
 }
 
-init()
-loop()
+setTimeout(() => {
+
+    init()
+    loop()
+
+}, 0)
 
 let orientations = 'NESW'
 
@@ -169,7 +168,33 @@ let exportCode = () => {
 
     }
 
-    return definitions.join('\n\n')
+    let mapValue = (value) => {
+
+    	if (typeof value === 'string')
+    		return `'${value}'`
+
+	    return value.toString()
+
+    }
+
+    let instances = Object.keys(namespace.dict).map((k) => {
+
+    	let A = namespace.dict[k]
+
+    	return `// ${k}\n\n` + [...A.instances.values()].map(bot => {
+
+    		let str = Object.entries(bot)
+    			.filter(([k]) => !/pixelColor|updateCount|identifier|instanceId/.test(k))
+    			.map(([k, v]) => `\t${k}: ${mapValue(v)},`)
+    			.join('\n')
+
+    		return `new ${k}().set({\n${str}\n})`
+
+        }).join('\n\n')
+
+    })
+
+    return definitions.join('\n\n') + instances.join('\n\n')
 
 }
 
@@ -193,6 +218,8 @@ export default class Bot {
     static set running(value) { running = value }
 
     static get frame() { return frame }
+
+    static get ctx() { return ctx }
 
     static new(name, ...args) {
 
@@ -320,7 +347,7 @@ export default class Bot {
 
         ctx.fillStyle = color
         ctx.fillRect(this.x, this.y, 1, 1)
-        
+
         return this
 
     }
