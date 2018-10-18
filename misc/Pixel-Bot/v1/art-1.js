@@ -1,7 +1,7 @@
 
 import Bot from './bots/Bot.js'
 
-Bot.sampling = 10
+Bot.sampling = 1
 
 class Line extends Bot {
 
