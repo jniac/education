@@ -72,7 +72,7 @@ window.addEventListener('keydown', event => {
 
 let updateUlSampling = () => {
 
-    for (let li of document.querySelectorAll('ul.sampling li')) {
+    for (let li of document.querySelectorAll('.sampling ul li')) {
 
         li.classList.toggle('selected', li.textContent === `x${Bot.sampling}`)
 
@@ -82,7 +82,7 @@ let updateUlSampling = () => {
 
 setTimeout(updateUlSampling, 100)
 
-document.querySelector('ul.sampling').onclick = event => {
+document.querySelector('.sampling ul').onclick = event => {
 
     Bot.sampling = Number(event.target.textContent.slice(1))
 

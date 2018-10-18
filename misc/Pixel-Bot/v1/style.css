@@ -30,16 +30,45 @@ body {
     padding: 32px;
 }
 
-ul.sampling {
+footer {
     display: flex;
-    list-style: none;
+    align-items: center;
 }
-ul.sampling li {
-    padding: 8px;
+
+footer > * + * {
+    margin-left: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.sampling {
+    display: flex;
+    align-items: center;
+}
+.sampling > span {
+    margin-right: 4px;
     color: #333;
     opacity: .3;
+}
+.sampling ul {
+    display: flex;
+    list-style: none;
+    border: solid #0002 1px;
+    border-radius: 3px;
+}
+.sampling ul li {
+    padding: 8px 12px;
+    color: #333;
     cursor: pointer;
 }
-ul.sampling li.selected {
+.sampling ul li span {
+    opacity: .3;
+}
+.sampling ul li + li {
+    border-left: solid #0002 1px;
+}
+.sampling ul li.selected span {
     opacity: 1;
 }
