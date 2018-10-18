@@ -56,6 +56,26 @@ window.addEventListener('keydown', event => {
 
 })
 
+let updateUlSampling = () => {
+
+    for (let li of document.querySelectorAll('ul.sampling li')) {
+
+        li.classList.toggle('selected', li.textContent === `x${Bot.sampling}`)
+
+    }
+
+}
+
+setTimeout(updateUlSampling, 100)
+
+document.querySelector('ul.sampling').onclick = event => {
+
+    Bot.sampling = Number(event.target.textContent.slice(1))
+
+    updateUlSampling()
+
+}
+
 Object.assign(window, {
     Bot,
     settings,

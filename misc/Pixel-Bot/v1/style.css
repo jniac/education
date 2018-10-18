@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    image-rendering: pixelated;
+}
+
+.canvas-container {
+    position: relative;
+    box-shadow: #0000001c 1px 1px 50px 2px;
+    margin: 16px;
+}
+
+body {
+    background-color: #e8e8e8;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inconsolata', monospace;
+}
+
+ul.sampling {
+    display: flex;
+    list-style: none;
+}
+ul.sampling li {
+    padding: 8px;
+    color: #333;
+    opacity: .3;
+    cursor: pointer;
+}
+ul.sampling li.selected {
+    opacity: 1;
+}

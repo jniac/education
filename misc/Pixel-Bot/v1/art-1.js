@@ -236,6 +236,13 @@ new LangtonAnt().set({
 	color: '#0ff',
 })
 
+new LangtonAnt().set({
+	x: 130,
+	y: 264,
+	orientation: 'E',
+	color: '#066',
+})
+
 // Painter
 
 new Painter().set({

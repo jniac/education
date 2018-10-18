@@ -3,37 +3,19 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        <style media="screen">
-            * {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
-            canvas {
-                position: absolute;
-                top: 0;
-                left: 0;
-                image-rendering: pixelated;
-            }
-            .canvas-container {
-                position: relative;
-                box-shadow: #0000001c 1px 1px 50px 2px;
-            }
-            body {
-                background-color: #e8e8e8;
-                width: 100vw;
-                height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        </style>
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="canvas-container">
             <canvas class="pixel-bot"></canvas>
             <canvas class="grid"></canvas>
         </div>
+        <ul class="sampling">
+            <li class="selected">x1</li>
+            <li>x10</li>
+            <li>x100</li>
+        </ul>
         <script type="module">
 
             import './init.js'
