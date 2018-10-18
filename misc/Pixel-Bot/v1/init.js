@@ -64,7 +64,7 @@ window.addEventListener('keydown', event => {
 
     } else {
 
-        console.log(event.code)
+        // console.log(event.code)
 
     }
 

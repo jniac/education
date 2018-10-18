@@ -1,8 +1,4 @@
 
-import Bot from './bots/Bot.js'
-
-Bot.sampling = 1
-
 class Line extends Bot {
 
     start(color = '#09f', threshold = .01, paintTest = () => true) {

@@ -5,6 +5,8 @@ import { Color } from './color.js'
 
 let { width, height } = settings
 
+let mouse = { x:0, y:0 }
+
 let bots = new Set()
 
 let canvas, ctx
@@ -12,6 +14,22 @@ let canvas, ctx
 let init = () => {
 
     canvas = document.querySelector('canvas.pixel-bot')
+
+    canvas.addEventListener('mousemove', event => {
+
+        let { x, y } = event
+        let r = canvas.getBoundingClientRect()
+
+        x += -r.x
+        y += -r.y
+
+        x *= width / r.width
+        y *= height / r.height
+
+        mouse.x = Math.floor(x)
+        mouse.y = Math.floor(y)
+
+    })
 
     ctx = canvas.getContext('2d')
 
@@ -221,6 +239,10 @@ export default class Bot {
 
     static get ctx() { return ctx }
 
+    static get mouse() { return mouse }
+
+    static get bots() { return bots }
+
     static new(name, ...args) {
 
         let constructor = namespace.get(name)
@@ -237,9 +259,42 @@ export default class Bot {
 
     }
 
+    static clear(fillColor = null) {
+
+        for (let bot of bots) {
+
+            bot.destroy()
+
+        }
+
+        if (fillColor !== null) {
+
+            ctx.fillStyle = fillColor
+            ctx.fillRect(0, 0, width, height)
+
+        }
+
+    }
+
+    static async load(url) {
+
+        let response = await fetch(url)
+
+        let code = await response.text()
+
+        eval(code)
+
+    }
+
     constructor() {
 
         initInstance(this, arguments)
+
+    }
+
+    destroy() {
+
+        bots.delete(this)
 
     }
 
@@ -298,6 +353,27 @@ export default class Bot {
             this.turnLeft()
 
         }
+
+        return this
+
+    }
+
+    lookAt({ x, y }) {
+
+        let dx = x - this.x
+        let dy = y - this.y
+
+        let a = Math.atan2(-dy, -dx) / 2 / Math.PI
+
+        a *= 4
+
+        a = Math.round(a)
+
+        a += -1 + 4
+
+        a %= 4
+
+        this.orientation = orientations[a]
 
         return this
 
