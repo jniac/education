@@ -8,15 +8,11 @@ let canvasPixelBot = document.querySelector('canvas.pixel-bot')
 
 canvasPixelBot.width = width
 canvasPixelBot.height = height
-canvasPixelBot.style.width = `${width * settings.canvasScaleRatio}px`
-canvasPixelBot.style.height = `${height * settings.canvasScaleRatio}px`
 
 let canvasGrid = document.querySelector('canvas.grid')
 
 canvasGrid.width = width
 canvasGrid.height = height
-canvasGrid.style.width = `${width * settings.canvasScaleRatio}px`
-canvasGrid.style.height = `${height * settings.canvasScaleRatio}px`
 canvasGrid.style.display = 'none'
 
 let ctx = canvasGrid.getContext('2d')
@@ -35,8 +31,26 @@ for (let y = 0; y < height; y++) {
 }
 
 let canvasContainer = document.querySelector('.canvas-container')
-canvasContainer.style.width = `${width * settings.canvasScaleRatio}px`
-canvasContainer.style.height = `${height * settings.canvasScaleRatio}px`
+
+let updateLayout = () => {
+
+    // NOTE: this is not homotetic
+
+    let h = canvasContainer.offsetHeight
+
+    canvasContainer.style.width = `${h}px`
+    canvasPixelBot.style.width = `${h}px`
+    canvasPixelBot.style.height = `${h}px`
+    canvasGrid.style.width = `${h}px`
+    canvasGrid.style.height = `${h}px`
+
+}
+
+updateLayout()
+
+window.addEventListener('resize', () => updateLayout())
+
+
 
 window.addEventListener('keydown', event => {
 

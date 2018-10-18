@@ -15,6 +15,7 @@ canvas {
     position: relative;
     box-shadow: #0000001c 1px 1px 50px 2px;
     margin: 16px;
+    flex: 1;
 }
 
 body {
@@ -26,6 +27,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Inconsolata', monospace;
+    padding: 32px;
 }
 
 ul.sampling {
