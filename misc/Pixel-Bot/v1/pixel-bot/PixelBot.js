@@ -267,13 +267,13 @@ export default class PixelBot {
 
     }
 
-    static async load(url) {
+    static async load(url, wait = 5) {
 
         let response = await fetch(url)
 
         let code = await response.text()
 
-        eval(code)
+        setTimeout(() => eval(code), 5)
 
     }
 
@@ -413,6 +413,12 @@ export default class PixelBot {
 
     setPixelColor(color) {
 
+        if (typeof color !== 'string') {
+
+            color = Color.ensure(color).RRGGBBAA
+
+        }
+
         ctx.fillStyle = color
         ctx.fillRect(this.x, this.y, 1, 1)
 
@@ -433,7 +439,6 @@ readonly(PixelBot, {
     update,
     namespace,
     exportCode,
-    ctx,
     mouse,
 
 })
@@ -441,6 +446,7 @@ readonly(PixelBot, {
 getter(PixelBot, {
 
     frame: () => frame,
+    ctx: () => ctx,
     instancesCount: () => instancesCount,
 
 })

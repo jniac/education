@@ -1,5 +1,6 @@
 
 import PixelBot from './pixel-bot/PixelBot.js'
+import { Color } from './pixel-bot/Color.js'
 import settings from './pixel-bot/settings.js'
 
 let { width, height } = settings
@@ -93,4 +94,5 @@ document.querySelector('.sampling ul').onclick = event => {
 Object.assign(window, {
     PixelBot,
     settings,
+    Color,
 })
