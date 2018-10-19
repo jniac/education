@@ -2,12 +2,14 @@
 import namespace from './namespace.js'
 import settings from './settings.js'
 import { Color } from './color.js'
+import { readonly, getter, getterSetter } from './utils.js'
 
 let { width, height } = settings
 
 let mouse = { x:0, y:0 }
 
-let bots = new Set()
+let instancesCount = 0
+let instances = new Set()
 
 let canvas, ctx
 
@@ -48,23 +50,23 @@ let update = () => {
 
     while (sample++ < sampling) {
 
-        for (let bot of bots) {
+        for (let instance of instances) {
 
-            let { updateRate = 1 } = bot
+            let { updateRate = 1 } = instance
 
             while (updateRate-- > 0) {
 
-                let { x, y } = bot
+                let { x, y } = instance
 
                 let [r, g, b] = ctx.getImageData(x, y, 1, 1).data
 
-                bot.pixelColor.r = r / 0xff
-                bot.pixelColor.g = g / 0xff
-                bot.pixelColor.b = b / 0xff
+                instance.pixelColor.r = r / 0xff
+                instance.pixelColor.g = g / 0xff
+                instance.pixelColor.b = b / 0xff
 
-                bot.update()
+                instance.update()
 
-                bot.updateCount++
+                instance.updateCount++
 
             }
 
@@ -135,8 +137,20 @@ let register = (constructor) => {
 
     let { name } = constructor
 
-    constructor.instances = new Set()
-    constructor.instancesCount = 0
+    console.log(`register "${name}"`)
+
+    Object.defineProperties(constructor, {
+
+        instances: {
+            value: new Set(),
+        },
+
+        instancesCount: {
+            value: 0,
+            writable: true,
+        },
+
+    })
 
     namespace.add(name, constructor)
 
@@ -150,17 +164,18 @@ let initInstance = (instance, args) => {
     instance.orientation = 'E'
     instance.updateCount = 0
 
-    if (!instance.constructor.instances) {
+    if (!instance.constructor.hasOwnProperty('instances')) {
 
         register(instance.constructor)
 
     }
 
+    instance.uid = instancesCount++
     instance.instanceId = instance.constructor.instancesCount++
     instance.constructor.instances.add(instance)
     instance.identifier = instance.constructor.name + '#' + instance.instanceId
 
-    bots.add(instance)
+    instances.add(instance)
 
     if (instance.start)
         instance.start(...args)
@@ -219,30 +234,6 @@ let exportCode = () => {
 
 export default class PixelBot {
 
-    static get init() { return init }
-
-    static get update() { return update }
-
-    static get define() { return define }
-
-    static get namespace() { return namespace }
-
-    static get exportCode() { return exportCode }
-
-    static get sampling() { return sampling }
-    static set sampling(value) { sampling = value }
-
-    static get running() { return running }
-    static set running(value) { running = value }
-
-    static get frame() { return frame }
-
-    static get ctx() { return ctx }
-
-    static get mouse() { return mouse }
-
-    static get bots() { return bots }
-
     static new(name, ...args) {
 
         let constructor = namespace.get(name)
@@ -261,7 +252,7 @@ export default class PixelBot {
 
     static clear(fillColor = null) {
 
-        for (let bot of bots) {
+        for (let bot of instances) {
 
             bot.destroy()
 
@@ -294,7 +285,8 @@ export default class PixelBot {
 
     destroy() {
 
-        bots.delete(this)
+        this.constructor.instances.delete(this)
+        instances.delete(this)
 
     }
 
@@ -429,3 +421,40 @@ export default class PixelBot {
     }
 
 }
+
+
+
+readonly(PixelBot, {
+
+    instances,
+
+    init,
+    define,
+    update,
+    namespace,
+    exportCode,
+    ctx,
+    mouse,
+
+})
+
+getter(PixelBot, {
+
+    frame: () => frame,
+    instancesCount: () => instancesCount,
+
+})
+
+getterSetter(PixelBot, {
+
+    sampling: {
+        get: () => sampling,
+        set: value => sampling = value,
+    },
+
+    running: {
+        get: () => running,
+        set: value => running = value,
+    },
+
+})
