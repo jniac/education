@@ -1,5 +1,5 @@
 
-class Line extends Bot {
+class Line extends PixelBot {
 
     start(color = '#09f', threshold = .01, paintTest = () => true) {
 
@@ -31,7 +31,7 @@ class Line extends Bot {
 
 }
 
-class LangtonAnt extends Bot {
+class LangtonAnt extends PixelBot {
 
     start(x, y, color) {
 
@@ -61,7 +61,7 @@ class LangtonAnt extends Bot {
 
 }
 
-class Painter extends Bot {
+class Painter extends PixelBot {
 
     start() {
 

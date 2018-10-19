@@ -1,12 +1,12 @@
 
 
-import Bot from './bots/Bot.js'
-export { Color } from './bots/color.js'
+import PixelBot from './pixel-bot/PixelBot.js'
+export { Color } from './pixel-bot/color.js'
 
 
 
 
-class LangtonAnt extends Bot {
+class LangtonAnt extends PixelBot {
 
     start(x, y, color) {
 
@@ -36,7 +36,7 @@ class LangtonAnt extends Bot {
 
 }
 
-class Painter extends Bot {
+class Painter extends PixelBot {
 
     start() {
 
@@ -134,7 +134,7 @@ class Painter extends Bot {
 
 
 
-let Line = Bot.define('Line', {
+let Line = PixelBot.define('Line', {
 
     start(color = '#09f', threshold = .01, painTest = () => true) {
 
@@ -173,13 +173,13 @@ new LangtonAnt(100, 100, '#03f')
 new LangtonAnt(200, 100, '#0ff')
 new LangtonAnt(200, 100, '#0ff')
 
-Bot.new('Line', '#fc0', .01, n => n % 3 < 2)
+PixelBot.new('Line', '#fc0', .01, n => n % 3 < 2)
 new Line('#ffdda2', .1)
 
 new Painter().set({ color:'#ffbf9d' })
 // new Painter().set({ color:'#764282' })
 new Painter().set({ color:'#fc0' })
 
-Bot.sampling = 100
+PixelBot.sampling = 100
 
-export { Bot, LangtonAnt }
+export { PixelBot, LangtonAnt }

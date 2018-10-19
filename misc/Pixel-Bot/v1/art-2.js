@@ -1,10 +1,10 @@
 
-class Mouse extends Bot {
+class Mouse extends PixelBot {
 
     update() {
 
-        this.x = Bot.mouse.x
-        this.y = Bot.mouse.y
+        this.x = PixelBot.mouse.x
+        this.y = PixelBot.mouse.y
 
         this.setPixelColor('red')
 
@@ -12,7 +12,7 @@ class Mouse extends Bot {
 
 }
 
-class Random extends Bot {
+class Random extends PixelBot {
 
     start() {
 
@@ -65,7 +65,7 @@ class Random extends Bot {
 
 }
 
-class Spire extends Bot {
+class Spire extends PixelBot {
 
     start() {
 

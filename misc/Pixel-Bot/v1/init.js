@@ -1,6 +1,6 @@
 
-import Bot from './bots/Bot.js'
-import settings from './bots/settings.js'
+import PixelBot from './pixel-bot/PixelBot.js'
+import settings from './pixel-bot/settings.js'
 
 let { width, height } = settings
 
@@ -56,7 +56,7 @@ window.addEventListener('keydown', event => {
 
     if (event.code === 'Space') {
 
-        Bot.running = !Bot.running
+        PixelBot.running = !PixelBot.running
 
     } else if (event.code === 'KeyG') {
 
@@ -74,7 +74,7 @@ let updateUlSampling = () => {
 
     for (let li of document.querySelectorAll('.sampling ul li')) {
 
-        li.classList.toggle('selected', li.textContent === `x${Bot.sampling}`)
+        li.classList.toggle('selected', li.textContent === `x${PixelBot.sampling}`)
 
     }
 
@@ -84,13 +84,13 @@ setTimeout(updateUlSampling, 100)
 
 document.querySelector('.sampling ul').onclick = event => {
 
-    Bot.sampling = Number(event.target.textContent.slice(1))
+    PixelBot.sampling = Number(event.target.textContent.slice(1))
 
     updateUlSampling()
 
 }
 
 Object.assign(window, {
-    Bot,
+    PixelBot,
     settings,
 })

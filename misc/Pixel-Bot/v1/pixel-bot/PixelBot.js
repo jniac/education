@@ -115,13 +115,13 @@ let define = (name, definition) => {
 
     if (constructor !== Object.prototype.constructor) {
 
-        console.warn(`Bot.define() Error, constructor must NOT be defined, use "start" instead`)
+        console.warn(`PixelBot.define() Error, constructor must NOT be defined, use "start" instead`)
 
     }
 
     constructor = (new Function('initInstance', `return function ${name} (){ initInstance(this, arguments) }`))(initInstance)
 
-    Object.setPrototypeOf(constructor.prototype, Bot.prototype)
+    Object.setPrototypeOf(constructor.prototype, PixelBot.prototype)
 
     Object.assign(constructor.prototype, prototype)
 
@@ -180,7 +180,7 @@ let exportCode = () => {
             .map(v => '\t' + Definition.prototype[v].toString())
             .join('\n\n')
 
-        let str = `class ${name} extends Bot {\n\n${methods}\n\n}`
+        let str = `class ${name} extends PixelBot {\n\n${methods}\n\n}`
 
         definitions.push(str)
 
@@ -217,7 +217,7 @@ let exportCode = () => {
 }
 
 
-export default class Bot {
+export default class PixelBot {
 
     static get init() { return init }
 
@@ -253,7 +253,7 @@ export default class Bot {
 
         } else {
 
-            console.warn(`Bot.new() Error, can not find definition for ${name}`)
+            console.warn(`PixelBot.new() Error, can not find definition for ${name}`)
 
         }
 
