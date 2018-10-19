@@ -312,6 +312,8 @@ export class Color {
 	/**
 	 * Possibilities:
 	 *
+	 *	 set(0xff0066)
+	 *
 	 *   set('white')
 	 *   set('#fff')
 	 *   set('#ffffff')
@@ -332,7 +334,8 @@ export class Color {
 		if (color instanceof Color)
 			return this.copy(color)
 
-        if (typeof color === 'number') {
+		// ex: new Color(0xff0066)
+        if (typeof color === 'number' && arguments.length === 1) {
 
             let r = (color >> 16) / 0xff
             let g = (color >> 8 & 0xff) / 0xff
