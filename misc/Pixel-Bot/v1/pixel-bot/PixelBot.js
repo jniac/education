@@ -1,8 +1,9 @@
 
 import namespace from './namespace.js'
 import settings from './settings.js'
+import random from './random.js'
 import { Color } from './color.js'
-import { readonly, getter, getterSetter } from './utils.js'
+import { readonly, getter, getterSetter, isIterable } from './utils.js'
 
 let { width, height } = settings
 
@@ -68,6 +69,13 @@ let update = () => {
 
                 instance.updateCount++
 
+                if (instance.updateCount > instance.lifeMax) {
+
+                    instance.destroy()
+                    break
+
+                }
+
             }
 
         }
@@ -108,6 +116,15 @@ setTimeout(() => {
 }, 0)
 
 let orientations = 'NESW'
+
+let orientationVectors = {
+
+    N: { x:0, y:-1 },
+    E: { x:1, y:0 },
+    S: { x:0, y:1 },
+    W: { x:-1, y:0 },
+
+}
 
 
 
@@ -159,10 +176,12 @@ let register = (constructor) => {
 let initInstance = (instance, args) => {
 
     instance.pixelColor = new Color()
+    instance.color = 'red'
     instance.x = 0
     instance.y = 0
-    instance.orientation = 'E'
+    instance.angle = 0
     instance.updateCount = 0
+    instance.lifeMax = Infinity
 
     if (!instance.constructor.hasOwnProperty('instances')) {
 
@@ -300,17 +319,7 @@ export default class PixelBot {
 
     turnRight() {
 
-        let index = orientations.indexOf(this.orientation)
-
-        index++
-
-        if (index > orientations.length - 1) {
-
-            index = 0
-
-        }
-
-        this.orientation = orientations[index]
+        this.angle += 90
 
         return this
 
@@ -318,31 +327,30 @@ export default class PixelBot {
 
     turnLeft() {
 
-        let index = orientations.indexOf(this.orientation)
-
-        index--
-
-        if (index < 0) {
-
-            index = orientations.length - 1
-
-        }
-
-        this.orientation = orientations[index]
+        this.angle += -90
 
         return this
 
     }
 
-    turn(toRight) {
+    turn(toRightOrAngle) {
 
-        if (toRight) {
+        if (typeof toRightOrAngle === 'boolean') {
 
-            this.turnRight()
+            if (toRightOrAngle) {
 
-        } else {
+                this.turnRight()
 
-            this.turnLeft()
+            } else {
+
+                this.turnLeft()
+            }
+
+        }
+
+        if (typeof toRightOrAngle === 'number') {
+
+            this.angle += toRightOrAngle
 
         }
 
@@ -373,25 +381,12 @@ export default class PixelBot {
 
     move(distance = 1) {
 
-        let { x, y, orientation } = this
+        let { x, y, angle } = this
 
-        if (orientation === 'N') {
+        angle *= Math.PI / 180
 
-            y += -distance
-
-        } else if (orientation === 'E') {
-
-            x += distance
-
-        } else if (orientation === 'S') {
-
-            y += distance
-
-        } else if (orientation === 'W') {
-
-            x += -distance
-
-        }
+        x += distance * Math.cos(angle)
+        y += distance * Math.sin(angle)
 
         if (x >= width)
             x += -width
@@ -411,16 +406,16 @@ export default class PixelBot {
 
     }
 
-    setPixelColor(color) {
+    setPixelColor(color = this.color) {
 
         if (typeof color !== 'string') {
 
-            color = Color.ensure(color).RRGGBBAA
+            color = Color.ensure(color).rrggbbaa
 
         }
 
         ctx.fillStyle = color
-        ctx.fillRect(this.x, this.y, 1, 1)
+        ctx.fillRect(Math.floor(this.x), Math.floor(this.y), 1, 1)
 
         return this
 
@@ -434,12 +429,19 @@ readonly(PixelBot, {
 
     instances,
 
+    orientations,
+    orientationVectors,
+
     init,
     define,
     update,
     namespace,
     exportCode,
     mouse,
+
+    settings,
+    random,
+    Color,
 
 })
 

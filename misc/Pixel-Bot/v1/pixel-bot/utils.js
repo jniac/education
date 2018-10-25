@@ -28,3 +28,15 @@ export const getterSetter = (target, props, { enumerable = true } = {}) => {
     }
 
 }
+
+export const isIterable = (object) => {
+
+    if (object == null) {
+
+        return false
+
+    }
+
+    return typeof object[Symbol.iterator] === 'function'
+
+}

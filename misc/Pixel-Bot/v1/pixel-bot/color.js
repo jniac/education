@@ -341,7 +341,7 @@ export class Color {
             let g = (color >> 8 & 0xff) / 0xff
             let b = (color & 0xff) / 0xff
 
-            return this.setRGB(r, g, b)
+            return this.setRgb(r, g, b)
 
         }
 
@@ -358,30 +358,30 @@ export class Color {
 				color = color.slice(1)
 
 				if (color.length === 3)
-					return this.setRGBA(...color.split('').map(v => Number('0x' + v) / 0xf), alpha)
+					return this.setRgba(...color.split('').map(v => Number('0x' + v) / 0xf), alpha)
 
 				if (color.length === 4)
-					return this.setRGBA(...color.split('').map(v => Number('0x' + v) / 0xf))
+					return this.setRgba(...color.split('').map(v => Number('0x' + v) / 0xf))
 
 				if (color.length === 6)
-					return this.setRGBA(...color.match(/.{2}/g).map(v => Number('0x' + v) / 0xff), alpha)
+					return this.setRgba(...color.match(/.{2}/g).map(v => Number('0x' + v) / 0xff), alpha)
 
 				if (color.length === 8)
-					return this.setRGBA(...color.match(/.{2}/g).map(v => Number('0x' + v) / 0xff))
+					return this.setRgba(...color.match(/.{2}/g).map(v => Number('0x' + v) / 0xff))
 
 			}
 
 			if (color.slice(0, 4) === 'rgba') {
 
 				let [, r, g, b, a] = color.match(re.rgba) || [, 255, 255, 255, 1]
-				return this.setRGBA(r / 255, g / 255, b / 255, a)
+				return this.setRgba(r / 255, g / 255, b / 255, a)
 
 			}
 
 			if (color.slice(0, 3) === 'rgb') {
 
 				let [, r, g, b] = color.match(re.rgb) || [, 255, 255, 255]
-				return this.setRGB(r / 255, g / 255, b / 255)
+				return this.setRgb(r / 255, g / 255, b / 255)
 
 			}
 
@@ -395,16 +395,16 @@ export class Color {
 		}
 
 		if (arguments.length === 3)
-			return this.setRGB(...arguments)
+			return this.setRgb(...arguments)
 
 		if (arguments.length === 4)
-			return this.setRGBA(...arguments)
+			return this.setRgba(...arguments)
 
 		return this
 
 	}
 
-	setRGB(r, g, b) {
+	setRgb(r, g, b) {
 
 		this.r = parseFloat(r) || 0
 		this.g = parseFloat(g) || 0
@@ -414,7 +414,7 @@ export class Color {
 
 	}
 
-	setRGBA(r, g, b, a) {
+	setRgba(r, g, b, a) {
 
 		this.r = parseFloat(r) || 0
 		this.g = parseFloat(g) || 0
@@ -560,28 +560,28 @@ export class Color {
 	get b255() { return Math.round(clamp(this.b) * 0xff) }
 	get a255() { return Math.round(clamp(this.a) * 0xff) }
 
-	getRGBString() {
+	getRgbString() {
 
 		return `rgb(${this.r255}, ${this.g255}, ${this.b255})`
 
 	}
 
-	get rgbString() { return this.getRGBString() }
+	get rgbString() { return this.getRgbString() }
 
-	getRGBAString(alphaPrecision = 3) {
+	getRgbaString(alphaPrecision = 3) {
 
 		return `rgba(${this.r255}, ${this.g255}, ${this.b255}, ${this.a.toFixed(alphaPrecision)})`
 
 	}
 
-	get rgbaString() { return this.getRGBAString() }
+	get rgbaString() { return this.getRgbaString() }
 
 	/**
 	 * @param alpha
-	 *     if alpha === false : return #RRGGBB
-	 *     if alpha === true : return #RRGGBBAA where AA is computed from this.a
-	 * 	   if typeof alpha === 'number' : return #RRGGBBAA where AA is computed from the given alpha
-	 *     if alpha === 'auto' : return #RRGGBBAA or #RRGGBB depending of the value this.a (this.a < 1)
+	 *     if alpha === false : return #rrggbb
+	 *     if alpha === true : return #rrggbbaa where AA is computed from this.a
+	 * 	   if typeof alpha === 'number' : return #rrggbbaa where AA is computed from the given alpha
+	 *     if alpha === 'auto' : return #rrggbbaa or #rrggbb depending of the value this.a (this.a < 1)
 	 */
 	getHexString({ prefix = '#', alpha = 'auto', short = false } = {}) {
 
@@ -606,10 +606,10 @@ export class Color {
 	get hexString() { return this.getHexString() }
 	get hex() { return this.getHexString() }
 
-	get RRGGBB() { return this.getHexString({ alpha: false }) }
-	get RRGGBBAA() { return this.getHexString({ alpha: true }) }
-	get RGB() { return this.getHexString({ alpha: false, short: true }) }
-	get RGBA() { return this.getHexString({ alpha: true, short: true }) }
+	get rrggbb() { return this.getHexString({ alpha: false }) }
+	get rrggbbaa() { return this.getHexString({ alpha: true }) }
+	get rgb() { return this.getHexString({ alpha: false, short: true }) }
+	get rgba() { return this.getHexString({ alpha: true, short: true }) }
 
 	getHslString() {
 
@@ -657,7 +657,7 @@ let __c2 = new Color()
 
 export function rgba(color) {
 
-	return __c1.set(...arguments).getRGBAString()
+	return __c1.set(...arguments).getRgbaString()
 
 }
 

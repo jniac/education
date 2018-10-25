@@ -1,7 +1,7 @@
 
 let DN = (max) => Math.ceil(Math.random() * max)
 
-let colors = ['#342ba0', '#ff81cc', '#b8d8ee', '#ffd000']
+let colors = ['#342ba0', '#ff81cc', '#b8d8ee', '#342ba0', '#342ba0', '#ffd000']
 
 let getRandomColor = () => colors[Math.floor(Math.random() * colors.length)]
 
@@ -11,31 +11,48 @@ class Stupid extends PixelBot {
 
         this.color = getRandomColor()
         this.lifeMax = Infinity
+        this.spawnChance = 1 / 100
 
     }
 
     update() {
 
-        this.setPixelColor(this.color)
+        if (DN(8) > 1) {
 
-        if (DN(100) === 1 && PixelBot.instances.size < 200) {
+            this.setPixelColor(this.color)
 
-            new Stupid().set({
+        }
 
-                x: this.x,
-                y: this.y,
-                lifeMax: 100,
-                orientation: this.orientation,
+        if (Math.random() < this.spawnChance && PixelBot.instances.size < 200) {
 
-            }).turnLeft()
+            let v = PixelBot.orientationVectors[this.orientation]
+            let color = getRandomColor()
+
+            let n = DN(50)
+            let lifeMax = DN(80)
+
+            for (let i = 0; i < n; i++) {
+
+                new Stupid().set({
+
+                    x: this.x - v.x * i,
+                    y: this.y - v.y * i,
+                    color,
+                    lifeMax: lifeMax + DN(10),
+                    spawnChance: 0,
+                    orientation: this.orientation,
+
+                }).turnLeft()
+
+            }
 
         }
 
         this.move()
 
-        if (DN(100) == 1) {
+        if (DN(500) == 1) {
 
-            this.turnLeft()
+            this.turn(Math.random() < .5)
 
         }
 
@@ -49,6 +66,8 @@ class Stupid extends PixelBot {
 
 }
 
+new Stupid().set({ x:100, y:100 })
+new Stupid().set({ x:200, y:200 })
 new Stupid().set({ x:100, y:100 })
 new Stupid().set({ x:200, y:200 })
 

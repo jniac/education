@@ -12,6 +12,8 @@ class Mouse extends PixelBot {
 
 }
 
+let globalColor = new PixelBot.Color()
+
 class Random extends PixelBot {
 
     start() {
@@ -22,6 +24,15 @@ class Random extends PixelBot {
         this.turnChance = 1 / 3
         this.paintChance = 1
         this.spireChance = 1 / 10000
+
+    }
+
+    set({ color, shiftColor = '#006', ...props }) {
+
+        super.set(props)
+
+        this.color = new PixelBot.Color(color || this.color)
+        this.shiftColor = new PixelBot.Color(shiftColor || this.shiftColor)
 
     }
 
@@ -55,7 +66,17 @@ class Random extends PixelBot {
 
         if (Math.random() < this.paintChance) {
 
-            this.setPixelColor(this.color)
+            let c = Math.sin(this.updateCount / 100) * .5 + .5
+
+            let { r, g, b } = this.color
+
+            r += this.shiftColor.r * c
+            g += this.shiftColor.g * c
+            b += this.shiftColor.b * c
+
+            globalColor.setRgb(r, g, b)
+
+            this.setPixelColor(globalColor)
 
         }
 
@@ -71,7 +92,8 @@ class Spire extends PixelBot {
 
         this.startX = 150
         this.startY = 150
-        this.color = '#fd6'
+        // this.color = '#fd6'
+        this.color = new Color().setHsl(.12 + .02 * Math.random(), 1, .6 + .3 * Math.random())
         this.angle = 0
         this.radius = 0
         this.lifeMax = 300
