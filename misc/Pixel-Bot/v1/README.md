@@ -1,6 +1,6 @@
 # PixelBot v1
 
-[zip/PixelBot-Starter.zip](zip/PixelBot-Starter.zip)
+[zip/PixelBot-Starter.zip](zip/PixelBot-Starter.zip?raw=true)
 
 [online demo](https://jniac.github.io/e-artsup/misc/Pixel-Bot/v1/)
 
