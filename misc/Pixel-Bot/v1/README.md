@@ -97,7 +97,7 @@ class Cloner extends PixelBot {
 
         }
 
-        // ici une chance sur 500 que le bot génère un nouveau bot
+        // ici une chance sur 30 que le bot génère un nouveau bot
         if (DN(30) === 1) {
 
             let child = new Cloner().set({
@@ -128,4 +128,70 @@ class Cloner extends PixelBot {
 }
 
 new Cloner()
+```
+
+
+exemple #3: RectPainter
+```javascript
+class RectPainter extends PixelBot {
+
+    start() {
+
+        this.color = '#ec4332'
+        this.width = 10
+        this.height = 5
+        this.x = 150
+        this.y = 150
+        this.paintChance = 5 / 5
+
+        this.countX = 0
+        this.countY = 0
+
+    }
+
+    update() {
+
+        if (this.countX < this.width) {
+
+            this.move()
+            this.countX++
+
+        } else {
+
+            if (this.countY % 2 == 0) {
+
+                this.turnRight()
+                this.move()
+                this.turnRight()
+
+            } else {
+
+                this.turnLeft()
+                this.move()
+                this.turnLeft()
+
+            }
+
+            this.countX = 1
+            this.countY++
+
+        }
+
+        if (this.countY === this.height) {
+
+            this.destroy()
+
+        } else {
+
+            if (Math.random() < this.paintChance) {
+
+                this.setPixelColor(this.color)
+
+            }
+
+        }
+
+    }
+
+}
 ```
