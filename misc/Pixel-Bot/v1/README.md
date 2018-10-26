@@ -194,4 +194,6 @@ class RectPainter extends PixelBot {
     }
 
 }
+
+new RectPainter()
 ```
