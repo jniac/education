@@ -7,9 +7,29 @@
 ![](./screenshots/Pixel-Bot-034.png)
 ![](./screenshots/Pixel-Bot-035.png)
 
+
+# serveur local
+La page index.html nécessite l'existence d'un serveur local pour télécharger les resources locales (`PixelBot.load(url)`).  
+Il existe plein de solutions pour servir des fichiers locaux en http. Je propose une solution NodeJS :
+
+- installer [node & npm](https://nodejs.org/en/) (prendre la version la plus avancée, et suivre les instructions de l'installateur)
+- installer (globalement) `super-quick-static`:
+```shell
+$ npm install -g super-quick-static
+```
+- lancer un serveur local :
+```shell
+$ npm super-quick-static
+```
+voilà !
+
+[http://localhost:8000](http://localhost:8000)
+
 # Getting Started
 
 [zip/PixelBot-Starter.zip](zip/PixelBot-Starter.zip?raw=true)
+
+exemple #1 : [la fourmi de Langton](https://www.youtube.com/watch?v=qZRYGxF6D3w)
 
 ```javascript
 class LangtonAnt extends PixelBot {
@@ -50,19 +70,62 @@ new LangtonAnt().set({
 })
 ```
 
-# serveur local
-La page index.html nécessite l'existence d'un serveur local pour télécharger les resources locales (`PixelBot.load(url)`).  
-Il existe plein de solutions pour servir des fichiers locaux en http. Je propose une solution NodeJS :
+exemple #2: Simple Cloner
 
-- installer [node & npm](https://nodejs.org/en/) (prendre la version la plus avancée, et suivre les instructions de l'installateur)
-- installer (globalement) `super-quick-static`:
-```shell
-$ npm install -g super-quick-static
-```
-- lancer un serveur local :
-```shell
-$ npm super-quick-static
-```
-voilà !
+```javascript
+//
+let DN = max => Math.ceil(Math.random() * max)
 
-[http://localhost:8000](http://localhost:8000)
+let colors = ['green', 'grey', 'pink']
+
+let getRandomColor = () => colors[Math.floor(Math.random() * colors.length)]
+
+class Cloner extends PixelBot {
+
+    start() {
+
+        this.color = 'red'
+
+    }
+
+    update() {
+
+        // ici mettre un code pour que en moyenne le bot peigne 2 fois sur 3 seulement
+        if (DN(3) !== 1) {
+
+            this.setPixelColor(this.color)
+
+        }
+
+        // ici une chance sur 500 que le bot génère un nouveau bot
+        if (DN(30) === 1) {
+
+            let child = new Cloner().set({
+
+                x: this.x,
+                y: this.y,
+                angle: this.angle,
+                color: getRandomColor(),
+                lifeMax: 10 + DN(10),
+
+            })
+
+            child.turnLeft()
+
+        }
+
+        this.move()
+
+        // ici, et c'est déjà fait, un test aléatoire pour faire tourner le bot
+        if (DN(100) == 1) {
+
+            this.turnLeft()
+
+        }
+
+    }
+
+}
+
+new Cloner()
+```
