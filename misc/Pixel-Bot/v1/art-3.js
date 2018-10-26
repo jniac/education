@@ -25,7 +25,7 @@ class Stupid extends PixelBot {
 
         if (Math.random() < this.spawnChance && PixelBot.instances.size < 200) {
 
-            let v = PixelBot.orientationVectors[this.orientation]
+            let v = this.getOrientationVector()
             let color = getRandomColor()
 
             let n = DN(50)
@@ -40,7 +40,7 @@ class Stupid extends PixelBot {
                     color,
                     lifeMax: lifeMax + DN(10),
                     spawnChance: 0,
-                    orientation: this.orientation,
+                    angle: this.angle,
 
                 }).turnLeft()
 
