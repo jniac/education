@@ -138,11 +138,11 @@ class RectPainter extends PixelBot {
     start() {
 
         this.color = '#ec4332'
-        this.width = 10
-        this.height = 5
+        this.width = 100
+        this.height = 50
         this.x = 150
         this.y = 150
-        this.paintChance = 5 / 5
+        this.paintChance = 3 / 5
 
         this.countX = 0
         this.countY = 0
