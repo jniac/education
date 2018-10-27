@@ -41,6 +41,19 @@ let init = () => {
 
 }
 
+let fillCanvas = (color) => {
+
+    if (typeof color !== 'string') {
+
+        color = Color.ensure(color).rrggbbaa
+
+    }
+
+    ctx.fillStyle = color
+    ctx.fillRect(0, 0, width, height)
+
+}
+
 let running = true
 let sampling = 1
 let frame = 0
@@ -116,6 +129,13 @@ setTimeout(() => {
 }, 0)
 
 let orientations = 'NESW'
+
+let orientationAngles = {
+    N: -90,
+    E: 0,
+    S: 90,
+    W: 180,
+}
 
 let orientationVectors = {
 
@@ -358,6 +378,32 @@ export default class PixelBot {
 
     }
 
+    get orientation() {
+
+        let { angle } = this
+
+        angle = Math.round(angle) % 360
+
+        if (angle <= -180)
+            angle += 360
+
+        for (let [key, value] of Object.entries(orientationAngles)) {
+
+            if (angle === value)
+                return key
+
+        }
+
+        return null
+
+    }
+
+    set orientation(value) {
+
+        this.angle = orientationAngles[value] || 0
+
+    }
+
     lookAt({ x, y }) {
 
         let dx = x - this.x
@@ -433,6 +479,7 @@ readonly(PixelBot, {
     orientationVectors,
 
     init,
+    fillCanvas,
     define,
     update,
     namespace,
