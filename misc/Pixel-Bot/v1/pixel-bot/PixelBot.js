@@ -41,7 +41,7 @@ let init = () => {
 
 }
 
-let fillCanvas = (color) => {
+let fillCanvas = (color, x = 0, y = 0, width = settings.width, height = settings.height) => {
 
     if (typeof color !== 'string') {
 
@@ -50,7 +50,7 @@ let fillCanvas = (color) => {
     }
 
     ctx.fillStyle = color
-    ctx.fillRect(0, 0, width, height)
+    ctx.fillRect(x, y, width, height)
 
 }
 
@@ -316,6 +316,21 @@ export default class PixelBot {
 
     }
 
+    static loadHashOr(url) {
+
+        if (location.hash) {
+
+            url = location.hash.slice(1)
+
+            if (!/\.js$/.test(url))
+                url += '.js'
+
+        }
+
+        return PixelBot.load(url)
+
+    }
+
     constructor() {
 
         initInstance(this, arguments)
@@ -422,6 +437,19 @@ export default class PixelBot {
         this.orientation = orientations[a]
 
         return this
+
+    }
+
+    getOrientationVector() {
+
+        let { angle } = this
+
+        angle *= Math.PI / 180
+
+        let x = Math.cos(angle)
+        let y = Math.sin(angle)
+
+        return { x, y }
 
     }
 
