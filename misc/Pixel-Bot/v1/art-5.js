@@ -65,26 +65,27 @@ class RectPainter extends PixelBot {
 
 }
 
-class Tracer extends PixelBot {
+class EdgeBot extends PixelBot {
 
     start() {
 
-        this.turnChance = 1/300
+        this.turnChance = 1/600
         this.count = Infinity
+        this.previousColor = bgColor
 
     }
 
     update() {
 
-        if (Math.random() < 1/1000) {
+        if (Math.random() < 1/2000) {
 
             new RectPainter().set({
                 x: this.x,
                 y: this.y,
                 color: this.color,
-                width: 12,
-                height: 12,
-                paintChance: 1,
+                width: 12 * 2,
+                height: 12 * 2,
+                paintChance: 30/31,
                 angle: this.angle,
             })
 
@@ -92,9 +93,11 @@ class Tracer extends PixelBot {
 
         if (Math.random() < 1/200) {
 
+            let v = this.getOrientationVector()
+
             new RectPainter().set({
-                x: this.x,
-                y: this.y,
+                x: this.x - v.y * 2,
+                y: this.y + v.x * 2,
                 color: this.color,
                 width: 4,
                 height: 4,
@@ -110,11 +113,13 @@ class Tracer extends PixelBot {
 
         }
 
-        if (this.pixelColor.hexString !== bgColor) {
+        if (this.pixelColor.hexString !== this.previousColor) {
 
             this.count = 1
 
         }
+
+        this.previousColor = this.pixelColor.hexString
 
         if (this.count === 0) {
 
@@ -124,7 +129,7 @@ class Tracer extends PixelBot {
 
         this.count--
 
-        if (Math.random() < 1) {
+        if (Math.random() < 15/16) {
 
             this.setPixelColor()
 
@@ -136,22 +141,25 @@ class Tracer extends PixelBot {
 
 }
 
-new Tracer().set({
+new EdgeBot().set({
     y: 100,
+    turnChance: 0,
     color: '#106dd4'
 })
 
-new Tracer().set({
+PixelBot.fillCanvas('#fc0', 100, 50, 100, 100)
+
+new EdgeBot().set({
     y: 105,
     color: '#103dc4'
 })
 
-new Tracer().set({
+new EdgeBot().set({
     y: 110,
     color: '#fc0'
 })
 
-new Tracer().set({
+new EdgeBot().set({
     x: 150,
     angle: 90,
     color: '#10d4c5',
