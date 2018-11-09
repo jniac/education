@@ -459,6 +459,12 @@ export default class PixelBot {
         x += distance * Math.cos(angle)
         y += distance * Math.sin(angle)
 
+        if (Math.abs(x - Math.round(x)) < 1e-9)
+            x = Math.round(x)
+
+        if (Math.abs(y - Math.round(y)) < 1e-9)
+            y = Math.round(y)
+
         if (x >= width)
             x += -width
 
