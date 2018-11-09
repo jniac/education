@@ -1,3 +1,9 @@
 RECOVER_*
 
 **/Render/*
+
+# not finalized concept, preferred Pixel-Bot
+misc/Langtons-Ant
+
+# binary content for motion demo, maybe later
+motion/c4d/masking
