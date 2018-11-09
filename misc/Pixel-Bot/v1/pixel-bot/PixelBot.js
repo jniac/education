@@ -540,6 +540,7 @@ getter(PixelBot, {
 
     frame: () => frame,
     ctx: () => ctx,
+    canvas: () => canvas,
     instancesCount: () => instancesCount,
 
 })
