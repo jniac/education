@@ -1,4 +1,6 @@
 
+export const globalize = props => Object.assign(window, props)
+
 export const readonly = (target, props, { enumerable = true, writable = true } = {}) => {
 
     for(let [name, value] of Object.entries(props)) {

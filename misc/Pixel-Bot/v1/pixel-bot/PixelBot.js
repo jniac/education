@@ -1,13 +1,15 @@
 
 import namespace from './namespace.js'
 import settings from './settings.js'
+import keyboard from './keyboard.js'
+import mouse from './mouse.js'
 import random from './random.js'
 import { Color } from './color.js'
-import { readonly, getter, getterSetter, isIterable } from './utils.js'
+import { globalize, readonly, getter, getterSetter, isIterable } from './utils.js'
+
+let version = '1.0.0'
 
 let { width, height } = settings
-
-let mouse = { x:0, y:0 }
 
 let instancesCount = 0
 let instances = new Set()
@@ -18,26 +20,13 @@ let init = () => {
 
     canvas = document.querySelector('canvas.pixel-bot')
 
-    canvas.addEventListener('mousemove', event => {
-
-        let { x, y } = event
-        let r = canvas.getBoundingClientRect()
-
-        x += -r.x
-        y += -r.y
-
-        x *= width / r.width
-        y *= height / r.height
-
-        mouse.x = Math.floor(x)
-        mouse.y = Math.floor(y)
-
-    })
-
     ctx = canvas.getContext('2d')
 
     ctx.fillStyle = '#fff'
     ctx.fillRect(0, 0, width, height)
+
+    keyboard.init()
+    mouse.init(canvas)
 
 }
 
@@ -81,6 +70,7 @@ let update = () => {
                 instance.update()
 
                 instance.updateCount++
+                instance.lifeMax = Math.floor(instance.lifeMax)
 
                 if (instance.updateCount > instance.lifeMax) {
 
@@ -195,11 +185,13 @@ let register = (constructor) => {
 
 let initInstance = (instance, args) => {
 
+    instance.destroyed = false
     instance.pixelColor = new Color()
-    instance.color = 'red'
+    instance.color = '#333'
     instance.x = 0
     instance.y = 0
     instance.angle = 0
+    instance.speed = 60
     instance.updateCount = 0
     instance.lifeMax = Infinity
 
@@ -342,6 +334,7 @@ export default class PixelBot {
     destroy() {
 
         this.constructor.instances.delete(this)
+        this.destroyed = true
         instances.delete(this)
 
     }
@@ -455,11 +448,13 @@ export default class PixelBot {
 
     }
 
-    move(distance = 1) {
+    move() {
 
-        let { x, y, angle } = this
+        let { x, y, angle, speed } = this
 
         angle *= Math.PI / 180
+
+        let distance = speed / 60
 
         x += distance * Math.cos(angle)
         y += distance * Math.sin(angle)
@@ -497,11 +492,20 @@ export default class PixelBot {
 
     }
 
+    update() {
+
+        this.setPixelColor()
+        this.move()
+
+    }
+
 }
 
 
 
 readonly(PixelBot, {
+
+    version,
 
     instances,
 
@@ -514,11 +518,15 @@ readonly(PixelBot, {
     update,
     namespace,
     exportCode,
+
     mouse,
+    keyboard,
 
     settings,
     random,
     Color,
+
+    globalize,
 
 })
 
