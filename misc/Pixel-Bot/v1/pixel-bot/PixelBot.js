@@ -318,12 +318,14 @@ export default class PixelBot {
 
     static loadHashOr(url) {
 
-        if (location.hash) {
+        if (window.location.hash) {
 
-            url = location.hash.slice(1)
+            url = window.location.hash.slice(1)
 
             if (!/\.js$/.test(url))
                 url += '.js'
+
+            window.addEventListener('hashchange', () => window.location.reload())
 
         }
 
