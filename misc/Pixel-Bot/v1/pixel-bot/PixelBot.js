@@ -334,8 +334,12 @@ export default class PixelBot {
     destroy() {
 
         this.constructor.instances.delete(this)
-        this.destroyed = true
         instances.delete(this)
+
+        this.destroyed = true
+
+        if (this.onDestroy)
+            this.onDestroy()
 
     }
 
