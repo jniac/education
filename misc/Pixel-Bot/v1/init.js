@@ -71,7 +71,7 @@ window.addEventListener('keydown', event => {
 
 })
 
-let updateUlSampling = () => {
+const updateUlSampling = () => {
 
     for (let li of document.querySelectorAll('.frameRate ul li')) {
 
@@ -82,6 +82,22 @@ let updateUlSampling = () => {
 }
 
 setTimeout(updateUlSampling, 100)
+
+const updateFrameCount = () => {
+
+    for (let element of document.querySelectorAll('.frameCount .count div')) {
+
+        let number = PixelBot.frame.toString()
+        let heading = '0'.repeat(7 - number.length)
+
+        element.querySelector('.light').textContent = heading
+        element.querySelector('.plain').textContent = number
+
+    }
+
+}
+
+setInterval(updateFrameCount, 100)
 
 document.querySelector('.frameRate ul').onclick = event => {
 

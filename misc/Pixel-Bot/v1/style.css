@@ -43,31 +43,54 @@ a {
     text-decoration: none;
 }
 
+
+/* layout */
+
+.ml-4 { margin-left: 4px; }
+.mr-4 { margin-right: 4px; }
+
+.flex-h {
+    display: flex;
+    align-items: center;
+}
+
+.boxed {
+    border: solid #0002 1px;
+    border-radius: 3px;
+}
+.boxed > * {
+    padding: 8px 12px;
+}
+.boxed > * + * {
+    border-left: solid #0002 1px;
+}
+
+
+
+
+
+.frameCount .count .light {
+    opacity: .3;
+}
+
 .frameRate {
     display: flex;
     align-items: center;
 }
 .frameRate > span {
-    margin-right: 4px;
     color: #333;
     opacity: .3;
 }
 .frameRate ul {
     display: flex;
     list-style: none;
-    border: solid #0002 1px;
-    border-radius: 3px;
 }
 .frameRate ul li {
-    padding: 8px 12px;
     color: #333;
     cursor: pointer;
 }
 .frameRate ul li span {
     opacity: .3;
-}
-.frameRate ul li + li {
-    border-left: solid #0002 1px;
 }
 .frameRate ul li.selected span {
     opacity: 1;
