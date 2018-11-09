@@ -188,8 +188,8 @@ let initInstance = (instance, args) => {
     instance.destroyed = false
     instance.pixelColor = new Color()
     instance.color = '#333'
-    instance.x = 0
-    instance.y = 0
+    instance.x = Math.floor(width / 2)
+    instance.y = Math.floor(height / 2)
     instance.angle = 0
     instance.speed = 60
     instance.updateCount = 0
