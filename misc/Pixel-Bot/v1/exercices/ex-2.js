@@ -1,6 +1,8 @@
 
 PixelBot.fillCanvas('#111')
 
+PixelBot.setInstruction('cliquer pour voir un peu')
+
 class Mouse extends PixelBot {
 
     start() {

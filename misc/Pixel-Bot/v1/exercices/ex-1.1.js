@@ -12,11 +12,9 @@ class Spiral extends PixelBot {
 
         this.x = 150
         this.y = 150
-        this.deltaAngle = .5
         this.count = 0
         this.turnOn = 1
         this.color = '#99f'
-        this.lifeMax = 2000 + 1000 * Math.random()
         this.turnToRight = true
 
     }
@@ -27,7 +25,13 @@ class Spiral extends PixelBot {
 
             this.turn(this.turnToRight)
             this.count = 0
-            this.turnOn += 1
+            this.turnOn += this.inverted ? -1 : 1
+
+        }
+
+        if (this.inverted && this.turnOn === 0) {
+
+            this.destroy()
 
         }
 
@@ -35,6 +39,26 @@ class Spiral extends PixelBot {
 
         this.setPixelColor()
         this.move()
+
+    }
+
+    onDestroy() {
+
+        if (this.inverted !== true) {
+
+            new Spiral().set({
+
+                color: this.color,
+                x: this.x,
+                y: this.y,
+                angle: this.angle,
+                turnToRight: !this.turnToRight,
+                inverted: !this.inverted,
+                turnOn: Math.round(10 + this.turnOn * 2 * Math.random()),
+
+            })
+
+        }
 
     }
 
@@ -52,6 +76,7 @@ PixelBot.canvas.onclick = (event) => {
         turnToRight: Math.random() < .5,
         x: PixelBot.mouse.x,
         y: PixelBot.mouse.y,
+        lifeMax: 200 + 200 * Math.random(),
 
     })
 
