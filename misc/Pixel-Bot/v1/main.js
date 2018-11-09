@@ -32,6 +32,8 @@ class LangtonAnt extends PixelBot {
 
 new LangtonAnt()
 new LangtonAnt().set({
+
     x: 100,
     y: 200,
+    
 })
