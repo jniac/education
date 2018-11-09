@@ -1,6 +1,6 @@
 
 import PixelBot from './pixel-bot/PixelBot.js'
-import { Color } from './pixel-bot/Color.js'
+import { Color } from './pixel-bot/color.js'
 import settings from './pixel-bot/settings.js'
 
 let { width, height } = settings
