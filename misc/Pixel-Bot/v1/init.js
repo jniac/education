@@ -97,7 +97,7 @@ const updateFrameCount = () => {
 
 }
 
-setInterval(updateFrameCount, 100)
+setInterval(updateFrameCount, 500)
 
 document.querySelector('.frameRate ul').onclick = event => {
 
@@ -106,6 +106,28 @@ document.querySelector('.frameRate ul').onclick = event => {
     updateUlSampling()
 
 }
+
+const setInstruction = (instruction) => {
+
+    let element = document.querySelector('#instruction')
+
+    if (element) {
+
+        element.innerHTML = instruction
+
+        updateLayout()
+
+    }
+
+}
+
+Object.assign(PixelBot, {
+
+    setInstruction,
+
+})
+
+
 
 Object.assign(window, {
     PixelBot,

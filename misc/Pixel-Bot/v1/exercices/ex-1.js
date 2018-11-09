@@ -1,7 +1,9 @@
 
 PixelBot.fillCanvas('#111')
 
-let colors = ['#99f', '#e99968', '#88cdf6', '#111']
+PixelBot.setInstruction('cliquer pour faire apparaître une spirale')
+
+let colors = ['#99f', '#e99968', '#88cdf6']
 let randomColor = () => colors[Math.floor(colors.length * Math.random())]
 
 class Spiral extends PixelBot {
@@ -14,6 +16,7 @@ class Spiral extends PixelBot {
         this.count = 0
         this.turnOn = 1
         this.color = '#99f'
+        this.lifeMax = 2000 + 1000 * Math.random()
 
     }
 
@@ -36,13 +39,15 @@ class Spiral extends PixelBot {
 
 }
 
-new Spiral()
+// new Spiral()
 
-PixelBot.canvas.onclick = () => {
+PixelBot.canvas.onclick = (event) => {
+
+    let color = event.shiftKey ? '#111' : randomColor()
 
     new Spiral().set({
 
-        color: randomColor(),
+        color,
         x: PixelBot.mouse.x,
         y: PixelBot.mouse.y,
 
