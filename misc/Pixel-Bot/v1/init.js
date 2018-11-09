@@ -73,9 +73,9 @@ window.addEventListener('keydown', event => {
 
 let updateUlSampling = () => {
 
-    for (let li of document.querySelectorAll('.sampling ul li')) {
+    for (let li of document.querySelectorAll('.frameRate ul li')) {
 
-        li.classList.toggle('selected', li.textContent === `x${PixelBot.sampling}`)
+        li.classList.toggle('selected', li.textContent === `x${PixelBot.frameRate}`)
 
     }
 
@@ -83,9 +83,9 @@ let updateUlSampling = () => {
 
 setTimeout(updateUlSampling, 100)
 
-document.querySelector('.sampling ul').onclick = event => {
+document.querySelector('.frameRate ul').onclick = event => {
 
-    PixelBot.sampling = Number(event.target.textContent.slice(1))
+    PixelBot.frameRate = Number(event.target.textContent.slice(1))
 
     updateUlSampling()
 

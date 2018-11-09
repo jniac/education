@@ -44,14 +44,14 @@ let fillCanvas = (color, x = 0, y = 0, width = settings.width, height = settings
 }
 
 let running = true
-let sampling = 1
+let frameRate = 1
 let frame = 0
 
 let update = () => {
 
     let sample = 0
 
-    while (sample++ < sampling) {
+    while (sample++ < frameRate) {
 
         for (let instance of instances) {
 
@@ -547,9 +547,9 @@ getter(PixelBot, {
 
 getterSetter(PixelBot, {
 
-    sampling: {
-        get: () => sampling,
-        set: value => sampling = value,
+    frameRate: {
+        get: () => frameRate,
+        set: value => frameRate = value,
     },
 
     running: {

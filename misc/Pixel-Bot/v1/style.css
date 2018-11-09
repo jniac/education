@@ -43,32 +43,32 @@ a {
     text-decoration: none;
 }
 
-.sampling {
+.frameRate {
     display: flex;
     align-items: center;
 }
-.sampling > span {
+.frameRate > span {
     margin-right: 4px;
     color: #333;
     opacity: .3;
 }
-.sampling ul {
+.frameRate ul {
     display: flex;
     list-style: none;
     border: solid #0002 1px;
     border-radius: 3px;
 }
-.sampling ul li {
+.frameRate ul li {
     padding: 8px 12px;
     color: #333;
     cursor: pointer;
 }
-.sampling ul li span {
+.frameRate ul li span {
     opacity: .3;
 }
-.sampling ul li + li {
+.frameRate ul li + li {
     border-left: solid #0002 1px;
 }
-.sampling ul li.selected span {
+.frameRate ul li.selected span {
     opacity: 1;
 }
