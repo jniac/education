@@ -5,7 +5,7 @@ PixelBot.setInstruction('clique pour respawn')
 let vividColors = ['#69c', '#fc6', '#f6a']
 let randomVividColor = () => vividColors[Math.floor(vividColors.length * Math.random())]
 
-let darkGreys = ['#111', '#191919', '#202020', '#242424']
+let darkGreys = ['#111', '#141414', '#171717', '#191919']
 
 class RectPainter extends PixelBot {
 
