@@ -39,6 +39,17 @@ let updateLayout = () => {
 
     let h = canvasContainer.offsetHeight
 
+    if (h > window.innerWidth - 64) {
+
+        h = window.innerWidth - 64
+
+        canvasContainer.style.flex = `0 0 ${h}px`
+
+    } else {
+        canvasContainer.style.flex = null
+
+    }
+
     canvasContainer.style.width = `${h}px`
     canvasPixelBot.style.width = `${h}px`
     canvasPixelBot.style.height = `${h}px`
