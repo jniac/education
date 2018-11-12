@@ -337,11 +337,7 @@ export class Color {
 		// ex: new Color(0xff0066)
         if (typeof color === 'number' && arguments.length === 1) {
 
-            let r = (color >> 16) / 0xff
-            let g = (color >> 8 & 0xff) / 0xff
-            let b = (color & 0xff) / 0xff
-
-            return this.setRgb(r, g, b)
+			this.setValue(color)
 
         }
 
@@ -430,6 +426,24 @@ export class Color {
 		this.a = a
 
 		return this
+
+	}
+
+	getValue() {
+
+		let { r, g, b } = this
+
+		return (Math.round(r * 0xff) << 16) + (Math.round(g * 0xff) << 8) + Math.round(b * 0xff)
+
+	}
+
+	setValue(value) {
+
+		let r = (value >> 16) / 0xff
+		let g = (value >> 8 & 0xff) / 0xff
+		let b = (value & 0xff) / 0xff
+
+		return this.setRgb(r, g, b)
 
 	}
 
