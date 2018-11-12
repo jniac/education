@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    image-rendering: pixelated;
+}
+
+.canvas-container {
+    position: relative;
+    box-shadow: #0000001c 1px 1px 50px 2px;
+    margin: 16px;
+    flex: 1;
+}
+
+body {
+    background-color: #e8e8e8;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inconsolata', monospace;
+    padding: 32px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+}
+
+footer > * + * {
+    margin-left: 16px;
+}
+
+a {
+    /* text-decoration: none; */
+}
+a:visited {
+    color: inherit;
+}
+
+
+/* layout */
+
+#instruction {
+    margin-bottom: 16px;
+}
+
+
+.ml-4 { margin-left: 4px; }
+.mr-4 { margin-right: 4px; }
+
+.flex-h {
+    display: flex;
+    align-items: center;
+}
+
+.boxed {
+    border: solid #0002 1px;
+    border-radius: 3px;
+}
+.boxed > * {
+    padding: 8px 12px;
+}
+.boxed > * + * {
+    border-left: solid #0002 1px;
+}
+
+
+
+
+.frameCount .label {
+    opacity: .3;
+}
+.frameCount .count .light {
+    opacity: .3;
+}
+
+.frameRate {
+    display: flex;
+    align-items: center;
+}
+.frameRate > span {
+    color: #333;
+    opacity: .3;
+}
+.frameRate ul {
+    display: flex;
+    list-style: none;
+}
+.frameRate ul li {
+    color: #333;
+    cursor: pointer;
+}
+.frameRate ul li span {
+    opacity: .3;
+}
+.frameRate ul li.selected span {
+    opacity: 1;
+}

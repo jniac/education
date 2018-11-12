@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="canvas-container">
+            <canvas class="pixel-bot"></canvas>
+            <canvas class="grid"></canvas>
+        </div>
+        <div id="instruction"></div>
+        <footer class="flex-h">
+            <div class="flex-h frameCount">
+                <div class="mr-4 label">frame:</div>
+                <div class="count boxed">
+                    <div class="flex-h">
+                        <span class="light">000000</span>
+                        <span class="plain">1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-h frameRate">
+                <span class="mr-4">frameRate:</span>
+                <ul class="boxed">
+                    <li class="selected"><span>x1</span></li>
+                    <li><span>x10</span></li>
+                    <li><span>x100</span></li>
+                </ul>
+            </div>
+            <a href="https://github.com/jniac/e-artsup/tree/master/misc/Pixel-Bot/v1">github</a>
+        </footer>
+        <script type="module">
+
+            import './init.js'
+
+            PixelBot.loadHashOr('./main.js')
+
+        </script>
+    </body>
+</html>
