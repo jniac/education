@@ -7,6 +7,7 @@ import BufferView from './BufferView.js'
 let isConnected = false
 let isReady = false
 let socket
+let socketId
 let name
 let isMaster
 let isSlave
@@ -45,6 +46,7 @@ const onJson = (json) => {
         isMaster = json.isMaster
         isSlave = !json.isMaster
         isReady = true
+        socketId = json.socketId
 
         console.log(`room:${name} this client is ${isMaster ? 'the master' : 'a slave'}`)
 
@@ -69,6 +71,7 @@ const onJson = (json) => {
         let imageData = PixelBot.ctx.getImageData(0, 0, width, height).data
 
         let data = new Uint8Array(byteLength)
+        new DataView(data.buffer).setInt32(0, slaveSocketId)
         data[HEAD_BYTE_LENGTH] = PAINT_FRAME
         data.set(imageData, HEAD_BYTE_LENGTH + 1)
 
@@ -308,6 +311,7 @@ getter(room, {
     isMaster: () => isMaster,
     isSlave: () => isSlave,
     socket: () => socket,
+    socketId: () => socketId,
 
 })
 
