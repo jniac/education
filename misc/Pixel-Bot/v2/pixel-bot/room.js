@@ -1,5 +1,6 @@
 
 import { readonly, getter, globalize } from './utils.js'
+import settings from './settings.js'
 import PixelBot from './PixelBot.js'
 import BufferView from './BufferView.js'
 
@@ -10,7 +11,9 @@ let name
 let isMaster
 let isSlave
 
-const HEAD_BYTE_LENGTH = 4
+const HEAD_BYTE_LENGTH =
+    + 4     // receiver id
+    + 4     // frame
 
 const PAINT_FRAME = 0   // data for the whole frame (ctx.getImageData)
 const PAINT_PIXEL = 1
@@ -52,6 +55,27 @@ const onJson = (json) => {
 
     }
 
+    if (type === 'slave-open') {
+
+        let { slaveSocketId } = json
+
+        let { width, height } = settings
+
+        let byteLength =
+            + HEAD_BYTE_LENGTH
+            + 1                         // paintAction
+            + width * height * 4        // image data (width * height * (r + g + b + a))
+
+        let imageData = PixelBot.ctx.getImageData(0, 0, width, height).data
+
+        let data = new Uint8Array(byteLength)
+        data[HEAD_BYTE_LENGTH] = PAINT_FRAME
+        data.set(imageData, HEAD_BYTE_LENGTH + 1)
+
+        socket.send(data.buffer)
+
+    }
+
 }
 
 const init = (roomName) => {
@@ -83,9 +107,11 @@ const init = (roomName) => {
 
         if (typeof event.data === 'string') {
 
+            let json
+
             try {
 
-                onJson(JSON.parse(event.data))
+                json = JSON.parse(event.data)
 
             } catch (e) {
 
@@ -93,11 +119,13 @@ const init = (roomName) => {
 
             }
 
+            onJson(json)
+
         } else {
 
             // data is binary
 
-            tryReceivePixelChanges(event.data)
+            tryReceivePixels(event.data)
 
         }
 
@@ -136,7 +164,7 @@ const sendPixelChanges = (bufferMap) => {
 
     let view = new BufferView(buffer, HEAD_BYTE_LENGTH)
 
-    view.headView.setUint16(2, PixelBot.frame)
+    view.headView.setUint16(4, PixelBot.frame)
 
     for (let [color, indexes] of bufferMap.entries()) {
 
@@ -169,7 +197,7 @@ const debugBuffer = (buffer) => {
 
     let view = new BufferView(buffer, HEAD_BYTE_LENGTH)
 
-    let frame = view.headView.getUint16(2)
+    let frame = view.headView.getUint16(4)
 
     console.log({frame})
 
@@ -201,7 +229,7 @@ const debugBuffer = (buffer) => {
 
 }
 
-const receivePixelChanges = (buffer) => {
+const receivePixels = (buffer) => {
 
     let view = new BufferView(buffer, HEAD_BYTE_LENGTH)
 
@@ -225,24 +253,38 @@ const receivePixelChanges = (buffer) => {
 
             }
 
+        } else if (paintAction === PAINT_FRAME) {
+
+            console.log('PAINT_FRAME')
+
+            let data = new Uint8Array(view.buffer, view.headByteLength + view.offset)
+            let { width, height } = settings
+
+            let imageData = PixelBot.ctx.createImageData(width, height)
+            imageData.data.set(data)
+
+            PixelBot.ctx.putImageData(imageData, 0, 0)
+
+            break
+
         }
 
     }
 
 }
 
-const tryReceivePixelChanges = (buffer) => {
+const tryReceivePixels = (buffer) => {
 
     try {
 
-        receivePixelChanges(buffer)
+        receivePixels(buffer)
 
     } catch (e) {
 
         PixelBot.running = false
         socket.close()
 
-        console.log('oups')
+        console.log('receivePixels: oups')
         console.log(e)
         console.log(debugBuffer(buffer))
 
