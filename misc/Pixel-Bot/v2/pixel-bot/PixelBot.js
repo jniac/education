@@ -138,6 +138,9 @@ const update = () => {
 
                 instance.update()
 
+                if (instance.onUpdate)
+                    instance.onUpdate()
+
                 instance.updateCount++
                 instance.lifeMax = Math.floor(instance.lifeMax)
 
@@ -561,7 +564,9 @@ export default class PixelBot {
 
         let { x, y } = this
 
-        setPixelColor(y * width + x, color)
+        let index = (y|0) * width + (x|0)
+
+        setPixelColor(index, color)
 
         return this
 
