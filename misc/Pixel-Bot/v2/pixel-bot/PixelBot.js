@@ -4,6 +4,9 @@ import settings from './settings.js'
 import keyboard from './keyboard.js'
 import mouse from './mouse.js'
 import random from './random.js'
+import hash from './hash.js'
+import room from './room.js'
+import BufferMap from './BufferMap.js'
 import { Color } from './color.js'
 import { globalize, readonly, getter, getterSetter, isIterable } from './utils.js'
 
@@ -28,9 +31,12 @@ let init = () => {
     keyboard.init()
     mouse.init(canvas)
 
+    if (hash.room)
+        room.init(hash.room)
+
 }
 
-let fillCanvas = (color, x = 0, y = 0, width = settings.width, height = settings.height) => {
+const fillCanvas = (color, x = 0, y = 0, width = settings.width, height = settings.height) => {
 
     if (typeof color !== 'string') {
 
@@ -43,13 +49,76 @@ let fillCanvas = (color, x = 0, y = 0, width = settings.width, height = settings
 
 }
 
+let pixelChangeBuffer = new BufferMap()
+let pixelOutOfFrameBuffer = new BufferMap()
+
+const setPixelColor = (index, color) => {
+
+    if (typeof color !== 'number') {
+
+        color = Color.ensure(color).getValue()
+
+    }
+
+    pixelChangeBuffer.addPixel(color, index)
+
+    if (frameIsOpen) {
+
+        setColor(color)
+        fillPixel(index)
+
+    } else {
+
+        pixelOutOfFrameBuffer.addPixel(color, index)
+
+    }
+
+}
+
+const setColor = (color) => {
+
+    ctx.fillStyle = `#${color.toString(16).padStart(6, '0')}`
+
+}
+
+const fillPixel = (index) => {
+
+    let x = index % width | 0
+    let y = index / width | 0
+
+    ctx.fillRect(x, y, 1, 1)
+
+}
+
+
 let running = true
 let frameRate = 1
 let frame = 0
+let frameIsOpen = false
 
-let update = () => {
+const update = () => {
 
+    frameIsOpen = true
+
+    let t = -performance.now()
     let sample = 0
+
+    for (let [color, indexes] of pixelOutOfFrameBuffer.entries()) {
+
+        ctx.fillStyle = `#${color.toString(16).padStart(6, '0')}`
+
+        for (let index of indexes) {
+
+            let x = index % width | 0
+            let y = index / width | 0
+
+            ctx.fillRect(x, y, 1, 1)
+
+        }
+
+    }
+
+    pixelOutOfFrameBuffer.clear()
 
     while (sample++ < frameRate) {
 
@@ -86,6 +155,18 @@ let update = () => {
         frame++
 
     }
+
+    if (room.isConnected) {
+
+        room.sendPixelChanges(pixelChangeBuffer)
+
+    }
+
+    pixelChangeBuffer.clear()
+
+    t += performance.now()
+
+    frameIsOpen = false
 
 }
 
@@ -310,18 +391,7 @@ export default class PixelBot {
 
     static loadHashOr(url) {
 
-        if (window.location.hash) {
-
-            url = window.location.hash.slice(1)
-
-            if (!/\.js$/.test(url))
-                url += '.js'
-
-            window.addEventListener('hashchange', () => window.location.reload())
-
-        }
-
-        return PixelBot.load(url)
+        PixelBot.load(hash.art || url)
 
     }
 
@@ -489,14 +559,9 @@ export default class PixelBot {
 
     setPixelColor(color = this.color) {
 
-        if (typeof color !== 'string') {
+        let { x, y } = this
 
-            color = Color.ensure(color).rrggbbaa
-
-        }
-
-        ctx.fillStyle = color
-        ctx.fillRect(Math.floor(this.x), Math.floor(this.y), 1, 1)
+        setPixelColor(y * width + x, color)
 
         return this
 
@@ -524,10 +589,18 @@ readonly(PixelBot, {
 
     init,
     fillCanvas,
+    setPixelColor,
+    pixelChangeBuffer,
+    setColor,
+    fillPixel,
+
     define,
     update,
     namespace,
     exportCode,
+
+    hash,
+    room,
 
     mouse,
     keyboard,
