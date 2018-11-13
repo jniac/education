@@ -85,7 +85,7 @@ const init = (roomName) => {
 
     name = roomName
 
-    socket = new WebSocket(`ws://localhost:40510/room/${name}:master`)
+    socket = new WebSocket(`ws://node.josephm.fr:40510/room/${name}:master`)
 
     socket.binaryType = 'arraybuffer'
 
