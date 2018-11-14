@@ -187,7 +187,7 @@ canvas.onclick = () => {
 
 const initMaster = () => {
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
 
         new Runner().set({
 
