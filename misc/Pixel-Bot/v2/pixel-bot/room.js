@@ -11,6 +11,8 @@ let socketId
 let name
 let isMaster
 let isSlave
+let bufferInAverage
+let bufferOutAverage
 
 const HEAD_BYTE_LENGTH =
     + 4     // receiver id
@@ -30,6 +32,35 @@ const whenReady = (callback) => {
     } else {
 
         whenReadySet.add(callback)
+
+    }
+
+}
+
+class Average {
+
+    constructor(length = 30) {
+
+        this.array = []
+
+        for (let i = 0; i < length; i++)
+            this.array[i] = 0
+
+        this.index = 0
+        this.average = 0
+        this.sum = 0
+        this.length = length
+
+    }
+
+    setNewValue(value) {
+
+        this.sum += value - this.array[this.index]
+        this.average = this.sum / this.length
+        this.array[this.index++] = value
+
+        if (this.index === this.length)
+            this.index = 0
 
     }
 
@@ -85,7 +116,7 @@ const init = (roomName) => {
 
     name = roomName
 
-    socket = new WebSocket(`ws://node.josephm.fr:40510/room/${name}:master`)
+    socket = new WebSocket(`wss://node.josephm.fr/room/${name}:master`)
 
     socket.binaryType = 'arraybuffer'
 
@@ -133,6 +164,9 @@ const init = (roomName) => {
         }
 
     }
+
+    bufferInAverage = new Average()
+    bufferOutAverage = new Average()
 
     window.socket = socket
 
@@ -192,6 +226,8 @@ const sendPixelChanges = (bufferMap) => {
 
     }
 
+    bufferOutAverage.setNewValue(buffer.byteLength)
+
     socket.send(buffer)
 
 }
@@ -235,6 +271,8 @@ const debugBuffer = (buffer) => {
 const receivePixels = (buffer) => {
 
     let view = new BufferView(buffer, HEAD_BYTE_LENGTH)
+
+    bufferInAverage.setNewValue(buffer.byteLength)
 
     while (view.hasFinished() === false) {
 
@@ -312,6 +350,8 @@ getter(room, {
     isSlave: () => isSlave,
     socket: () => socket,
     socketId: () => socketId,
+    bufferInAverage: () => bufferInAverage,
+    bufferOutAverage: () => bufferOutAverage,
 
 })
 
