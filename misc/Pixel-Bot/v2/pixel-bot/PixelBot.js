@@ -275,7 +275,7 @@ let initInstance = (instance, args) => {
     instance.x = Math.floor(width / 2)
     instance.y = Math.floor(height / 2)
     instance.angle = 0
-    instance.speed = 60
+    instance.speed = 1
     instance.updateCount = 0
     instance.lifeMax = Infinity
 
@@ -531,7 +531,7 @@ export default class PixelBot {
 
         angle *= Math.PI / 180
 
-        let distance = speed / 60
+        let distance = speed
 
         x += distance * Math.cos(angle)
         y += distance * Math.sin(angle)
