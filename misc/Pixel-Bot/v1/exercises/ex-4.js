@@ -1,8 +1,8 @@
 
 PixelBot.fillCanvas('#111')
-PixelBot.setInstruction('clique pour respawn')
+PixelBot.setInstruction('clique quelque part pour respawn')
 
-let vividColors = ['#69c', '#fc6', '#f6a']
+let vividColors = ['#69e', '#fc6', '#f6a']
 let randomVividColor = () => vividColors[Math.floor(vividColors.length * Math.random())]
 
 let darkGreys = ['#111', '#141414', '#171717', '#191919']
@@ -79,7 +79,7 @@ class Runner extends PixelBot {
                 color: this.color,
                 x: this.x,
                 y: this.y,
-                angle: PixelBot.random(360),
+                angle: 90 * Math.floor(Math.random() * 4),
 
             })
 
@@ -131,8 +131,8 @@ class Tron extends PixelBot {
 
     start() {
 
-        this.x = 150
-        this.y = 150
+        this.x = 300 * Math.random()
+        this.y = 300 * Math.random()
         this.color = randomVividColor()
 
     }
@@ -194,6 +194,47 @@ class Tron extends PixelBot {
 
 }
 
+
+
+class TronBot extends PixelBot {
+
+    start() {
+
+        this.color = '#ffffff'
+
+    }
+
+    update() {
+
+        if (Math.random() < 1 / 100) {
+
+            if (Math.random() < .5) {
+
+                this.turnLeft()
+
+            } else {
+
+                this.turnRight()
+
+            }
+
+        }
+
+        this.move()
+
+        if (this.updateCount % 110 < 100) {
+
+            this.setPixelColor()
+
+        }
+
+    }
+
+}
+
+new Tron()
+new TronBot()
+
 PixelBot.canvas.onclick = () => {
 
     new Tron().set({
@@ -205,13 +246,3 @@ PixelBot.canvas.onclick = () => {
     })
 
 }
-
-
-
-class TronBot extends PixelBot {
-
-
-
-}
-
-new Tron()
