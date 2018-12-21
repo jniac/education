@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Dungeon
 {
@@ -29,7 +30,7 @@ namespace Dungeon
             walls.Add(cell);
         }
 
-        public void ExpandFrom(Cell source)
+        public void ExpandFrom(Cell source, List<Color> roomColors)
         {
             AddCellAsFloor(source);
 
@@ -48,7 +49,7 @@ namespace Dungeon
                     if (neighbor.room != null) // ignore cell which are already in a room
                         continue;
 
-                    if (neighbor.color == source.color)
+                    if (roomColors.Contains(neighbor.pixel))
                     {
                         queue.Enqueue(neighbor);
                         AddCellAsFloor(neighbor);

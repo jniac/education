@@ -69,29 +69,28 @@ namespace Dungeon
             }
         }
 
-        private void CreateRooms()
+        private void CreateRooms(List<Color> roomColors)
         {
             foreach (Cell cell in cells)
             {
                 if (cell.room != null)
                     continue;
 
-                //if (cell.color != 0x0)
-                if (cell.color == 0x999999)
+                if (roomColors.Contains(cell.pixel))
                 {
                     Room room = new Room(rooms.Count);
-                    room.ExpandFrom(cell);
+                    room.ExpandFrom(cell, roomColors);
                     rooms.Add(room);
                 }
             }
         }
 
-        public void Init(Texture2D map)
+        public void Init(Texture2D map, List<Color> roomColors)
         {
             this.map = map;
 
             CreateCells();
-            CreateRooms();
+            CreateRooms(roomColors);
         }
     }
 }

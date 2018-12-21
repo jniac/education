@@ -7,13 +7,13 @@ public class DebugCell : MonoBehaviour
     public float size = 1f;
     public float joint = .02f;
     public Color color = Color.red;
-    public bool wire = false;
+    public bool wireframe = false;
 
     private void OnDrawGizmos()
     {
         Gizmos.color = color;
 
-        if (wire)
+        if (wireframe)
         {
             Gizmos.DrawWireCube(transform.position, new Vector3(size, 0, size));
         }

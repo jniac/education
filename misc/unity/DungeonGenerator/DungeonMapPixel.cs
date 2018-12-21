@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DungeonMapPixel : MonoBehaviour
 {
-    public Color32 pixelColor;
+    public Color pixelColor;
     public GameObject prefab;
     public bool isWall;
 }

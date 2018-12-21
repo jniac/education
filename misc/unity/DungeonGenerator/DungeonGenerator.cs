@@ -8,6 +8,8 @@ public class DungeonGenerator : MonoBehaviour
 {
     public Texture2D map;
     public int randomSeed = 12345;
+    public Color roomColor = new Color(0x99 / 0xff, 0x99 / 0xff, 0x99 / 0xff);
+    public Color wallColor = Color.black;
     public List<GameObject> floorTiles = new List<GameObject>();
     public bool randomRotateFloorTiles = true;
     public List<GameObject> simpleWalls = new List<GameObject>();
@@ -24,28 +26,40 @@ public class DungeonGenerator : MonoBehaviour
             DestroyImmediate(transform.GetChild(0).gameObject);
     }
 
-    GameObject CreateDebugTile(Cell cell)
+    GameObject CreateDebugTile(Cell cell, Color color = default)
     {
         GameObject tile = new GameObject();
         tile.transform.parent = transform;
         tile.transform.localPosition = new Vector3(cell.x, 0, cell.y);
         tile.transform.localRotation = Quaternion.identity;
         tile.name = string.Format("({0},{1})", cell.x, cell.y);
+
         DebugCell debugCell = tile.AddComponent<DebugCell>();
+
+        if (color != default)
+            debugCell.color = color;
+
         return tile;
     }
 
-    void Create(Cell cell, float dx = 0, float dy = 0, float rotationY = 0, List<GameObject> list = null, bool hide = true)
+    void Create(Cell cell, float dx = 0, float dy = 0, float rotationY = 0, List<GameObject> list = null, bool hide = true, Color debugColor = default)
     {
         GameObject tile;
 
         if (list == null || list.Count == 0)
         {
-            CreateDebugTile(cell);
+            CreateDebugTile(cell, debugColor);
             return;
         }
 
         GameObject source = dungeon.random.Among(list);
+
+        if (source == null)
+        {
+            CreateDebugTile(cell, debugColor);
+            return;
+        }
+
         tile = Instantiate(source, transform);
         tile.transform.localPosition = new Vector3(cell.x + dx, 0, cell.y + dy);
         tile.transform.localRotation = Quaternion.Euler(0, rotationY, 0);
@@ -65,42 +79,54 @@ public class DungeonGenerator : MonoBehaviour
         Clear();
 
         dungeon = new Dungeon.Dungeon(randomSeed);
-        dungeon.Init(map);
 
         DungeonMapPixel[] mapPixels = GetComponents<DungeonMapPixel>();
+        DungeonMapPixel[] wallMapPixels = Array.FindAll(mapPixels, mapPixel => mapPixel.isWall == true);
+        DungeonMapPixel[] roomMapPixels = Array.FindAll(mapPixels, mapPixel => mapPixel.isWall == false);
 
-        //Debug.Log("color " + (new Color32(0xff, 0, 0, 0xff) == new Color(1, 0, 0, 1)));
-        //Debug.Log(mapPixels[0].pixelColor);
-        //Debug.Log(mapPixels[0].pixelColor == new Color(1, 0, 0, 1));
-        //Debug.Log(mapPixels[0].pixelColor.Equals(new Color32(0xff, 0, 0, 0xff)));
+        List<Color> roomColors = new List<Color>(Array.ConvertAll(roomMapPixels, mapPixel => mapPixel.pixelColor)) { roomColor };
+        List<Color> wallColors = new List<Color>(Array.ConvertAll(wallMapPixels, mapPixel => mapPixel.pixelColor)) { wallColor };
+
+        dungeon.Init(map, roomColors);
 
         foreach (Room room in dungeon.rooms)
         {
+            // ROOM
             foreach(Cell cell in room.cells)
             {
-                float rotateY = randomRotateFloorTiles
-                    ? 90f * dungeon.random.GetInt(4)
-                    : 0;
+                List<GameObject> currentRoomMapPixels = new List<GameObject>(Array.ConvertAll(
+                    Array.FindAll(wallMapPixels, mapPixel => mapPixel.pixelColor == cell.pixel),
+                    mapPixel => mapPixel.prefab));
 
-                Create(cell, 0, 0, rotateY, floorTiles);
+                if (currentRoomMapPixels.Count > 0)
+                {
+                    Create(cell, 0, 0, 0, currentRoomMapPixels, debugColor: Color.blue);
+                }
+                else
+                {
+                    float rotateY = randomRotateFloorTiles ? 90f * dungeon.random.GetInt(4) : 0;
+
+                    Create(cell, 0, 0, rotateY, floorTiles, debugColor: Color.blue);
+                }
             }
 
+            // WALLS
             foreach(Cell cell in room.walls)
             {
                 cell.ComputeWallQuartersFor(room);
 
-                List<GameObject> curentMapPixels = new List<GameObject>(Array.ConvertAll(
-                    Array.FindAll<DungeonMapPixel>(mapPixels, mapPixel => mapPixel.pixelColor.Equals(cell.pixel)), 
+                List<GameObject> currentWallMapPixels = new List<GameObject>(Array.ConvertAll(
+                    Array.FindAll(wallMapPixels, mapPixel => mapPixel.pixelColor == cell.pixel), 
                     mapPixel => mapPixel.prefab));
                     
-                if (curentMapPixels.Count > 0)
+                if (currentWallMapPixels.Count > 0)
                 {
                     float rotationY = 0;
 
                     if (cell.W != null && cell.E != null && cell.W.room != null && cell.E.room != null)
                         rotationY = 90;
 
-                    Create(cell, 0, 0, rotationY, curentMapPixels);
+                    Create(cell, 0, 0, rotationY, currentWallMapPixels);
 
                     continue;
                 }
