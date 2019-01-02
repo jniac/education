@@ -6,6 +6,8 @@ using Dungeon;
 [ExecuteInEditMode]
 public class DungeonGenerator : MonoBehaviour
 {
+    public bool freezed = false;
+
     public Texture2D map;
     public int randomSeed = 12345;
     public Color roomColor = new Color(0x99 / 0xff, 0x99 / 0xff, 0x99 / 0xff);
@@ -64,6 +66,8 @@ public class DungeonGenerator : MonoBehaviour
         tile.transform.localPosition = new Vector3(cell.x + dx, 0, cell.y + dy);
         tile.transform.localRotation = Quaternion.Euler(0, rotationY, 0);
 
+        cell.tiles.Add(tile);
+
         if (hideTilesInHierarchy && hide)
             tile.hideFlags = HideFlags.HideInHierarchy;
     }
@@ -74,6 +78,9 @@ public class DungeonGenerator : MonoBehaviour
             return;
 
         if (!map)
+            return;
+
+        if (freezed)
             return;
 
         Clear();
@@ -95,7 +102,7 @@ public class DungeonGenerator : MonoBehaviour
             foreach(Cell cell in room.cells)
             {
                 List<GameObject> currentRoomMapPixels = new List<GameObject>(Array.ConvertAll(
-                    Array.FindAll(wallMapPixels, mapPixel => mapPixel.pixelColor == cell.pixel),
+                    Array.FindAll(roomMapPixels, mapPixel => mapPixel.pixelColor == cell.pixel),
                     mapPixel => mapPixel.prefab));
 
                 if (currentRoomMapPixels.Count > 0)
@@ -115,18 +122,23 @@ public class DungeonGenerator : MonoBehaviour
             {
                 cell.ComputeWallQuartersFor(room);
 
+                // fetch mapPixels of the current cell pixel/color
                 List<GameObject> currentWallMapPixels = new List<GameObject>(Array.ConvertAll(
                     Array.FindAll(wallMapPixels, mapPixel => mapPixel.pixelColor == cell.pixel), 
                     mapPixel => mapPixel.prefab));
                     
                 if (currentWallMapPixels.Count > 0)
                 {
-                    float rotationY = 0;
+                    // do not produce a brand new tile if a tile was already created (by another room)
+                    if (cell.tiles.Count == 0)
+                    {
+                        float rotationY = 0;
 
-                    if (cell.W != null && cell.E != null && cell.W.room != null && cell.E.room != null)
-                        rotationY = 90;
+                        if (cell.W != null && cell.E != null && cell.W.room != null && cell.E.room != null)
+                            rotationY = 90;
 
-                    Create(cell, 0, 0, rotationY, currentWallMapPixels);
+                        Create(cell, 0, 0, rotationY, currentWallMapPixels);
+                    }
 
                     continue;
                 }

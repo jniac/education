@@ -76,7 +76,9 @@ namespace Dungeon
         public Cell[] neighbors = new Cell[8];
 
         public Room room;
-        public List<Room> roomsAsWall = new List<Room>();
+        public List<Room> adjacentRooms = new List<Room>();
+
+        public List<GameObject> tiles = new List<GameObject>();
 
         public Cell(int index, int x, int y, Color32 pixel)
         {

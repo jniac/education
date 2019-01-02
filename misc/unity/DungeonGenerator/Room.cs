@@ -23,10 +23,10 @@ namespace Dungeon
 
         private void AddCellAsWall(Cell cell)
         {
-            if (cell.roomsAsWall.Contains(this))
+            if (cell.adjacentRooms.Contains(this))
                 return;
 
-            cell.roomsAsWall.Add(this);
+            cell.adjacentRooms.Add(this);
             walls.Add(cell);
         }
 
