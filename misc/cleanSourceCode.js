@@ -1,14 +1,16 @@
 let cleanSourceCode = (source) => {
 
-    let m = source
-        .replace(/\s\n/, '\n')
-        .match(/\n\s*?\w/)
+    source = source
+        .replace(/^\s*\n/, '')
+        .replace(/\s*$/, '')
 
-    let p = m && m[0].slice(1, -1)
+    let m = source
+        .match(/\s*\w/)
+
+    let p = m && m[0].slice(0, -1)
 
     return source
         .split('\n')
-        .filter(v => /\S/.test(v))
         .map(v => p ? v.replace(p , '') : v)
         .join('\n')
 
