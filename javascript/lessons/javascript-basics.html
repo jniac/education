@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>les bases du Javascript</title>
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+        <link rel="stylesheet" href="lessons-style.css">
+    </head>
+    <body>
+        <div class="tooltip">
+            Pour afficher la console:<br>
+            Mac: [cmd + shift + I]<br>
+            Win: [F12]
+        </div>
+
+        <h1>Les bases du Javascript</h1>
+        <h2>Les principaux <span class="italic">"types" :</span></h2>
+
+        <section>
+            <h3>String</h3>
+            <p>String = chaîne de caractères</p>
+            <p>Les chaînes de caractères permettent de représenter du texte.</p>
+            <div class="code">
+                let a = "hello"
+                let b = "world"
+                alert(a + " " + b)
+            </div>
+        </section>
+
+        <section>
+            <h3>Number</h3>
+            <p>Les "Number" permettent de représenter un très grand nombre de nombres (sic).</p>
+            <div class="code">
+                let c = 10
+                let d = .25
+                alert(c + d * 3)
+            </div>
+            <p>Attention toutefois, les valeurs possibles sont limitées, ainsi des erreurs de calculs sont possibles :</p>
+            <div class="code">
+                alert(.1 + .2)
+                alert("étonnant n'est-ce pas ?")
+            </div>
+        </section>
+
+        <section>
+            <h3>Array</h3>
+            <p>"Array" = tableau (d'éléments)</p>
+            <div class="code">
+
+                let fruits = ["banana", "orange", "kiwi"]
+                
+                alert("il y a " + fruits.length + " fruits")
+                alert("le premier fruit est " + fruits[0])
+                alert("le dernier fruit est " + fruits[fruits.length - 1])
+
+            </div>
+        </section>
+
+        <h2>Les <span class="italic">"boucles"</span></h2>
+        <section>
+            <h3>For loop</h3>
+            <p>Un exemple classique, une boucle sur <span class="italic">i</span></p>
+            <div class="code">
+
+                for (let i = 0; i < 10; i++) {
+                    console.log(i)
+                }
+
+            </div>
+            <p>Boucle sur un tableau de valeur (à l'ancienne):</p>
+            <div class="code">
+
+                let items = [1, 10, 1000, "etc!"]
+
+                for (let i = 0; i < items.length; i++) {
+                    console.log(i, items[i])
+                }
+
+            </div>
+            <p>Boucle sur un tableau de valeur nouvelle façon (stylé) :</p>
+            <div class="code">
+
+                let items2 = [1, 10, 1000, "etc!"]
+
+                for (let value of items2) {
+                    console.log(value)
+                }
+
+            </div>
+        </section>
+
+        <script src="execute-code.js"></script>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+}
+
+html {
+    overflow: scroll;
+    overscroll-behavior: none;
+}
+
+body {
+    padding: 32px;
+    padding-bottom: 120px;
+    font-family: 'Lora', serif;
+    background-color: #ddd;
+}
+
+.italic {
+    font-style: italic;
+}
+
+div.tooltip {
+    position: fixed;
+    bottom: 0;
+    right: 48px;
+    background-color: white;
+    padding: 32px;
+    box-shadow: 3px 10px 20px #00000052;
+    z-index: 10;
+}
+
+h1 {
+    margin-bottom: 64px;
+}
+
+h2 {
+    margin-bottom: 32px;
+}
+
+section {
+    padding: 32px;
+    background-color: white;
+    border-top: 4px solid;
+}
+
+section + section {
+    margin-top: 32px;
+}
+
+section p {
+    margin: 8px 0;
+}
+
+section div.code {
+    position: relative;
+    white-space: pre;
+    font-family: 'Roboto Mono', monospace;
+    border: 1px solid #eee;
+    padding: 16px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+section div.code div.execute-code {
+    position: absolute;
+    bottom: 0;
+    right: 32px;
+    background-color: #fffe;
+    padding: 12px;
+    font-family: 'Lora', serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .1s;
+    border-radius: 4px 4px 0 0;
+}
+
+section div.code div.execute-code:hover {
+    background: #f00e;
+    color: white;
+}
