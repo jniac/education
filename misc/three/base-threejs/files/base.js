@@ -18,10 +18,10 @@ camera.position.z = 5
 let pointer = events.makeDispatcher({
 
 	lastEventTimestamp: Date.now(),
-    position: new THREE.Vector2(),
-    over: { target:null, timestamp:-1 },
-    down: { target:null, timestamp:-1 },
-    up: { target:null, timestamp:-1 },
+	position: new THREE.Vector2(),
+	over: { target:null, timestamp:-1 },
+	down: { target:null, timestamp:-1 },
+	up: { target:null, timestamp:-1 },
 
 })
 
@@ -39,46 +39,59 @@ let app = (() => {
 
 	}
 
-    let autoSleepDelay = 10000
+	let autoSleepDelay = 10000
 
-    let animate = () => {
+	let resizeCounter = 0
+	window.addEventListener('resize', () => resizeCounter = 2)
+	let resize = () => {
 
-        requestAnimationFrame(animate)
+		let { innerWidth:w, innerHeight:h } = window
+		camera.aspect = w / h
+		renderer.setSize(w, h)
+
+	}
+
+	let animate = () => {
+
+		requestAnimationFrame(animate)
+
+		if (resizeCounter-- === 0)
+			resize()
 
 		if (Date.now() - pointer.lastEventTimestamp > autoSleepDelay)
 			return
 
-        updatePointer()
+		updatePointer()
 
-        renderer.render(scene, camera)
+		renderer.render(scene, camera)
 
-    }
+	}
 
-    renderer.domElement.addEventListener('mousemove', (event) => {
+	renderer.domElement.addEventListener('mousemove', (event) => {
 
-        pointer.position.x = (event.clientX / window.innerWidth) * 2 - 1
-        pointer.position.y = -(event.clientY / window.innerHeight) * 2 + 1
+		pointer.position.x = (event.clientX / window.innerWidth) * 2 - 1
+		pointer.position.y = -(event.clientY / window.innerHeight) * 2 + 1
 
 		pointer.lastEventTimestamp = Date.now()
 
-        raycaster.setFromCamera(pointer.position, camera)
+		raycaster.setFromCamera(pointer.position, camera)
 
-    })
+	})
 
 	renderer.domElement.addEventListener('mousedown', (event) => {
 
-    	let target = pointer.over.target || scene
+		let target = pointer.over.target || scene
 		let timestamp = Date.now()
 
 		pointer.lastEventTimestamp = timestamp
 		Object.assign(pointer.down, { target, timestamp })
 		firePointerEvent(target, 'pointer-down', { timestamp })
 
-    })
+	})
 
 	renderer.domElement.addEventListener('mouseup', (event) => {
 
-    	let target = pointer.over.target || scene
+		let target = pointer.over.target || scene
 		let timestamp = Date.now()
 
 		pointer.lastEventTimestamp = timestamp
@@ -93,7 +106,7 @@ let app = (() => {
 
 		}
 
-    })
+	})
 
 	Object.assign(THREE.Object3D.prototype, {
 
@@ -103,9 +116,9 @@ let app = (() => {
 
 	})
 
-    let getPointerIntersections = (children = scene.children, intersections = []) => {
+	let getPointerIntersections = (children = scene.children, intersections = []) => {
 
-        for (let child of children) {
+		for (let child of children) {
 
 			if (child.interactive === false)
 				continue
@@ -113,58 +126,58 @@ let app = (() => {
 			if (child.interactiveChildren !== false &&
 				child.children &&
 				child.children.length > 0)
-                getPointerIntersections(child.children, intersections)
+				getPointerIntersections(child.children, intersections)
 
 			if (child.interactiveSelf === false)
 				continue
 
-            let [intersection] = raycaster.intersectObject(child, false)
+			let [intersection] = raycaster.intersectObject(child, false)
 
-            if (intersection)
+			if (intersection)
 				intersections.push(intersection)
 
-        }
+		}
 
 		return intersections
 
-    }
+	}
 
 	let getPointerTarget = () => getPointerIntersections().sort((A, B) => A.distance - B.distance).map(v => v.object)[0]
 
 	Object.assign(pointer, { getPointerIntersections, getPointerTarget, raycaster })
 
-    let updatePointer = () => {
+	let updatePointer = () => {
 
 		let newPointerOverTarget = getPointerTarget()
 
-        if (newPointerOverTarget != pointer.over.target) {
+		if (newPointerOverTarget != pointer.over.target) {
 
 			let timestamp = Date.now()
 
-            if (pointer.over.target)
-                firePointerEvent(pointer.over.target, 'pointer-out', { timestamp })
+			if (pointer.over.target)
+				firePointerEvent(pointer.over.target, 'pointer-out', { timestamp })
 
-            pointer.over.target = newPointerOverTarget
+			pointer.over.target = newPointerOverTarget
 
-            if (pointer.over.target)
+			if (pointer.over.target)
 				firePointerEvent(pointer.over.target, 'pointer-over', { timestamp })
 
-        }
+		}
 
-    }
+	}
 
-    animate()
+	animate()
 
-    return {
+	return {
 
-        pointer,
-        renderer,
-        camera,
-        scene,
+		pointer,
+		renderer,
+		camera,
+		scene,
 
-        get autoSleepDelay() { return autoSleepDelay },
-        set autoSleepDelay(value) { autoSleepDelay = value },
+		get autoSleepDelay() { return autoSleepDelay },
+		set autoSleepDelay(value) { autoSleepDelay = value },
 
-    }
+	}
 
 })()
