@@ -4,7 +4,7 @@
 
 [misc/three/base-threejs-1.0.1.zip](https://github.com/jniac/e-artsup/raw/master/misc/three/base-threejs-1.0.1.zip)
 
-Babel config:
+Atom Babel config:
 ```cson
   core:
     customFileTypes:
