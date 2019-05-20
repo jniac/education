@@ -33,6 +33,7 @@
 	await loadStyle('main.css')
 
 	await loadScripts(
+		'files/TweenMax.min.js',
 		'files/three.js',
 		'files/extend-three.js',
 		'files/events.js',
