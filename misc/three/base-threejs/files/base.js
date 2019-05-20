@@ -29,6 +29,8 @@ let app = (() => {
 
 	let raycaster = new THREE.Raycaster()
 
+	let textureLoader = new THREE.TextureLoader()
+
 	// event propagation callback (bubbling)
 	let propagate = object => object.parent
 
@@ -175,8 +177,12 @@ let app = (() => {
 		camera,
 		scene,
 
+		textureLoader,
+
 		get autoSleepDelay() { return autoSleepDelay },
 		set autoSleepDelay(value) { autoSleepDelay = value },
+
+		loadTexture(url) { return textureLoader.load(url) },
 
 	}
 
