@@ -6,7 +6,7 @@ events.makeDispatcher(THREE.Object3D.prototype)
 let scene = new THREE.Scene()
 let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000)
 
-let renderer = new THREE.WebGLRenderer()
+let renderer = new THREE.WebGLRenderer({ antialias:true })
 renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.setClearColor('#eee')
 document.body.appendChild(renderer.domElement)
@@ -25,7 +25,7 @@ let pointer = events.makeDispatcher({
 
 })
 
-{(() => {
+let app = (() => {
 
 	let raycaster = new THREE.Raycaster()
 
@@ -39,11 +39,13 @@ let pointer = events.makeDispatcher({
 
 	}
 
+    let autoSleepDelay = 10000
+
     let animate = () => {
 
         requestAnimationFrame(animate)
 
-		if (Date.now() - pointer.lastEventTimestamp > 1000)
+		if (Date.now() - pointer.lastEventTimestamp > autoSleepDelay)
 			return
 
         updatePointer()
@@ -65,7 +67,7 @@ let pointer = events.makeDispatcher({
 
 	renderer.domElement.addEventListener('mousedown', (event) => {
 
-    	let target = pointer.over.target
+    	let target = pointer.over.target || scene
 		let timestamp = Date.now()
 
 		pointer.lastEventTimestamp = timestamp
@@ -76,7 +78,7 @@ let pointer = events.makeDispatcher({
 
 	renderer.domElement.addEventListener('mouseup', (event) => {
 
-    	let target = pointer.over.target
+    	let target = pointer.over.target || scene
 		let timestamp = Date.now()
 
 		pointer.lastEventTimestamp = timestamp
@@ -153,4 +155,16 @@ let pointer = events.makeDispatcher({
 
     animate()
 
-})()}
+    return {
+
+        pointer,
+        renderer,
+        camera,
+        scene,
+
+        get autoSleepDelay() { return autoSleepDelay },
+        set autoSleepDelay(value) { autoSleepDelay = value },
+
+    }
+
+})()
