@@ -22,7 +22,8 @@ div.tooltip {
     position: fixed;
     bottom: 0;
     right: 48px;
-    background-color: #fffdc8;
+    background-color: hsla(243, 35%, 23%, 1);
+	color: white;
     padding: 32px;
     box-shadow: 3px 10px 20px #00000052;
     z-index: 10;
