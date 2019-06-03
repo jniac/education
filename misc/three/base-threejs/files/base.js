@@ -49,6 +49,7 @@ let app = (() => {
 
 		let { innerWidth:w, innerHeight:h } = window
 		camera.aspect = w / h
+		camera.updateProjectionMatrix()
 		renderer.setSize(w, h)
 
 	}
