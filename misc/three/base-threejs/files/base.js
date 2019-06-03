@@ -64,6 +64,7 @@ let app = (() => {
 		if (Date.now() - pointer.lastEventTimestamp > autoSleepDelay)
 			return
 
+		updateParticles()
 		updatePointer()
 
 		renderer.render(scene, camera)
@@ -141,17 +142,21 @@ let app = (() => {
 
 		}
 
-		return intersections
+		return intersections.sort((A, B) => A.distance - B.distance)
 
 	}
 
-	let getPointerTarget = () => getPointerIntersections().sort((A, B) => A.distance - B.distance).map(v => v.object)[0]
+	let getPointerTarget = () => getPointerIntersections().map(v => v.object)[0]
 
 	Object.assign(pointer, { getPointerIntersections, getPointerTarget, raycaster })
 
 	let updatePointer = () => {
 
-		let newPointerOverTarget = getPointerTarget()
+		let [intersection] = getPointerIntersections()
+
+		Object.assign(pointer, { intersection })
+
+		let newPointerOverTarget = intersection && intersection.object
 
 		if (newPointerOverTarget != pointer.over.target) {
 
@@ -169,6 +174,99 @@ let app = (() => {
 
 	}
 
+
+
+
+	// Particles:
+	let particles = []
+	let particleCubeGeometry = new THREE.CubeGeometry(.1, .1, .1)
+
+	class Particle extends THREE.Object3D {
+
+		constructor(geometry = null, material = null) {
+
+			super()
+
+			particles.push(this)
+
+			if (!geometry)
+				geometry = particleCubeGeometry
+
+			if (!material)
+				material = new THREE.MeshBasicMaterial({ color:'red' })
+
+			this.add(new THREE.Mesh(geometry, material))
+
+			Object.assign(this, {
+				t: 0,
+				velocity: new THREE.Vector3(0, 0, 0),
+				rotationVelocity: new THREE.Vector3(0, 0, 0),
+			})
+
+			scene.add(this)
+
+		}
+
+		kill() {
+
+			if (this.killed)
+				return
+
+			let index = particles.indexOf(this)
+			particles.splice(index, 1)
+			scene.remove(this)
+			this.killed = true
+
+		}
+
+	}
+
+	Object.assign(Particle.prototype, {
+
+		killed: false,
+		tMax: Infinity,
+		friction: 0,
+
+	})
+
+	let updateParticles = () => {
+
+		let dt = 1 / 60
+
+		for (let particle of particles) {
+
+			let f = (1 - particle.friction) ** dt
+
+			particle.t += dt
+
+			if (particle.t > particle.tMax) {
+
+				particle.kill()
+				return
+
+			}
+
+			particle.velocity.x *= f
+			particle.velocity.y *= f
+			particle.velocity.z *= f
+
+			particle.position.x += particle.velocity.x * dt
+			particle.position.y += particle.velocity.y * dt
+			particle.position.z += particle.velocity.z * dt
+
+			particle.rotation.x += particle.rotationVelocity.x * dt
+			particle.rotation.y += particle.rotationVelocity.y * dt
+			particle.rotation.z += particle.rotationVelocity.z * dt
+
+			if (particle.update && typeof particle.update === 'function')
+				particle.update(dt)
+
+		}
+
+	}
+
+
+
 	animate()
 
 	return {
@@ -177,6 +275,8 @@ let app = (() => {
 		renderer,
 		camera,
 		scene,
+
+		Particle,
 
 		textureLoader,
 
