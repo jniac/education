@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+	.st1{font-family:'RobotoMono-Regular';}
+	.st2{font-size:48px;}
+</style>
+<rect x="182.5" y="182.5" class="st0" width="212" height="212"/>
+<text transform="matrix(1 0 0 1 230.5811 307.6494)" class="st1 st2">-1,1</text>
+<rect x="394.5" y="182.5" class="st0" width="212" height="212"/>
+<text transform="matrix(1 0 0 1 456.9951 307.6494)" class="st1 st2">0,1</text>
+<rect x="606.5" y="182.5" class="st0" width="212" height="212"/>
+<text transform="matrix(1 0 0 1 668.9951 307.6494)" class="st1 st2">1,1</text>
+<rect x="182.5" y="394.5" class="st0" width="212" height="212"/>
+<text transform="matrix(1 0 0 1 230.5811 519.6494)" class="st1 st2">-1,0</text>
+<rect x="394.5" y="394.5" class="st0" width="212" height="212"/>
+<text transform="matrix(1 0 0 1 456.9951 519.6494)" class="st1 st2">0,0</text>
+<rect x="606.5" y="394.5" class="st0" width="212" height="212"/>
+<text transform="matrix(1 0 0 1 668.9951 519.6494)" class="st1 st2">1,0</text>
+<rect x="182.5" y="606.5" class="st0" width="212" height="212"/>
+<text transform="matrix(1 0 0 1 216.167 731.6494)" class="st1 st2">-1,-1</text>
+<rect x="394.5" y="606.5" class="st0" width="212" height="212"/>
+<text transform="matrix(1 0 0 1 442.5811 731.6494)" class="st1 st2">0,-1</text>
+<rect x="606.5" y="606.5" class="st0" width="212" height="212"/>
+<text transform="matrix(1 0 0 1 654.5811 731.6494)" class="st1 st2">1,-1</text>
+</svg>
