@@ -66,6 +66,7 @@ section div.code {
     padding: 16px;
     background-color: #f9f9f9;
     color: #333;
+	tab-size: 4;
 }
 
 section div.code div.execute-code {
