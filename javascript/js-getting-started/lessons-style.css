@@ -22,7 +22,7 @@ div.tooltip {
     position: fixed;
     bottom: 0;
     right: 48px;
-    background-color: white;
+    background-color: #fffdc8;
     padding: 32px;
     box-shadow: 3px 10px 20px #00000052;
     z-index: 10;
@@ -46,8 +46,16 @@ section + section {
     margin-top: 32px;
 }
 
+section + h2 {
+	margin-top: 96px;
+}
+
 section p {
     margin: 8px 0;
+}
+
+* + h3 {
+	margin-top: 32px;
 }
 
 section div.code {

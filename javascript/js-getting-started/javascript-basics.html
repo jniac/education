@@ -49,7 +49,7 @@
             <div class="code">
 
                 let fruits = ["banana", "orange", "kiwi"]
-                
+
                 alert("il y a " + fruits.length + " fruits")
                 alert("le premier fruit est " + fruits[0])
                 alert("le dernier fruit est " + fruits[fruits.length - 1])
@@ -89,6 +89,44 @@
 
             </div>
         </section>
+
+		<h2>Les <span class="italic">"fonctions"</span></h2>
+		<section>
+			<h3>Arrow function</h3>
+			<p>Une nouvelle façon de déclarer des fonctions en js :</p>
+			<div class="code">
+
+				let disBonjour = (name) => {
+					alert("bonjour " + name)
+				}
+
+				disBonjour("Bob")
+
+			</div>
+			<p>...qui peut-être très concise (inline) :</p>
+			<div class="code">
+
+				let disBonjour2 = name => alert("bonjour " + name)
+
+				disBonjour2("Marie")
+
+			</div>
+			<h3>Classic function</h3>
+			<p>Traditionnellement les fonctions se déclarent avec le mot-clé "function" :</p>
+			<div class="code">
+
+				function disBonjour3(name) {
+					alert("bonjour " + name)
+				}
+
+				disBonjour3("Pierre-Emmanuel")
+
+			</div>
+		</section>
+
+
+
+
 
         <script src="execute-code.js"></script>
     </body>
