@@ -25,6 +25,29 @@ let pointer = events.makeDispatcher({
 
 })
 
+// https://gist.github.com/blixt/f17b47c62508be59987b
+class PRNG {
+	constructor(seed = 12345) {
+		this.reset(seed)
+	}
+	reset(seed = this.seed) {
+		this.seed = seed % 2147483647
+
+		if (this.seed <= 0)
+			this.seed += 2147483646
+		this.pos = this.seed
+	}
+	next() {
+		return this.pos = this.pos * 16807 % 2147483647
+	}
+	nextFloat() {
+		return (this.next() - 1) / 2147483646
+	}
+	random(min = 0, max = 1) {
+		return min + (max - min) * this.nextFloat()
+	}
+}
+
 let app = (() => {
 
 	let raycaster = new THREE.Raycaster()
@@ -176,6 +199,9 @@ let app = (() => {
 
 
 
+	// PRNG
+	let prng = new PRNG()
+
 
 	// Particles:
 	let particles = []
@@ -277,6 +303,9 @@ let app = (() => {
 		scene,
 
 		Particle,
+		PRNG,
+		prng,
+		random: (min = 0, max = 1) => prng.random(min, max),
 
 		textureLoader,
 
