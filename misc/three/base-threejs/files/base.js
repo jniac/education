@@ -105,11 +105,11 @@ let app = (() => {
 		pointer.position.x = (event.clientX / window.innerWidth) * 2 - 1
 		pointer.position.y = -(event.clientY / window.innerHeight) * 2 + 1
 
-		pointer.lastEventTimestamp = Date.now()
-
 		raycaster.setFromCamera(pointer.position, camera)
 
 	})
+
+	window.addEventListener('mousemove', () => pointer.lastEventTimestamp = Date.now())
 
 	renderer.domElement.addEventListener('mousedown', (event) => {
 
@@ -302,6 +302,8 @@ let app = (() => {
 	animate()
 
 	return {
+
+		version: '1.0.3',
 
 		pointer,
 		renderer,
