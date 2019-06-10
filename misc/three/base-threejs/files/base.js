@@ -43,7 +43,13 @@ class PRNG {
 	nextFloat() {
 		return (this.next() - 1) / 2147483646
 	}
+	among(array) {
+		return array[Math.floor(array.length * this.nextFloat())]
+	}
 	random(min = 0, max = 1) {
+		if (arguments.length == 1 && (arguments[0] instanceof Array))
+			return this.among(arguments[0])
+
 		return min + (max - min) * this.nextFloat()
 	}
 }
@@ -305,7 +311,7 @@ let app = (() => {
 		Particle,
 		PRNG,
 		prng,
-		random: (min = 0, max = 1) => prng.random(min, max),
+		random: (...args) => prng.random(...args),
 
 		textureLoader,
 
