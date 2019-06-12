@@ -19,6 +19,14 @@
 
 		},
 
+		setPosition(x, y, z) {
+
+			this.position.set(x, y, z)
+
+			return this
+
+		},
+
 		addTo(parent) {
 
 			parent.add(this)
@@ -48,6 +56,26 @@
 			this.rotation.set(x, y, z)
 
 			return this
+
+		},
+
+		query(test) {
+
+			if (typeof test === 'string')
+				test = new RegExp(`^${test}\$`)
+
+			let result = []
+
+			for (let child of this.children) {
+
+				if (test.test(child.name))
+					result.push(child)
+
+				result.push(...child.query(test))
+
+			}
+
+			return result
 
 		},
 
