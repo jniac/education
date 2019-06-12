@@ -2,7 +2,7 @@
 
 [rendu-pas-cher](./motion/c4d/rendering/rendu-pas-cher/)
 
-[misc/three/base-threejs-1.0.5.zip](https://github.com/jniac/e-artsup/raw/master/misc/three/base-threejs-1.0.5.zip)  
+[misc/three/base-threejs-1.0.6.zip](https://github.com/jniac/e-artsup/raw/master/misc/three/base-threejs-1.0.6.zip)  
 [javascript/js-getting-started-0.0.1.zip](https://github.com/jniac/e-artsup/raw/master/javascript/js-getting-started-0.0.1.zip)
 
 Atom Babel config:
