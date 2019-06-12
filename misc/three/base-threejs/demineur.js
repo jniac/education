@@ -90,6 +90,8 @@ let bombCards = []
 
 // https://www.desmos.com/calculator/i6kwlsrerc
 let shaky = (x, f = 5, p = 3, s = 1) => s * Math.sin(x * Math.PI * f) * ((1 - x) ** p)
+// https://www.desmos.com/calculator/kpoeitak2g
+let powww = (x, a = 12, b = 1) => (1 - (x ** (a * x))) * b
 
 for (let i = 0; i < numberOfBombs; i++) {
 
@@ -103,17 +105,7 @@ for (let i = 0; i < numberOfBombs; i++) {
 	bombCard.on('pointer-click', () => {
 
 		boom(40, pointer.intersection.point, ['#ffcc00', 'white', 'black'])
-
-		let f1 = app.random(8, 16)
-		let f2 = app.random(8, 16)
-
-		let ease = (t) => {
-			let t1 = shaky(t, f1, 5)
-			let t2 = shaky(t, f2, 5, -1)
-			camera.position.x = .5 * t1 - .5 * t2
-			camera.position.y = .5 * t1 + .5 * t2
-		}
-		TweenMax.from(camera.position, 2, { ease:ease })
+		camShake(.4)
 
 	})
 
@@ -153,8 +145,26 @@ for (let i = 0; i < numberOfTrolls; i++) {
 	trollCard.on('pointer-click', () => {
 
 		boom(10, pointer.intersection.point, ['#ffccec', 'red', 'black'])
+		camShake(.05, .6)
 
 	})
+
+}
+
+
+
+let camShake = (size, duration = 1.8) => {
+
+	let f1 = app.random(8, 16)
+	let f2 = app.random(8, 16)
+
+	let ease = (t) => {
+		let t1 = shaky(t, f1, 5)
+		let t2 = shaky(t, f2, 5, -1)
+		camera.position.x = size * t1 - size * t2
+		camera.position.y = size * t1 + size * t2
+	}
+	TweenMax.from(camera.position, duration, { ease:ease })
 
 }
 
@@ -172,7 +182,12 @@ let boom = (count = 10, center = boomDefaultCenter, colors = boomDefaultColors) 
 
 		let p = new app.Particle(geometry, material)
 
-		p.update = () => p.scale.multiplyScalar(.9)
+		let size = app.random(.1, 1)
+
+		p.update = () => {
+			let s = powww(p.tProgress) * size
+			p.scale.set(s, s, s)
+		}
 
 		p.position.copy(center)
 		p.rotation.z = Math.PI * app.random(-1, 1)
@@ -180,12 +195,14 @@ let boom = (count = 10, center = boomDefaultCenter, colors = boomDefaultColors) 
 		p.friction = app.random(.95, .99)
 		p.tMax = app.random(.5, 1)
 
-		let s = app.random(3, 9)
-		let a = app.random(0, Math.PI * 2)
-		p.velocity.x = s * Math.cos(a)
-		p.velocity.y = s * Math.sin(a)
+		let velocity = app.random(3, 9)
+		let angle = app.random(0, Math.PI * 2)
+		p.velocity.x = velocity * Math.cos(angle)
+		p.velocity.y = velocity * Math.sin(angle)
 
 		p.rotationVelocity.z = 2 * Math.PI * app.random(-1, 1)
 	}
 
 }
+
+cards.forEach(card => card.rotation.y = Math.PI)
