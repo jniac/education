@@ -47,10 +47,22 @@ class PRNG {
 		return array[Math.floor(array.length * this.nextFloat())]
 	}
 	random(min = 0, max = 1) {
-		if (arguments.length == 1 && (arguments[0] instanceof Array))
+		if (arguments.length == 1 && (arguments[0] instanceof Array)) {
+			if (arguments[0][0] && ('weight' in arguments[0][0]))
+				return this.weighted(arguments[0])
 			return this.among(arguments[0])
+		}
 
 		return min + (max - min) * this.nextFloat()
+	}
+	weighted(array) {
+		let total = array.reduce((s, item) => s += item.weight, 0)
+		let r = total * this.nextFloat()
+		let i = 0
+		let s = array[i].weight
+		while (s < r)
+			s += array[++i].weight
+		return array[i]
 	}
 }
 
@@ -80,23 +92,6 @@ let app = (() => {
 		camera.aspect = w / h
 		camera.updateProjectionMatrix()
 		renderer.setSize(w, h)
-
-	}
-
-	let animate = () => {
-
-		requestAnimationFrame(animate)
-
-		if (resizeCounter-- === 0)
-			resize()
-
-		if (Date.now() - pointer.lastEventTimestamp > autoSleepDelay)
-			return
-
-		updateParticles()
-		updatePointer()
-
-		renderer.render(scene, camera)
 
 	}
 
@@ -211,6 +206,7 @@ let app = (() => {
 
 	// Particles:
 	let particles = []
+	let particlesToInit = new Set()
 	let particleCubeGeometry = new THREE.CubeGeometry(.1, .1, .1)
 
 	class Particle extends THREE.Object3D {
@@ -235,7 +231,7 @@ let app = (() => {
 				rotationVelocity: new THREE.Vector3(0, 0, 0),
 			})
 
-			scene.add(this)
+			particlesToInit.add(this)
 
 		}
 
@@ -256,12 +252,30 @@ let app = (() => {
 	Object.assign(Particle.prototype, {
 
 		killed: false,
-		tMax: Infinity,
+		tMax: 3,
 		friction: 0,
 
 	})
 
+	Object.defineProperties(Particle.prototype, {
+
+		tProgress: {
+			get() { return this.t / this.tMax },
+			set(value) { this.t = value * this.tMax },
+		}
+
+	})
+
 	let updateParticles = () => {
+
+		for (let particle of particlesToInit) {
+
+			if (particle.update && typeof particle.update === 'function')
+				particle.update(0)
+
+		}
+
+
 
 		let dt = 1 / 60
 
@@ -293,15 +307,27 @@ let app = (() => {
 			if (particle.update && typeof particle.update === 'function')
 				particle.update(dt)
 
+			if (Math.abs(particle.scale.x) < 1e-12)
+				particle.scale.x = 1e-12
+			if (Math.abs(particle.scale.y) < 1e-12)
+				particle.scale.y = 1e-12
+			if (Math.abs(particle.scale.z) < 1e-12)
+				particle.scale.z = 1e-12
+
 		}
+
+		for (let particle of particlesToInit)
+			scene.add(particle)
+
+		particlesToInit.clear()
 
 	}
 
 
 
-	animate()
 
-	return {
+
+	let app = events.makeDispatcher({
 
 		version: '1.0.3',
 
@@ -311,6 +337,8 @@ let app = (() => {
 		scene,
 
 		Particle,
+		particles,
+
 		PRNG,
 		prng,
 		random: (...args) => prng.random(...args),
@@ -322,6 +350,30 @@ let app = (() => {
 
 		loadTexture(url) { return textureLoader.load(url) },
 
+	})
+
+	let timestamp_old
+	let animate = (timestamp) => {
+
+		requestAnimationFrame(animate)
+
+		if (resizeCounter-- === 0)
+			resize()
+
+		if (Date.now() - pointer.lastEventTimestamp > autoSleepDelay)
+			return
+
+		updateParticles()
+		updatePointer()
+
+		app.fire('update')
+
+		renderer.render(scene, camera)
+
 	}
+
+	animate()
+
+	return app
 
 })()
