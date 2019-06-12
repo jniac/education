@@ -329,7 +329,7 @@ let app = (() => {
 
 	let app = events.makeDispatcher({
 
-		version: '1.0.3',
+		version: '1.0.4',
 
 		pointer,
 		renderer,
