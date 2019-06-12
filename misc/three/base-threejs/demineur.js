@@ -89,7 +89,7 @@ let innocentCards = [...cards] // '...' permet de "cloner" le tableau "cards"
 let bombCards = []
 
 // https://www.desmos.com/calculator/i6kwlsrerc
-let shaky = (x, f = 5, p = 3, s = 1) => s * Math.sin(x * Math.PI * f) * ((1 - x) ** p)
+let shaky = (x, f = 5, p = 3) => Math.sin(x * Math.PI * f) * ((1 - x) ** p)
 // https://www.desmos.com/calculator/kpoeitak2g
 let powww = (x, a = 12, b = 1) => (1 - (x ** (a * x))) * b
 
@@ -105,7 +105,7 @@ for (let i = 0; i < numberOfBombs; i++) {
 	bombCard.on('pointer-click', () => {
 
 		boom(40, pointer.intersection.point, ['#ffcc00', 'white', 'black'])
-		camShake(.4)
+		camShake(1.8, [{ amplitude:.4, frequence:10 }, { amplitude:.2, frequence:45 }])
 
 	})
 
@@ -145,25 +145,32 @@ for (let i = 0; i < numberOfTrolls; i++) {
 	trollCard.on('pointer-click', () => {
 
 		boom(10, pointer.intersection.point, ['#ffccec', 'red', 'black'])
-		camShake(.05, .6)
+		camShake(1, [{ amplitude:.1, frequence:20 }])
 
 	})
 
 }
 
 
+let camShake = (duration = 1.8, waves = [{ amplitude:.4, frequence:10 }]) => {
 
-let camShake = (size, duration = 1.8) => {
-
-	let f1 = app.random(8, 16)
-	let f2 = app.random(8, 16)
+	for (let wave of waves) {
+		wave.angle = 2 * Math.PI * app.random()
+		wave.angleDelta = 2 * Math.PI * app.random(-1, 1)
+	}
 
 	let ease = (t) => {
-		let t1 = shaky(t, f1, 5)
-		let t2 = shaky(t, f2, 5, -1)
-		camera.position.x = size * t1 - size * t2
-		camera.position.y = size * t1 + size * t2
+		camera.position.x = 0
+		camera.position.y = 0
+
+		for (let { angle, angleDelta, amplitude, frequence } of waves) {
+			angle += angleDelta * t
+			amplitude *= shaky(t, frequence, 5)
+			camera.position.x += amplitude * Math.cos(angle)
+			camera.position.y += amplitude * Math.sin(angle)
+		}
 	}
+
 	TweenMax.from(camera.position, duration, { ease:ease })
 
 }
