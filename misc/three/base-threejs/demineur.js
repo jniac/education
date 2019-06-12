@@ -205,4 +205,4 @@ let boom = (count = 10, center = boomDefaultCenter, colors = boomDefaultColors) 
 
 }
 
-cards.forEach(card => card.rotation.y = Math.PI)
+// cards.forEach(card => card.rotation.y = Math.PI)
