@@ -274,7 +274,7 @@ let app = (() => {
 			if (particle.t > particle.tMax) {
 
 				particle.kill()
-				return
+				continue
 
 			}
 
