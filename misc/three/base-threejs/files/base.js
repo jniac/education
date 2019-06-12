@@ -48,7 +48,7 @@ class PRNG {
 	}
 	random(min = 0, max = 1) {
 		if (arguments.length == 1 && (arguments[0] instanceof Array)) {
-			if (arguments[0][0] && ('weight' in arguments[0][0]))
+			if (arguments[0][0] && typeof arguments[0][0] == 'object' &&('weight' in arguments[0][0]))
 				return this.weighted(arguments[0])
 			return this.among(arguments[0])
 		}
