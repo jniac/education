@@ -110,9 +110,10 @@ let app = (() => {
 
 		let target = pointer.over.target || scene
 		let timestamp = Date.now()
+		let { shiftKey:shift, altKey:alt, ctrlKey:ctrl, metaKey:meta } = event
 
 		pointer.lastEventTimestamp = timestamp
-		Object.assign(pointer.down, { target, timestamp })
+		Object.assign(pointer.down, { target, timestamp, keys:{ shift, alt, ctrl, meta } })
 		firePointerEvent(target, 'pointer-down', { timestamp })
 
 	})
@@ -121,16 +122,17 @@ let app = (() => {
 
 		let target = pointer.over.target || scene
 		let timestamp = Date.now()
+		let { shiftKey:shift, altKey:alt, ctrlKey:ctrl, metaKey:meta } = event
 
 		pointer.lastEventTimestamp = timestamp
 		Object.assign(pointer.up, { target, timestamp })
-		firePointerEvent(target, 'pointer-up', { timestamp })
+		firePointerEvent(target, 'pointer-up', { timestamp, keys:{ shift, alt, ctrl, meta } })
 
 		let duration = timestamp - pointer.down.timestamp
 
 		if (target == pointer.down.target && duration < 400) {
 
-			firePointerEvent(target, 'pointer-click', { timestamp, duration })
+			firePointerEvent(target, 'pointer-click', { timestamp, duration, keys:pointer.down.keys })
 
 		}
 
