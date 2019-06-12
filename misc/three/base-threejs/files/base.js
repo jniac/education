@@ -82,7 +82,7 @@ let app = (() => {
 
 	}
 
-	let autoSleepDelay = 10000
+	let autoSleepDelay = 30000
 
 	let resizeCounter = 0
 	window.addEventListener('resize', () => resizeCounter = 2)
@@ -352,7 +352,7 @@ let app = (() => {
 
 	})
 
-	let timestamp_old
+	let sleep_old
 	let animate = (timestamp) => {
 
 		requestAnimationFrame(animate)
@@ -360,7 +360,17 @@ let app = (() => {
 		if (resizeCounter-- === 0)
 			resize()
 
-		if (Date.now() - pointer.lastEventTimestamp > autoSleepDelay)
+		let sleep = Date.now() - pointer.lastEventTimestamp > autoSleepDelay
+
+		if (sleep && !sleep_old)
+			renderer.domElement.style.opacity = '.5'
+
+		if (!sleep && sleep_old)
+			renderer.domElement.style.opacity = null
+
+		sleep_old = sleep
+
+		if (sleep)
 			return
 
 		updateParticles()
