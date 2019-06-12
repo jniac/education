@@ -1,9 +1,12 @@
 
-let xMax = 6
-let yMax = 4
+let xMax = 7
+let yMax = 5
 
 let numberOfBombs = 5
 let numberOfTrolls = 3
+
+document.querySelector('#bomb-total').innerText = numberOfBombs
+document.querySelector('#troll-total').innerText = numberOfTrolls
 
 let cards = []
 
@@ -45,6 +48,8 @@ for (let y = 0; y < yMax; y++) {
 		card.position.x = (x - (xMax - 1) / 2) * 1.1
 		card.position.y = (y - (yMax - 1) / 2) * 1.1
 
+		card.checked = false
+		card.reversed = false
 		card.isBomb = false
 		card.isTroll = false
 
@@ -62,16 +67,30 @@ for (let y = 0; y < yMax; y++) {
 
 		}
 
+		card.reverse = () => {
+			card.reversed = true
+			TweenMax.to(card.rotation, .5, { y:Math.PI, ease:Back.easeOut.config(1.7) })
+		}
+
+
 		scene.add(card)
 
 		card.on('pointer-over', () => {
-			TweenMax.to(card.scale, .3, { x:1.08, y:1.08 })
+			if (!card.reversed)
+				TweenMax.to(card.scale, .3, { x:1.12, y:1.12 })
 		})
 		card.on('pointer-out', () => {
 			TweenMax.to(card.scale, .3, { x:1, y:1 })
 		})
 		card.on('pointer-click', () => {
-			TweenMax.to(card.rotation, .5, { y:Math.PI, ease:Back.easeOut.config(1.7) })
+			if (pointer.down.keys.shift || card.checked) {
+				card.checked = !card.checked
+				card.material.map = app.loadTexture(card.checked ? 'assets/dots+check.png' : 'assets/dots.png')
+				checkVictory()
+			} else {
+				card.fire('flip')
+				card.reverse()
+			}
 		})
 
 		cards.push(card)
@@ -102,8 +121,10 @@ for (let i = 0; i < numberOfBombs; i++) {
 	bombCard.verso.material.map = app.loadTexture('assets/bomb.png')
 	bombCard.isBomb = true
 
-	bombCard.on('pointer-click', () => {
+	bombCard.on('flip', () => {
 
+		document.querySelector('#victory').innerText = 'Raté !'
+		document.querySelector('#victory').classList.add('fail')
 		boom(40, pointer.intersection.point, ['#ffcc00', 'white', 'black'])
 		camShake(1.8, [{ amplitude:.4, frequence:10 }, { amplitude:.2, frequence:45 }])
 
@@ -142,14 +163,42 @@ for (let i = 0; i < numberOfTrolls; i++) {
 
 	trollCards.push(trollCard)
 
-	trollCard.on('pointer-click', () => {
+	trollCard.on('flip', () => {
 
 		boom(10, pointer.intersection.point, ['#ffccec', 'red', 'black'])
-		camShake(1, [{ amplitude:.1, frequence:20 }])
+		camShake(1, [{ amplitude:.05, frequence:20 }])
 
 	})
 
 }
+
+
+
+let checkVictory = () => {
+
+	let victory = bombCards.every(card => card.checked) && innocentCards.every(card => !card.checked)
+
+	document.querySelector('#bomb-checked').innerText = cards.filter(card => card.checked).length
+
+	if (victory) {
+
+		document.querySelector('#victory').innerText = 'Victoire !'
+
+		for (let card of cards)
+			card.reverse()
+
+		for(let card of bombCards)
+			boom(10, card.position, ['purple', 'black', 'white'])
+
+	}
+
+}
+
+
+
+
+
+
 
 
 let camShake = (duration = 1.8, waves = [{ amplitude:.4, frequence:10 }]) => {

@@ -1,0 +1,15 @@
+div.status {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	font-family: monospace;
+	padding: 32px;
+	text-align: center;
+}
+
+#victory {
+	font-size: 64px;
+}
+#victory.fail {
+	color: purple;
+}
