@@ -19,14 +19,16 @@ let getCard = (x, y) => {
 
 }
 
-let cardIsABomb = (x, y) => {
-
-	if (x < 0 || x >= xMax || y < 0 || y >= yMax)
-		return false
-
-	return getCard(x, y).isBomb == true
-
-}
+let getNeighbors = (x, y) => [
+	getCard(x - 1, y - 1),
+	getCard(x + 0, y - 1),
+	getCard(x + 1, y - 1),
+	getCard(x + 1, y + 0),
+	getCard(x + 1, y + 1),
+	getCard(x + 0, y + 1),
+	getCard(x - 1, y + 1),
+	getCard(x - 1, y + 0),
+].filter(card => card)
 
 for (let y = 0; y < yMax; y++) {
 
@@ -53,22 +55,11 @@ for (let y = 0; y < yMax; y++) {
 		card.isBomb = false
 		card.isTroll = false
 
-		card.computeBombNumber = () => {
-
-			card.bombNumber = 0
-			if (cardIsABomb(x + 1, y + 1)) card.bombNumber++
-			if (cardIsABomb(x + 1, y + 0)) card.bombNumber++
-			if (cardIsABomb(x + 1, y - 1)) card.bombNumber++
-			if (cardIsABomb(x + 0, y - 1)) card.bombNumber++
-			if (cardIsABomb(x - 1, y - 1)) card.bombNumber++
-			if (cardIsABomb(x - 1, y + 0)) card.bombNumber++
-			if (cardIsABomb(x - 1, y + 1)) card.bombNumber++
-			if (cardIsABomb(x + 0, y + 1)) card.bombNumber++
-
-		}
+		card.computeBombNumber = () => card.bombNumber = getNeighbors(x, y).filter(card => card.isBomb).length
 
 		card.reverse = () => {
 			card.reversed = true
+			card.fire('reverse')
 			TweenMax.to(card.rotation, .5, { y:Math.PI, ease:Back.easeOut.config(1.7) })
 		}
 
@@ -91,6 +82,17 @@ for (let y = 0; y < yMax; y++) {
 				card.fire('flip')
 				card.reverse()
 			}
+		})
+
+		card.on('reverse', async () => {
+
+			if (card.bombNumber === 0 && !card.isTroll) {
+				for(let neighbor of getNeighbors(x, y).filter(card => !card.reversed)) {
+					await app.wait(.1)
+					neighbor.reverse()
+				}
+			}
+
 		})
 
 		cards.push(card)
@@ -184,7 +186,7 @@ let checkVictory = () => {
 
 		document.querySelector('#victory').innerText = 'Victoire !'
 
-		for (let card of cards)
+		for (let card of innocentCards)
 			card.reverse()
 
 		for(let card of bombCards)

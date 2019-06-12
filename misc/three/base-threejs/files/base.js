@@ -327,7 +327,7 @@ let app = (() => {
 
 
 
-
+	let wait = delay => new Promise(resolve => setTimeout(resolve, delay * 1000))
 
 	let app = events.makeDispatcher({
 
@@ -346,6 +346,7 @@ let app = (() => {
 		random: (...args) => prng.random(...args),
 
 		textureLoader,
+		wait,
 
 		get autoSleepDelay() { return autoSleepDelay },
 		set autoSleepDelay(value) { autoSleepDelay = value },
