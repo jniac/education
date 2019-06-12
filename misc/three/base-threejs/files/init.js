@@ -34,7 +34,9 @@
 
 	await loadScripts(
 		'files/TweenMax.min.js',
+		'files/inflate.min.js',
 		'files/three.js',
+		'files/FBXLoader.js',
 		'files/extend-three.js',
 		'files/events.js',
 		'files/base.js',
