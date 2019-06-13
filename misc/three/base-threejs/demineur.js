@@ -1,4 +1,10 @@
 
+// ease curves:
+// https://www.desmos.com/calculator/i6kwlsrerc
+let shaky = (x, f = 5, p = 3) => Math.sin(x * Math.PI * f) * ((1 - x) ** p)
+// https://www.desmos.com/calculator/kpoeitak2g
+let powww = (x, a = 12, b = 1) => (1 - (x ** (a * x))) * b
+
 let xMax = 7
 let yMax = 5
 
@@ -58,9 +64,9 @@ for (let y = 0; y < yMax; y++) {
 
 		Object.defineProperties(card, {
 
-			normal: { get:() => card.status === CardStatus.NORMAL },
-			checked: { get:() => card.status === CardStatus.CHECKED },
-			marked: { get:() => card.status === CardStatus.MARKED },
+			isNormal: { get:() => card.status === CardStatus.NORMAL },
+			isChecked: { get:() => card.status === CardStatus.CHECKED },
+			isMarked: { get:() => card.status === CardStatus.MARKED },
 
 		})
 
@@ -85,7 +91,7 @@ for (let y = 0; y < yMax; y++) {
 		card.on('pointer-click', () => {
 			if (pointer.down.keys.shift || card.status > 0) {
 				card.status = (card.status + 1) % 3
-				let url = 'assets/' + (card.checked ? 'dots+check.png' : card.marked ? 'dots+interrogation.png' : 'dots.png')
+				let url = 'assets/' + (card.isChecked ? 'dots+check.png' : card.isMarked ? 'dots+interrogation.png' : 'dots.png')
 				card.material.map = app.loadTexture(url)
 				checkVictory()
 			} else {
@@ -113,21 +119,14 @@ for (let y = 0; y < yMax; y++) {
 
 
 
-let innocentCards = [...cards] // '...' permet de "cloner" le tableau "cards"
-
-
-
+let noBombNoTrollCards = [...cards]
 let bombCards = []
-
-// https://www.desmos.com/calculator/i6kwlsrerc
-let shaky = (x, f = 5, p = 3) => Math.sin(x * Math.PI * f) * ((1 - x) ** p)
-// https://www.desmos.com/calculator/kpoeitak2g
-let powww = (x, a = 12, b = 1) => (1 - (x ** (a * x))) * b
+let trollCards = []
 
 for (let i = 0; i < numberOfBombs; i++) {
 
-	let randomIndex = Math.floor(Math.random() * innocentCards.length)
-	let bombCard = innocentCards.splice(randomIndex, 1)[0]
+	let randomIndex = Math.floor(Math.random() * noBombNoTrollCards.length)
+	let bombCard = noBombNoTrollCards.splice(randomIndex, 1)[0]
 
 	bombCard.verso.material.color.set('#fc0')
 	bombCard.verso.material.map = app.loadTexture('assets/bomb.png')
@@ -160,14 +159,10 @@ for (let y = 0; y < yMax; y++) {
 
 }
 
-
-
-let trollCards = []
-
 for (let i = 0; i < numberOfTrolls; i++) {
 
-	let randomIndex = Math.floor(Math.random() * innocentCards.length)
-	let trollCard = innocentCards.splice(randomIndex, 1)[0]
+	let randomIndex = Math.floor(Math.random() * noBombNoTrollCards.length)
+	let trollCard = noBombNoTrollCards.splice(randomIndex, 1)[0]
 
 	trollCard.verso.material.color.set('#ffccec')
 	trollCard.verso.material.map = app.loadTexture('assets/troll-face.png')
@@ -188,15 +183,15 @@ for (let i = 0; i < numberOfTrolls; i++) {
 
 let checkVictory = () => {
 
-	let victory = bombCards.every(card => card.checked) && innocentCards.every(card => !card.checked)
+	let victory = cards.every(card => (card.isBomb && card.isChecked) || (!card.isBomb && !card.isChecked))
 
-	document.querySelector('#bomb-checked').innerText = cards.filter(card => card.checked).length
+	document.querySelector('#bomb-checked').innerText = cards.filter(card => card.isChecked).length
 
 	if (victory) {
 
 		document.querySelector('#victory').innerText = 'Victoire !'
 
-		for (let card of innocentCards)
+		for (let card of noBombNoTrollCards)
 			card.reverse()
 
 		for(let card of bombCards)
@@ -245,10 +240,10 @@ let boom = (count = 10, center = boomDefaultCenter, colors = boomDefaultColors) 
 		let color = app.random(colors)
 		let mapUrl = app.random(['assets/art_Cross-Bold.png', 'assets/art_Cross-Normal.png'])
 
-		let geometry = new THREE.PlaneGeometry()
-		let material = new THREE.MeshBasicMaterial({ color:color, map:app.loadTexture(mapUrl), transparent:true })
-
-		let p = new app.Particle(geometry, material)
+		let p = new app.Particle(
+			new THREE.PlaneGeometry(),
+			new THREE.MeshBasicMaterial({ color:color, map:app.loadTexture(mapUrl), transparent:true }),
+		)
 
 		let size = app.random(.1, 1)
 
