@@ -5,6 +5,7 @@ div.status {
 	font-family: monospace;
 	padding: 32px;
 	text-align: center;
+	pointer-events: none;
 }
 
 #victory {

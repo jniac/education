@@ -9,6 +9,7 @@ document.querySelector('#bomb-total').innerText = numberOfBombs
 document.querySelector('#troll-total').innerText = numberOfTrolls
 
 let cards = []
+let CardStatus = { NORMAL:0, CHECKED:1, MARKED:2 }
 
 let getCard = (x, y) => {
 
@@ -50,10 +51,18 @@ for (let y = 0; y < yMax; y++) {
 		card.position.x = (x - (xMax - 1) / 2) * 1.1
 		card.position.y = (y - (yMax - 1) / 2) * 1.1
 
-		card.checked = false
 		card.reversed = false
 		card.isBomb = false
 		card.isTroll = false
+		card.status = CardStatus.NORMAL
+
+		Object.defineProperties(card, {
+
+			normal: { get:() => card.status === CardStatus.NORMAL },
+			checked: { get:() => card.status === CardStatus.CHECKED },
+			marked: { get:() => card.status === CardStatus.MARKED },
+
+		})
 
 		card.computeBombNumber = () => card.bombNumber = getNeighbors(x, y).filter(card => card.isBomb).length
 
@@ -74,9 +83,10 @@ for (let y = 0; y < yMax; y++) {
 			TweenMax.to(card.scale, .3, { x:1, y:1 })
 		})
 		card.on('pointer-click', () => {
-			if (pointer.down.keys.shift || card.checked) {
-				card.checked = !card.checked
-				card.material.map = app.loadTexture(card.checked ? 'assets/dots+check.png' : 'assets/dots.png')
+			if (pointer.down.keys.shift || card.status > 0) {
+				card.status = (card.status + 1) % 3
+				let url = 'assets/' + (card.checked ? 'dots+check.png' : card.marked ? 'dots+interrogation.png' : 'dots.png')
+				card.material.map = app.loadTexture(url)
 				checkVictory()
 			} else {
 				card.fire('flip')
