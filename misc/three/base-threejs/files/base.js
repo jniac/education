@@ -28,14 +28,28 @@ let pointer = events.makeDispatcher({
 // https://gist.github.com/blixt/f17b47c62508be59987b
 class PRNG {
 	constructor(seed = 12345) {
+
+		Object.defineProperty(this, 'seed', {
+			enumerable: true,
+			get() { return seed },
+			set(value) {
+				value = Math.floor(value % 2147483647)
+
+				if (value <= 0)
+					value += 2147483646
+				this.pos = value
+			},
+		})
+
 		this.reset(seed)
 	}
-	reset(seed = this.seed) {
-		this.seed = seed % 2147483647
-
-		if (this.seed <= 0)
-			this.seed += 2147483646
-		this.pos = this.seed
+	reset() {
+		this.seed = this.seed
+		return this
+	}
+	randomSeed() {
+		this.seed = (2147483647 * Math.random())
+		return this
 	}
 	next() {
 		return this.pos = this.pos * 16807 % 2147483647
@@ -46,13 +60,18 @@ class PRNG {
 	among(array) {
 		return array[Math.floor(array.length * this.nextFloat())]
 	}
-	random(min = 0, max = 1) {
+	random() {
+		if (arguments.length == 1 && (typeof arguments[0] === 'number'))
+			return this.nextFloat() * arguments[0]
+
 		if (arguments.length == 1 && (arguments[0] instanceof Array)) {
 			if (arguments[0][0] && typeof arguments[0][0] == 'object' &&('weight' in arguments[0][0]))
 				return this.weighted(arguments[0])
+
 			return this.among(arguments[0])
 		}
 
+		let [min = 0, max = 1] = arguments
 		return min + (max - min) * this.nextFloat()
 	}
 	weighted(array) {
@@ -71,6 +90,7 @@ let app = (() => {
 	let raycaster = new THREE.Raycaster()
 
 	let textureLoader = new THREE.TextureLoader()
+	let xhr = new XMLHttpRequest()
 
 	// event propagation callback (bubbling)
 	let propagate = object => object.parent
@@ -329,6 +349,26 @@ let app = (() => {
 
 	let wait = delay => new Promise(resolve => setTimeout(resolve, delay * 1000))
 
+	let mixColors = (colorA, colorB, t) => {
+
+		if (typeof colorA === 'string')
+			colorA = new THREE.Color(colorA)
+
+		if (typeof colorB === 'string')
+			colorB = new THREE.Color(colorB)
+
+		let r = colorA.r * (1 - t) + colorB.r * t
+		let g = colorA.g * (1 - t) + colorB.g * t
+		let b = colorA.b * (1 - t) + colorB.b * t
+		let a = colorA.a * (1 - t) + colorB.a * t
+
+		return new THREE.Color(r, g, b, a)
+
+	}
+
+	let time = 0
+	let frame = 0
+
 	let app = events.makeDispatcher({
 
 		version: '1.0.6',
@@ -344,15 +384,25 @@ let app = (() => {
 		PRNG,
 		prng,
 		random: (...args) => prng.random(...args),
+		mixColors,
 
 		textureLoader,
 		wait,
+
+		get time() { return time },
+		get frame() { return frame },
 
 		get autoSleepDelay() { return autoSleepDelay },
 		set autoSleepDelay(value) { autoSleepDelay = value },
 
 		loadTexture(url) { return textureLoader.load(url) },
+		loadFile: url => new Promise(resolve => {
 
+			xhr.open('GET', url)
+			xhr.send(null)
+			xhr.onload = () => resolve(xhr.responseText)
+
+		}),
 	})
 
 	let sleep_old
@@ -382,6 +432,9 @@ let app = (() => {
 		app.fire('update')
 
 		renderer.render(scene, camera)
+
+		time += 1/60
+		frame++
 
 	}
 
