@@ -1,4 +1,10 @@
 
+camera.position.z = 12
+camera.fov = 40
+camera.updateProjectionMatrix()
+
+
+
 let loader = new THREE.FBXLoader()
 
 let hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000033, .7)
