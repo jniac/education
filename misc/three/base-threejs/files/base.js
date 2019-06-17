@@ -230,6 +230,7 @@ let app = (() => {
 	// Particles:
 	let particles = []
 	let particlesToInit = new Set()
+	let particlesToKill = new Set()
 	let particleCubeGeometry = new THREE.CubeGeometry(.1, .1, .1)
 
 	class Particle extends THREE.Object3D {
@@ -310,7 +311,7 @@ let app = (() => {
 
 			if (particle.t > particle.tMax) {
 
-				particle.kill()
+				particlesToKill.add(particle)
 				continue
 
 			}
@@ -339,10 +340,19 @@ let app = (() => {
 
 		}
 
+		
+
 		for (let particle of particlesToInit)
 			scene.add(particle)
 
 		particlesToInit.clear()
+
+
+
+		for (let particle of particlesToKill)
+			particle.kill()
+
+		particlesToKill.clear()
 
 	}
 
