@@ -41,7 +41,21 @@
 		'files/extend-three.js',
 		'files/events.js',
 		'files/base.js',
-		thenFile,
 	)
+
+	let thenTag = document.createElement('script')
+	let thenScript = await app.loadFile(thenFile)
+
+	let variables = thenScript
+		.split('\n')
+		.map(line => line.match(/^(let|var|const) \w+/g))
+		.reduce((acc, arr) => arr ? [...acc, ...arr] : acc, [])
+		.map(s => s.split(' ')[1])
+
+	let assignment = `Object.assign(window, { ${variables.join(', ')} })`
+
+	thenTag.textContent = `(async () => {\n${thenScript}\n${assignment}\n})()`
+	
+	document.head.append(thenTag)
 
 })()}
