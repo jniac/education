@@ -33,11 +33,12 @@ class PRNG {
 			enumerable: true,
 			get() { return seed },
 			set(value) {
-				value = Math.floor(value % 2147483647)
+				seed = Math.floor(value % 2147483647)
 
-				if (value <= 0)
-					value += 2147483646
-				this.pos = value
+				if (seed <= 0)
+					seed += 2147483646
+
+				this.pos = seed
 			},
 		})
 
