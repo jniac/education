@@ -36,6 +36,11 @@ régler [/] [+] comme commandes pour reculer / avancer d'une image :
 
 <br><br>
 
+## Media Encoder
+
+![](./MediaEncoder-WebM.png)
+![](./MediaEncoder-WebM-Include-Alpha-Channel.png)
+
 ---
 
 <br><br>
@@ -49,6 +54,8 @@ Pourquoi utiliser le format WebM ? C'est le seul format compressé qui encode le
 
 Fun fact :  
 Le seul format qui encodait aussi le canal alpha est le **[flv](https://fr.wikipedia.org/wiki/Flash_Video)** (qui n'est guère plus supporté par les navigateurs aujourd'hui). FLV stands for... Flash Video ! Et cela date de l'époque où Adobe dominait le web avec Flash, avant que Google & Apple ne viennent réclamer leur part du cool en rendant obsolète le player flash (Google en promouvant l'HTML5 à coup de site de propagandes et d'expériences sponsorisés, Apple en refusant l'exécution du player Flash sur ses premiers iPhones).
+
+
 
 ### Atom.io video preview
 https://atom.io/packages/videoplayer  
