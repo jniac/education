@@ -38,7 +38,10 @@ régler [/] [+] comme commandes pour reculer / avancer d'une image :
 
 ## Media Encoder
 
+Dans Media Encoder choisir le format WebM (codec à installer, voire plus bas).  
+Dans les paramètres vidéo, penser à activer l'encodage de la couche Alpha (transparence).  
 ![](./MediaEncoder-WebM.png)
+Couche Alpha :
 ![](./MediaEncoder-WebM-Include-Alpha-Channel.png)
 
 ---
