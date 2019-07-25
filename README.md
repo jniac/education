@@ -3,7 +3,7 @@
 [rendu-pas-cher](./motion/c4d/rendering/rendu-pas-cher/)
 
 ### base-threejs
-[misc/three/base-threejs-1.0.7.zip](https://github.com/jniac/e-artsup/raw/master/misc/three/base-threejs-1.0.7.zip)  
+[misc/three/base-threejs-1.0.8.zip](https://github.com/jniac/e-artsup/raw/master/misc/three/base-threejs-1.0.8.zip)  
 
 
 [javascript/js-getting-started-0.0.1.zip](https://github.com/jniac/e-artsup/raw/master/javascript/js-getting-started-0.0.1.zip)
