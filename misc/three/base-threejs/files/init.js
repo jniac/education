@@ -46,16 +46,28 @@
 	let thenTag = document.createElement('script')
 	let thenScript = await app.loadFile(thenFile)
 
-	let variables = thenScript
-		.split('\n')
-		.map(line => line.match(/^(let|var|const) \w+/g))
-		.reduce((acc, arr) => arr ? [...acc, ...arr] : acc, [])
-		.map(s => s.split(' ')[1])
+	if (thenScript.match(/\bawait\b/)) {
 
-	let assignment = `Object.assign(window, { ${variables.join(', ')} })`
+		console.log('async code detected!')
 
-	thenTag.textContent = `(async () => {\n${thenScript}\n${assignment}\n})()`
-	
+		let variables = thenScript
+			.split('\n')
+			.map(line => line.match(/^(let|var|const) \w+/g))
+			.reduce((acc, arr) => arr ? [...acc, ...arr] : acc, [])
+			.map(s => s.split(' ')[1])
+
+		let assignment = `Object.assign(window, { ${variables.join(', ')} })`
+
+		thenTag.textContent = `(async () => {\n${thenScript}\n${assignment}\n})()`
+
+	} else {
+
+		thenTag.setAttribute('src', thenFile)
+		thenTag.setAttribute('async', false)
+		thenTag.setAttribute('defer', false)
+
+	}
+
 	document.head.append(thenTag)
 
 })()}
