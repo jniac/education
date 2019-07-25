@@ -340,7 +340,7 @@ let app = (() => {
 
 		}
 
-		
+
 
 		for (let particle of particlesToInit)
 			scene.add(particle)
@@ -414,6 +414,18 @@ let app = (() => {
 			xhr.onload = () => resolve(xhr.responseText)
 
 		}),
+
+		wireframe: {
+			enter(color = 'blue') {
+				scene.overrideMaterial = new THREE.MeshBasicMaterial({ color, wireframe:true })
+			},
+			exit() {
+				scene.overrideMaterial = null
+			},
+			toggle(color) {
+				scene.overrideMaterial ? app.wireframe.exit() : app.wireframe.enter(color)
+			}
+		},
 	})
 
 	let sleep_old
