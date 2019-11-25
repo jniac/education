@@ -31,6 +31,23 @@ let update = () => {
 
 }
 
+let initHeader = () => {
+
+	let date = new Date()
+
+	let week = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
+	let day = week[date.getDay()]
+
+	let months = ['janvier', 'février', 'mars', 'avril', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+	let month = months[date.getMonth()]
+
+	document.querySelector('header div.info').innerHTML =
+		`${day} ${date.getDate()} ${month}`
+
+}
+
+initHeader()
+
 let updateHeader = () => {
 
 	if (scrollInside(3, 3)) {
@@ -50,12 +67,6 @@ let updateHeader = () => {
 		document.querySelector('header').className = ''
 
 	}
-
-}
-
-for(let p of document.querySelectorAll('section#s1 h1 p')) {
-
-    splitToSpan(p)
 
 }
 
@@ -176,6 +187,12 @@ let section4AnimOut = async () => {
 // compliqué...
 
 kit.SVG.viewBoxFitWidth('section#s1 svg', 1920, 1080, .5)
+
+for(let p of document.querySelectorAll('section#s1 h1 p')) {
+
+    splitToSpan(p)
+
+}
 
 let section1Spans = [...document.querySelectorAll('section#s1 h1 span')]
 	.map(span => ({ span, speed:kit.Random.float(1, 4) }))
