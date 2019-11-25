@@ -8,6 +8,7 @@
 body {
 	background-color: red;
 	cursor: crosshair;
+	font-family: 'Roboto', sans-serif;
 }
 
 
@@ -22,11 +23,11 @@ header {
 	background-color: #000d;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	padding: 6px;
 	color: white;
-	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
-	transition: 1s;
+	transition: .2s;
 }
 
 header div.login {
@@ -58,6 +59,7 @@ header div.scroll span {
 section {
 	height: 100vh;
 	padding: 64px;
+	padding-right: 30%;
 }
 section h1 {
 	font-family: 'Bree Serif', serif;
@@ -67,19 +69,19 @@ section h1 {
 	margin-bottom: 32px;
 }
 section h2 {
-	margin-bottom: 4px;
+	margin-bottom: 64px;
 }
-section#s-1 {
-	/* background-color: red; */
+section#s1 {
 	color: white;
-	background-image: url(dots.png);
+	border-top: solid transparent 32px;
+	background-image: url(assets/dots.png);
 	background-size: 100px;
 }
-section#s-2 {
+section#s2 {
 	border: solid black 32px;
 }
 
-section#s-2 svg {
+section#s2 svg {
 	position: absolute;
 	left: 0;
 	top: 0;
