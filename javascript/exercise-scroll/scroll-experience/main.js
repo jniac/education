@@ -199,7 +199,10 @@ let section1Spans = [...document.querySelectorAll('section#s1 h1 span')]
 
 let updateSection1 = () => {
 
-	TweenMax.set('section#s1 svg circle', { y:-1000 * scroll })
+	TweenMax.set('section#s1 svg circle#c1', { y:-1000 * scroll })
+	TweenMax.set('section#s1 svg circle#c2', { y:-3400 * scroll })
+	TweenMax.set('section#s1 svg circle#c3', { y:-1800 * scroll })
+	TweenMax.set('section#s1 svg circle#c4', { y:-1500 * scroll })
 
 	for(let { span, speed } of section1Spans) {
 
