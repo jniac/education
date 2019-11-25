@@ -1,0 +1,211 @@
+* {
+	margin: 0;
+	position: relative;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+header {
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+	height: 32px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 6px;
+	transition: .2s;
+	font-size: 13px;
+}
+header div.login {
+	padding: 1px 5px;
+	background-color: white;
+	border-radius: 2px;
+	cursor: pointer;
+	user-select: none;
+	transition: .2s;
+}
+header div.login:hover {
+	background-color: red;
+	color: white;
+}
+header div.scroll span {
+	padding: 0 4px;
+	background-color: white;
+	border-radius: 2px;
+}
+header div.login a {
+	color: inherit;
+	text-decoration: none;
+}
+
+section {
+	height: 100vh;
+}
+
+
+
+
+
+
+/* SECTION S2 */
+
+section#s1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Josefin Sans', sans-serif;
+	text-transform: uppercase;
+	background-image: linear-gradient(60deg, #eee white);
+}
+section#s1 svg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+section#s1 h1 {
+	padding-top: 90px;
+	text-align: center;
+	font-size: 120px;
+}
+section#s1 h1 span {
+	display: inline-block;
+}
+section#s1 h1 img {
+	height: 80px;
+}
+
+
+
+
+
+
+/* SECTION S2 */
+
+header.s2 {
+	color: white;
+}
+header.s2 div.scroll span {
+	background-color: #ff3500;
+	color: white;
+}
+header.s2 div.login {
+	color: #ff3500;
+}
+
+section#s2 {
+	background-color: #111;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url(assets/dots.png);
+	background-size: 100px;
+}
+section#s2 h1 {
+	font-family: 'Anton', sans-serif;
+	font-size: 260px;
+	color: #eee;
+	text-shadow: #ff3500 14px 12px 0px;
+}
+
+
+
+
+
+/* SECTION S3 */
+
+header.s3 {
+	color: white;
+}
+header.s3 div.scroll span, header.s3 div.login {
+	color: #006093;
+}
+
+section#s3 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+section#s3 h1 {
+	font-size: 240px;
+	font-family: 'Oswald', sans-serif;
+	color: white;
+	text-shadow: #673ab742 7px 20px 40px;
+}
+section#s3 video {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+
+
+
+
+
+
+
+/* SECTION S4 */
+
+header.s4 span {
+	color: white;
+	background-color: #511aff !important;
+}
+header.s4 div.login {
+	color: white;
+	background: black;
+}
+header.s4 div.login:hover {
+	color: white;
+	background-color: black;
+}
+
+section#s4 {
+	background-color: #d4d4d4;
+	border: solid white 32px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url(assets/dots.png);
+	background-size: 40px;
+}
+
+section#s4 h1 {
+	font-family: 'Roboto Mono', monospace;
+	font-weight: 100;
+	font-size: 120px;
+	text-align: center;
+	line-height: 100%;
+}
+
+section#s4 h1 span {
+	display: inline-block;
+	color:transparent;
+	transition: color .4s;
+}
+section#s4 h1 span.line {
+	color: transparent;
+}
+section#s4 h1 span.line:before {
+	content: '';
+	position: absolute;
+	left: 50%;
+	width: 5px;
+	height: 100%;
+	background-color: black;
+}
+section#s4 h1 span.plain {
+	background-color: black;
+	color: #511aff;
+	transition: color 0s;
+}
+section#s4 h1 span.normal {
+	color: inherit;
+}
+section#s4 h1 span.color {
+	color: #511aff;
+}
