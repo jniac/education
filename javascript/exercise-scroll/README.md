@@ -19,6 +19,14 @@ Exemple de cadre :
 - Communication (évènement, festival ...)
 - Digital Art (graphic design, motion design ...)
 
+### Critère d'évaluation du travail
+
+- Design graphique (couleur, forme, composition).
+- Design interactif (UI/UX, feedback).
+- Motion design (qualité des animations/transitions).
+- Programmation, développement (HTML/CSS, javascript).
+- Originalité de la proposition.
+
 ### Informations complémentaires
 
 [Atom](https://atom.io/) et Chrome sont les 2 seuls logiciels indispensables pour la réalisation de l'exercice.  
