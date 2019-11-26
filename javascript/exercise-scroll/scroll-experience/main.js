@@ -19,7 +19,10 @@ let splitToSpan = (element) => {
 let update = () => {
 
 	scrollOld = scroll
-	scroll = document.querySelector('html').scrollTop / window.innerHeight
+	scroll = (
+		document.querySelector('html').scrollTop ||
+		document.querySelector('body').scrollTop
+	) / window.innerHeight
 
 	document.querySelector('header div.scroll span').innerHTML = scroll.toFixed(2)
 
@@ -188,14 +191,19 @@ let section4AnimOut = async () => {
 
 kit.SVG.viewBoxFitWidth('section#s1 svg', 1920, 1080, .5)
 
-for(let p of document.querySelectorAll('section#s1 h1 p')) {
+for (let p of document.querySelectorAll('section#s1 h1 p')) {
 
     splitToSpan(p)
 
 }
 
-let section1Spans = [...document.querySelectorAll('section#s1 h1 span')]
-	.map(span => ({ span, speed:kit.Random.float(1, 4) }))
+let section1Spans = document.querySelectorAll('section#s1 h1 span')
+
+for (let span of section1Spans) {
+
+	span.setAttribute('speed', kit.Random.float(1, 4).toFixed(3))
+
+}
 
 let updateSection1 = () => {
 
@@ -203,10 +211,12 @@ let updateSection1 = () => {
 	TweenMax.set('section#s1 svg circle#c2', { y:-3400 * scroll })
 	TweenMax.set('section#s1 svg circle#c3', { y:-1800 * scroll })
 	TweenMax.set('section#s1 svg circle#c4', { y:-1500 * scroll })
+	TweenMax.set('section#s1 svg rect#r1', { y:-5000 * scroll, rotation:720 * 3 * scroll, transformOrigin:'center' })
 
-	for(let { span, speed } of section1Spans) {
+	for(let span of section1Spans) {
 
-		span.style.opacity = 1 - speed * scroll * .3
+		let speed = span.getAttribute('speed')
+		span.style.color = kit.Color.mix('black', 'blue', speed * scroll * 2)
 		span.style.transform = `translateY(${(-speed * 200 * scroll).toFixed(1)}px)`
 
 	}

@@ -39,10 +39,19 @@ Depuis Illustrator, pour exporter un svg facile à manipuler, il est préférabl
 
 Liens utiles :
 - [Mozilla Developer Network (MDN)](https://developer.mozilla.org/fr/)  
-  La documentation présente ici est excellente (elle est même traduite en français, zéro excuse). Exemple particulier de documentation : [MDN Array (tableaux en js)](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array).
+  La documentation présente ici est excellente (elle est même traduite en français, zéro excuse). Elle concerne tout le web (HTML, CSS, JS).
 
-- [GSAP / TweenMax](https://greensock.com/gsap/)
-  Super framework d'animation en JS. [La page 'ease visualizer'](https://greensock.com/ease-visualizer/) est un passage obligatoire pour tout bon motion designer.
+  Exemple d'usage, recherche google : [mdn flex](https://www.google.com/search?q=mdn+flex&oq=mdn+flex&aqs=chrome..69i57j0l7.2414j0j4&sourceid=chrome&ie=UTF-8)
+
+  Exemple particulier de documentation : [MDN Array (tableaux en js)](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array).
+
+- [Le SVG est un format d'image](https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics) extrêmement versatile, et donc puissant. Le SVG est l'ami du digital motion designer.
+
+  2 liens me semblent particulièrement intéressant pour apprendre à exploiter les possibilités du SVG.
+  - [la page de MDN (encore)](https://developer.mozilla.org/fr/docs/Web/SVG/Element) listant les différentes balises du SVG.
+  - [la page de GSAP/TweenMax dédiée à l'animation des SVG](https://greensock.com/svg-tips/)
+
+- [GSAP / TweenMax](https://greensock.com/gsap/) est un super framework d'animation en JS. [La page 'ease visualizer'](https://greensock.com/ease-visualizer/) est un passage obligatoire pour tout bon motion designer.
 
 - [Awwwards](https://www.awwwards.com/), [FWA](https://thefwa.com/) pour l'inspiration en design web. [Motiongrapher](http://motionographer.com/) pour le motion design. Dribble, Pinterest etc.
 
