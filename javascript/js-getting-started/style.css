@@ -69,21 +69,31 @@ section div.code {
     color: #333;
 	tab-size: 4;
 }
+section div.code + * {
+	margin-top: 32px;
+}
 
 section div.code div.execute-code {
     position: absolute;
     bottom: 0;
     right: 32px;
     background-color: #fffe;
+	color: red;
     padding: 12px;
-    font-family: 'Lora', serif;
     font-size: 12px;
     cursor: pointer;
-    transition: .1s;
+    transition: .3s;
     border-radius: 4px 4px 0 0;
+	border: 1px solid #eee;
+	/* border-bottom: unset; */
+	border-bottom-color: transparent;
+    transform: translateY(4px);
 }
 
 section div.code div.execute-code:hover {
     background: #f00e;
     color: white;
+	border: 1px solid #c00;
+	/* border-bottom: unset; */
+    /* transform: translateY(1px); */
 }

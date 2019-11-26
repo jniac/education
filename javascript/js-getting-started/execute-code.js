@@ -23,7 +23,7 @@ for (let div of document.querySelectorAll('div.code')) {
     div.innerText = code
 
     let button = document.createElement('div')
-    button.innerHTML = "exécuter le code js"
+    button.innerHTML = "exécuter le code"
     button.classList.add('execute-code')
     div.append(button)
 

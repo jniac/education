@@ -53,7 +53,7 @@ initHeader()
 
 let updateHeader = () => {
 
-	if (scrollInside(3, 3)) {
+	if (scrollInside(3, 4)) {
 
 		document.querySelector('header').className = 's4'
 
