@@ -120,6 +120,8 @@ const update = () => {
 
     pixelOutOfFrameBuffer.clear()
 
+    room.update()
+
     while (sample++ < frameRate) {
 
         for (let instance of instances) {

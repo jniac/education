@@ -75,7 +75,7 @@ class Branch extends PixelBot {
 
             x: this.x,
             y: this.y,
-            angle: this.angle + 20,
+            angle: this.angle + 45,
             lifeMax: this.lifeMax / 2,
             color: this.color,
 
@@ -85,7 +85,7 @@ class Branch extends PixelBot {
 
             x: this.x,
             y: this.y,
-            angle: this.angle - 20,
+            angle: this.angle - 45,
             lifeMax: this.lifeMax / 2,
             color: this.color,
 

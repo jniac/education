@@ -159,7 +159,8 @@ const init = (roomName) => {
 
             // data is binary
 
-            tryReceivePixels(event.data)
+            // tryReceivePixels(event.data)
+            receivedBuffers.add(event.data)
 
         }
 
@@ -264,11 +265,11 @@ const debugBuffer = (buffer) => {
 
     }
 
-    return { frame, paintAction, size }
-
 }
 
-const receivePixels = (buffer) => {
+const receivedBuffers = new Set()
+
+const paintBuffer = (buffer) => {
 
     let view = new BufferView(buffer, HEAD_BYTE_LENGTH)
 
@@ -282,7 +283,7 @@ const receivePixels = (buffer) => {
 
             let color = view.getUint24()
 
-            PixelBot.setColor(color)
+            // PixelBot.setColor(color)
 
             let size = paintAction === PAINT_PIXEL ? 1 : view.getUint16()
 
@@ -290,7 +291,8 @@ const receivePixels = (buffer) => {
 
                 let index = view.getUint24()
 
-                PixelBot.fillPixel(index)
+                // PixelBot.fillPixel(index)
+                PixelBot.setPixelColor(index, color)
 
             }
 
@@ -314,22 +316,29 @@ const receivePixels = (buffer) => {
 
 }
 
-const tryReceivePixels = (buffer) => {
+const update = () => {
 
-    try {
+    for (let buffer of receivedBuffers) {
 
-        receivePixels(buffer)
+        try {
 
-    } catch (e) {
+            paintBuffer(buffer)
 
-        PixelBot.running = false
-        socket.close()
+        } catch (e) {
 
-        console.log('receivePixels: oups')
-        console.log(e)
-        console.log(debugBuffer(buffer))
+            PixelBot.running = false
+            socket.close()
+
+            console.log('receivePixels: oups')
+            console.log(e)
+            console.log(debugBuffer(buffer))
+
+        }
 
     }
+
+    receivedBuffers.clear()
+
 }
 
 let room = {}
@@ -339,6 +348,7 @@ readonly(room, {
     init,
     sendPixelChanges,
     whenReady,
+    update,
 
 })
 
