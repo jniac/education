@@ -20,6 +20,24 @@ header {
 	transition: .2s;
 	font-size: 13px;
 }
+header div.info {
+	width: 150px;
+}
+header div.scroll {
+	margin-right: 80px;
+}
+header div.scroll span {
+	padding: 0 4px;
+	background-color: white;
+	border-radius: 2px;
+}
+header div.links {
+	display: flex;
+}
+header div.links > a {
+	margin-right: 4px;
+	color: blue;
+}
 header div.login {
 	padding: 1px 5px;
 	background-color: white;
@@ -29,13 +47,8 @@ header div.login {
 	transition: .2s;
 }
 header div.login:hover {
-	background-color: red;
+	background-color: blue;
 	color: white;
-}
-header div.scroll span {
-	padding: 0 4px;
-	background-color: white;
-	border-radius: 2px;
 }
 header div.login a {
 	color: inherit;
@@ -51,7 +64,7 @@ section {
 
 
 
-/* SECTION S2 */
+/* SECTION S1 */
 header.s1 div.scroll {
 	color: blue;
 }
@@ -99,6 +112,7 @@ header.s2 div.scroll span {
 	background-color: #ff3500;
 	color: white;
 }
+header.s2 div.links > a,
 header.s2 div.login {
 	color: #ff3500;
 }
@@ -125,10 +139,12 @@ section#s2 h1 {
 
 /* SECTION S3 */
 
+header.s3 div.links > a,
 header.s3 {
 	color: white;
 }
-header.s3 div.scroll span, header.s3 div.login {
+header.s3 div.scroll span,
+header.s3 div.login {
 	color: #006093;
 }
 
@@ -159,17 +175,20 @@ section#s3 video {
 
 /* SECTION S4 */
 
-header.s4 span {
+header.s4 div.scroll span {
 	color: white;
-	background-color: #511aff !important;
+	background-color: #511aff;
 }
 header.s4 div.login {
 	color: white;
 	background: black;
 }
+header.s4 div.links > a {
+	color: #511aff;
+}
 header.s4 div.login:hover {
 	color: white;
-	background-color: black;
+	background-color: #511aff;
 }
 
 section#s4 {
