@@ -1,7 +1,8 @@
 # e-artsup
 
 [exercise scroll](./javascript/exercise-scroll/)  
-[threejs start](./javascript/threejs/start-threejs/)  
+
+[threejs](./javascript/threejs/)  
 
 [rendu-pas-cher](./motion/c4d/rendering/rendu-pas-cher/)
 
