@@ -48,8 +48,9 @@ Liens utiles :
 - [Le SVG est un format d'image](https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics) extrêmement versatile, et donc puissant. Le SVG est l'ami du digital motion designer.
 
   2 liens me semblent particulièrement intéressant pour apprendre à exploiter les possibilités du SVG.
-  - [la page de MDN (encore)](https://developer.mozilla.org/fr/docs/Web/SVG/Element) listant les différentes balises du SVG.
-  - [la page de GSAP/TweenMax dédiée à l'animation des SVG](https://greensock.com/svg-tips/)
+  - [la page MDN (encore)](https://developer.mozilla.org/fr/docs/Web/SVG/Element) listant les différentes **balises** du SVG ([rect](https://developer.mozilla.org/fr/docs/Web/SVG/Element/rect), [circle](https://developer.mozilla.org/fr/docs/Web/SVG/Element/circle), [polygon](https://developer.mozilla.org/fr/docs/Web/SVG/Element/polygon), path etc.).
+  - [la page MDN (encore !!!)](https://developer.mozilla.org/fr/docs/Web/SVG/Attribute) listant les différents **attributs** du SVG ([fill](https://developer.mozilla.org/fr/docs/Web/SVG/Attribute/fill), [fill-opacity](https://developer.mozilla.org/fr/docs/Web/SVG/Attribute/fill-opacity), [stroke](https://developer.mozilla.org/fr/docs/Web/SVG/Attribute/stroke), etc.).
+  - [la page de GSAP / TweenMax dédiée à l'animation des SVG.](https://greensock.com/svg-tips/)
 
 - [GSAP / TweenMax](https://greensock.com/gsap/) est un super framework d'animation en JS. [La page 'ease visualizer'](https://greensock.com/ease-visualizer/) est un passage obligatoire pour tout bon motion designer.
 
