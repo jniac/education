@@ -67,7 +67,7 @@ let updateHeader = () => {
 
 	} else {
 
-		document.querySelector('header').className = ''
+		document.querySelector('header').className = 's1'
 
 	}
 

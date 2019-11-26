@@ -52,6 +52,13 @@ section {
 
 
 /* SECTION S2 */
+header.s1 div.scroll {
+	color: blue;
+}
+header.s1 div.scroll span {
+	background-color: blue;
+	color: white;
+}
 
 section#s1 {
 	display: flex;
