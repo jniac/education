@@ -44,11 +44,12 @@ header div.login {
 	border-radius: 2px;
 	cursor: pointer;
 	user-select: none;
-	transition: .2s;
+	transition: .6s;
 }
 header div.login:hover {
 	background-color: blue;
 	color: white;
+	transition: 0.1s;
 }
 header div.login a {
 	color: inherit;
