@@ -41,7 +41,7 @@ let initHeader = () => {
 	let week = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
 	let day = week[date.getDay()]
 
-	let months = ['janvier', 'février', 'mars', 'avril', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+	let months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
 	let month = months[date.getMonth()]
 
 	document.querySelector('header div.info').innerHTML =
