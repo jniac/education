@@ -6,16 +6,6 @@ body {
 	font-family: 'Roboto Mono', monospace;
 }
 
-div.UI {
-	z-index: 1;
-	position: absolute;
-	padding: 32px;
-}
-div.UI h1 {
-	font-size: 48px;
-}
 div.UI label {
     width: 200px;
-    display: inline-block;
-	font-size: 14px;
 }

@@ -1,6 +1,32 @@
 
 let { camera, scene } = app
 
+let vertigo = new Vertigo(1.9, window.innerWidth / window.innerHeight)
+scene.add(vertigo)
+app.on('resize', () => vertigo.aspect = window.innerWidth / window.innerHeight)
+app.render = () => app.renderer.render(scene, vertigo.camera)
+
+document.querySelector('input[name=perspective]').oninput = (e) => {
+
+    vertigo.perspective = parseFloat(e.target.value)
+    document.querySelector('label[for=perspective]').innerHTML = `perspective (${vertigo.perspective.toFixed(2)})`
+
+}
+
+app.pointer.on('DRAG', () => {
+
+	let { delta } = app.pointer
+
+	vertigo.rotation.y += -delta.x
+	vertigo.rotation.x += delta.y
+
+})
+
+
+
+
+
+
 let random = (min, max) => min + (max - min) * Math.random()
 
 let randomBlueColor = () => {

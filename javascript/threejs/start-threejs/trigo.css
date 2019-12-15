@@ -5,8 +5,3 @@
 body {
 	font-family: 'Roboto Mono', monospace;
 }
-div.UI {
-	z-index: 1;
-	position: absolute;
-	padding: 32px;
-}

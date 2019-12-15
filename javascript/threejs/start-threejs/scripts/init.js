@@ -39,6 +39,7 @@
 		'scripts/OrbitControls.js',
 		'scripts/FBXLoader.js',
 		'scripts/extend-three.js',
+		'scripts/Vertigo.js',
 		'scripts/events.js',
 		'scripts/create-app.js',
 	)

@@ -13,3 +13,16 @@ body {
 body > canvas {
 	transition: opacity .2s;
 }
+
+div.UI {
+	z-index: 1;
+	position: absolute;
+	padding: 32px;
+}
+div.UI h1 {
+	font-size: 48px;
+}
+div.UI label {
+    display: inline-block;
+	font-size: 14px;
+}
