@@ -1,4 +1,6 @@
 
+let { camera, pointer, scene } = app
+
 // ease curves:
 // https://www.desmos.com/calculator/i6kwlsrerc
 let shaky = (x, f = 5, p = 3) => Math.sin(x * Math.PI * f) * ((1 - x) ** p)
