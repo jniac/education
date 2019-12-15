@@ -31,7 +31,7 @@ let radius = 2
 let angle = Math.PI / 4
 let angleVelocity = 0.01
 
-document.querySelector('[name=angle]').oninput = () => {
+document.querySelector('input[name=angle]').oninput = () => {
 
 	angleVelocity = parseFloat(document.querySelector('[name=angle]').value)
 

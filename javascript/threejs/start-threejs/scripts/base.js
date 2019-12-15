@@ -1,92 +1,92 @@
 
+const createApp = () => {
+
+	events.makeDispatcher(THREE.Object3D.prototype)
+
+	let scene = new THREE.Scene()
+	let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000)
+
+	let renderer = new THREE.WebGLRenderer({ antialias:true })
+	renderer.setSize(window.innerWidth, window.innerHeight)
+	renderer.setClearColor('#eee')
+	document.body.appendChild(renderer.domElement)
+
+	camera.position.z = 5
+
+	let render = () => renderer.render(scene, camera)
 
 
-events.makeDispatcher(THREE.Object3D.prototype)
 
-let scene = new THREE.Scene()
-let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000)
+	let pointer = events.makeDispatcher({
 
-let renderer = new THREE.WebGLRenderer({ antialias:true })
-renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.setClearColor('#eee')
-document.body.appendChild(renderer.domElement)
+		lastEventTimestamp: Date.now(),
+		position: new THREE.Vector2(),
+		over: { target:null, timestamp:-1 },
+		down: { target:null, timestamp:-1 },
+		up: { target:null, timestamp:-1 },
 
-camera.position.z = 5
+	})
 
+	// https://gist.github.com/blixt/f17b47c62508be59987b
+	class PRNG {
+		constructor(seed = 12345) {
 
+			Object.defineProperty(this, 'seed', {
+				enumerable: true,
+				get() { return seed },
+				set(value) {
+					seed = Math.floor(value % 2147483647)
 
-let pointer = events.makeDispatcher({
+					if (seed <= 0)
+						seed += 2147483646
 
-	lastEventTimestamp: Date.now(),
-	position: new THREE.Vector2(),
-	over: { target:null, timestamp:-1 },
-	down: { target:null, timestamp:-1 },
-	up: { target:null, timestamp:-1 },
+					this.pos = seed
+				},
+			})
 
-})
-
-// https://gist.github.com/blixt/f17b47c62508be59987b
-class PRNG {
-	constructor(seed = 12345) {
-
-		Object.defineProperty(this, 'seed', {
-			enumerable: true,
-			get() { return seed },
-			set(value) {
-				seed = Math.floor(value % 2147483647)
-
-				if (seed <= 0)
-					seed += 2147483646
-
-				this.pos = seed
-			},
-		})
-
-		this.reset(seed)
-	}
-	reset() {
-		this.seed = this.seed
-		return this
-	}
-	randomSeed() {
-		this.seed = (2147483647 * Math.random())
-		return this
-	}
-	next() {
-		return this.pos = this.pos * 16807 % 2147483647
-	}
-	nextFloat() {
-		return (this.next() - 1) / 2147483646
-	}
-	among(array) {
-		return array[Math.floor(array.length * this.nextFloat())]
-	}
-	random() {
-		if (arguments.length == 1 && (typeof arguments[0] === 'number'))
-			return this.nextFloat() * arguments[0]
-
-		if (arguments.length == 1 && (arguments[0] instanceof Array)) {
-			if (arguments[0][0] && typeof arguments[0][0] == 'object' &&('weight' in arguments[0][0]))
-				return this.weighted(arguments[0])
-
-			return this.among(arguments[0])
+			this.reset(seed)
 		}
+		reset() {
+			this.seed = this.seed
+			return this
+		}
+		randomSeed() {
+			this.seed = (2147483647 * Math.random())
+			return this
+		}
+		next() {
+			return this.pos = this.pos * 16807 % 2147483647
+		}
+		nextFloat() {
+			return (this.next() - 1) / 2147483646
+		}
+		among(array) {
+			return array[Math.floor(array.length * this.nextFloat())]
+		}
+		random() {
+			if (arguments.length == 1 && (typeof arguments[0] === 'number'))
+				return this.nextFloat() * arguments[0]
 
-		let [min = 0, max = 1] = arguments
-		return min + (max - min) * this.nextFloat()
-	}
-	weighted(array) {
-		let total = array.reduce((s, item) => s += item.weight, 0)
-		let r = total * this.nextFloat()
-		let i = 0
-		let s = array[i].weight
-		while (s < r)
-			s += array[++i].weight
-		return array[i]
-	}
-}
+			if (arguments.length == 1 && (arguments[0] instanceof Array)) {
+				if (arguments[0][0] && typeof arguments[0][0] == 'object' &&('weight' in arguments[0][0]))
+					return this.weighted(arguments[0])
 
-let app = (() => {
+				return this.among(arguments[0])
+			}
+
+			let [min = 0, max = 1] = arguments
+			return min + (max - min) * this.nextFloat()
+		}
+		weighted(array) {
+			let total = array.reduce((s, item) => s += item.weight, 0)
+			let r = total * this.nextFloat()
+			let i = 0
+			let s = array[i].weight
+			while (s < r)
+				s += array[++i].weight
+			return array[i]
+		}
+	}
 
 	let raycaster = new THREE.Raycaster()
 
@@ -388,6 +388,7 @@ let app = (() => {
 		renderer,
 		camera,
 		scene,
+		render,
 
 		Particle,
 		particles,
@@ -454,7 +455,7 @@ let app = (() => {
 
 		app.fire('update')
 
-		renderer.render(scene, camera)
+		app.render()
 
 		time += 1/60
 		frame++
@@ -465,4 +466,6 @@ let app = (() => {
 
 	return app
 
-})()
+}
+
+const app = createApp()

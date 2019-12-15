@@ -1,4 +1,6 @@
 
+let { camera, scene } = app
+
 let random = (min, max) => min + (max - min) * Math.random()
 
 let randomBlueColor = () => {

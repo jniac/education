@@ -1,4 +1,6 @@
 
+let { camera, scene } = app
+
 camera.fov = 30
 camera.updateProjectionMatrix()
 camera.position.z = 18

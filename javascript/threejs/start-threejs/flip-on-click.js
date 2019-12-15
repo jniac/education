@@ -1,4 +1,6 @@
 
+let { camera, scene } = app
+
 let plane = new THREE.Mesh(
 	new THREE.PlaneGeometry(4, 4),
 	new THREE.MeshBasicMaterial({ map:app.loadTexture('assets/dots.png' )})

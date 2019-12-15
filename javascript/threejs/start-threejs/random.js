@@ -1,4 +1,6 @@
 
+let { scene } = app
+
 // choisir une graine aléatoire...
 // app.prng.randomSeed()
 // ...ou non
