@@ -21,6 +21,8 @@ const createApp = () => {
 
 		lastEventTimestamp: Date.now(),
 		position: new THREE.Vector2(),
+		delta: new THREE.Vector2(),
+		isDown: false,
 		over: { target:null, timestamp:-1 },
 		down: { target:null, timestamp:-1 },
 		up: { target:null, timestamp:-1 },
@@ -119,10 +121,25 @@ const createApp = () => {
 
 	renderer.domElement.addEventListener('mousemove', (event) => {
 
-		pointer.position.x = (event.clientX / window.innerWidth) * 2 - 1
-		pointer.position.y = -(event.clientY / window.innerHeight) * 2 + 1
+		let x = (event.clientX / window.innerWidth) * 2 - 1
+		let y = -(event.clientY / window.innerHeight) * 2 + 1
+
+		pointer.delta.x = x - pointer.position.x
+		pointer.delta.y = y - pointer.position.y
+
+		pointer.position.x = x
+		pointer.position.y = y
 
 		raycaster.setFromCamera(pointer.position, camera)
+
+		let target = pointer.over.target || scene
+		let timestamp = Date.now()
+		let { shiftKey:shift, altKey:alt, ctrlKey:ctrl, metaKey:meta } = event
+
+		firePointerEvent(target, 'MOVE', { timestamp })
+
+		if (pointer.isDown)
+			firePointerEvent(target, 'DRAG', { timestamp })
 
 	})
 
