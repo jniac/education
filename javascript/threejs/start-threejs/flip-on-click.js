@@ -14,7 +14,7 @@ let verso = new THREE.Mesh(
 verso.rotation.y = Math.PI
 plane.add(verso)
 
-plane.on('pointer-click', () => {
+plane.on('CLICK', () => {
 
 	// plane.rotation.y = Math.PI
 	TweenMax.to(plane.rotation, 1, { y:Math.PI })

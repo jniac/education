@@ -81,14 +81,14 @@ for (let y = 0; y < yMax; y++) {
 
 		scene.add(card)
 
-		card.on('pointer-over', () => {
+		card.on('OVER', () => {
 			if (!card.reversed)
 				TweenMax.to(card.scale, .3, { x:1.12, y:1.12 })
 		})
-		card.on('pointer-out', () => {
+		card.on('OUT', () => {
 			TweenMax.to(card.scale, .3, { x:1, y:1 })
 		})
-		card.on('pointer-click', () => {
+		card.on('CLICK', () => {
 			if (pointer.down.keys.shift || card.status > 0) {
 				card.status = (card.status + 1) % 3
 				let url = 'assets/' + (card.isChecked ? 'dots+check.png' : card.isMarked ? 'dots+interrogation.png' : 'dots.png')

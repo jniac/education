@@ -134,9 +134,10 @@ const createApp = () => {
 		let timestamp = Date.now()
 		let { shiftKey:shift, altKey:alt, ctrlKey:ctrl, metaKey:meta } = event
 
+		pointer.isDown = true
 		pointer.lastEventTimestamp = timestamp
 		Object.assign(pointer.down, { target, timestamp, keys:{ shift, alt, ctrl, meta } })
-		firePointerEvent(target, 'pointer-down', { timestamp })
+		firePointerEvent(target, 'DOWN', { timestamp })
 
 	})
 
@@ -146,15 +147,16 @@ const createApp = () => {
 		let timestamp = Date.now()
 		let { shiftKey:shift, altKey:alt, ctrlKey:ctrl, metaKey:meta } = event
 
+		pointer.isDown = false
 		pointer.lastEventTimestamp = timestamp
 		Object.assign(pointer.up, { target, timestamp })
-		firePointerEvent(target, 'pointer-up', { timestamp, keys:{ shift, alt, ctrl, meta } })
+		firePointerEvent(target, 'UP', { timestamp, keys:{ shift, alt, ctrl, meta } })
 
 		let duration = timestamp - pointer.down.timestamp
 
 		if (target == pointer.down.target && duration < 400) {
 
-			firePointerEvent(target, 'pointer-click', { timestamp, duration, keys:pointer.down.keys })
+			firePointerEvent(target, 'CLICK', { timestamp, duration, keys:pointer.down.keys })
 
 		}
 
@@ -211,12 +213,12 @@ const createApp = () => {
 			let timestamp = Date.now()
 
 			if (pointer.over.target)
-				firePointerEvent(pointer.over.target, 'pointer-out', { timestamp })
+				firePointerEvent(pointer.over.target, 'OUT', { timestamp })
 
 			pointer.over.target = newPointerOverTarget
 
 			if (pointer.over.target)
-				firePointerEvent(pointer.over.target, 'pointer-over', { timestamp })
+				firePointerEvent(pointer.over.target, 'OVER', { timestamp })
 
 		}
 
