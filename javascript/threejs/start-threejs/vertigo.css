@@ -1,0 +1,16 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+body {
+	font-family: 'Roboto-Mono', monospace;
+}
+div.UI {
+	position: absolute;
+	padding: 32px;
+}
+
+div.UI label {
+    width: 200px;
+    display: inline-block;
+}
