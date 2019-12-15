@@ -38,6 +38,7 @@ class Vertigo extends THREE.Object3D {
 
                 let d = (height / 2) / Math.tan(fov * toRad / 2)
                 perspectiveCamera.fov = fov
+                perspectiveCamera.aspect = aspect
                 perspectiveCamera.position.set(0, 0, d)
                 perspectiveCamera.updateProjectionMatrix()
 
@@ -79,6 +80,14 @@ class Vertigo extends THREE.Object3D {
                 }
             },
 
+            aspect: {
+                get: () => aspect,
+                set: value => {
+                    aspect = value
+                    compute()
+                }
+            },
+
             isOrthographic: {
                 get:() => isOrthographic,
             },
@@ -101,10 +110,9 @@ class Vertigo extends THREE.Object3D {
 
 let { scene } = app
 
-let aspect = window.innerWidth / window.innerHeight
-
-let vertigo = new Vertigo(1, aspect)
+let vertigo = new Vertigo(1, window.innerWidth / window.innerHeight)
 scene.add(vertigo)
+app.on('resize', () => vertigo.aspect = window.innerWidth / window.innerHeight)
 
 document.querySelector('input[name=perspective]').oninput = (e) => {
 
