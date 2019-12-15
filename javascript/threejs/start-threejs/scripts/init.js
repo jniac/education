@@ -40,7 +40,7 @@
 		'scripts/FBXLoader.js',
 		'scripts/extend-three.js',
 		'scripts/events.js',
-		'scripts/base.js',
+		'scripts/create-app.js',
 	)
 
 	let thenTag = document.createElement('script')

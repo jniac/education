@@ -103,7 +103,7 @@ const createApp = () => {
 
 	}
 
-	let autoSleepDelay = 30000
+	let autoSleepDelay = 30
 
 	let resizeCounter = 0
 	window.addEventListener('resize', () => resizeCounter = 2)
@@ -113,6 +113,7 @@ const createApp = () => {
 		camera.aspect = w / h
 		camera.updateProjectionMatrix()
 		renderer.setSize(w, h)
+		app.fire('resize')
 
 	}
 
@@ -437,7 +438,7 @@ const createApp = () => {
 		if (resizeCounter-- === 0)
 			resize()
 
-		let sleep = Date.now() - pointer.lastEventTimestamp > autoSleepDelay
+		let sleep = Date.now() - pointer.lastEventTimestamp > autoSleepDelay * 1e3
 
 		if (sleep && !sleep_old)
 			renderer.domElement.style.opacity = '.5'
