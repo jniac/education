@@ -4,6 +4,10 @@
 
 [source zippée](https://github.com/jniac/education/blob/master/javascript/threejs/start-threejs.zip?raw=true)
 
-<img src="https://i.imgur.com/DH7pfzA.png">
+<a href="https://jniac.github.io/education/javascript/threejs/start-threejs/shader.html">
+  <img src="https://i.imgur.com/DH7pfzA.png">
+</a>
 <br>
-<img src="https://i.imgur.com/Tmcj0k8.png">
+<a href="https://jniac.github.io/education/javascript/threejs/start-threejs/color.html">
+  <img src="https://i.imgur.com/Tmcj0k8.png">
+</a>
