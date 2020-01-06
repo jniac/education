@@ -1,5 +1,5 @@
 
-let { camera, scene } = app
+let { camera, scene, renderer } = app
 
 camera.fov = 30
 camera.updateProjectionMatrix()
@@ -7,7 +7,7 @@ camera.position.z = 18
 
 app.prng.reset(976543)
 
-let controls = new THREE.OrbitControls(camera, renderer.domElement)
+new THREE.OrbitControls(camera, renderer.domElement)
 
 let xMax = 5
 let yMax = 5
