@@ -1,4 +1,5 @@
 
+let { scene } = app
 
 let bg = new THREE.Mesh(
 	new THREE.PlaneGeometry(20, 20),
