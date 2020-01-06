@@ -11,3 +11,6 @@
 <a href="https://jniac.github.io/education/javascript/threejs/start-threejs/color.html">
   <img src="https://i.imgur.com/Tmcj0k8.png">
 </a>
+<a href="https://jniac.github.io/education/javascript/threejs/start-threejs/trigo.html">
+  <img src="https://i.imgur.com/NCOCHCt.png">
+</a>
