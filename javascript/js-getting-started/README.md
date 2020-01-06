@@ -1,1 +1,1 @@
-[JS - getting started](https://jniac.github.io/e-artsup/javascript/js-getting-started/)
+[JS - getting started](https://jniac.github.io/education/javascript/js-getting-started/)

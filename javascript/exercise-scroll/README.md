@@ -3,7 +3,7 @@
 ## Brief
 
 ### Résumé
-À partir de l'exemple suivant [/scroll-experience](https://jniac.github.io/e-artsup/javascript/exercise-scroll/scroll-experience/) [(source zip)](https://github.com/jniac/e-artsup/blob/master/javascript/exercise-scroll/scroll-experience.zip?raw=true), imaginez une courte expérience web se déroulant lors du "scroll".
+À partir de l'exemple suivant [/scroll-experience](https://jniac.github.io/education/javascript/exercise-scroll/scroll-experience/) [(source zip)](https://github.com/jniac/education/blob/master/javascript/exercise-scroll/scroll-experience.zip?raw=true), imaginez une courte expérience web se déroulant lors du "scroll".
 
 ### Contraintes
 La page web doit contenir 4 `<section>`, c'est à dire 4 écrans. Chaque écran doit mettre en scène une composition [**graphique**](https://en.wikipedia.org/wiki/Graphic_design) [**animée**](https://fr.wikipedia.org/wiki/Animation_(audiovisuel)).

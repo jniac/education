@@ -1,7 +1,7 @@
 # start threejs
 
-[démo en ligne](https://jniac.github.io/e-artsup/javascript/threejs/start-threejs/)
+[démo en ligne](https://jniac.github.io/education/javascript/threejs/start-threejs/)
 
-[source zippée](https://github.com/jniac/e-artsup/blob/master/javascript/threejs/start-threejs.zip?raw=true)
+[source zippée](https://github.com/jniac/education/blob/master/javascript/threejs/start-threejs.zip?raw=true)
 
 <img src="https://i.imgur.com/DH7pfzA.png">
