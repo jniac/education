@@ -2,6 +2,8 @@
 
 [exercise scroll](./javascript/exercise-scroll/)  
 
+[Azulejo](./javascript/azulejos)
+
 [threejs](./javascript/threejs/)  
 
 [rendu-pas-cher](./motion/c4d/rendering/rendu-pas-cher/)
