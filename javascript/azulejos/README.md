@@ -8,6 +8,7 @@ Les moyens pour y parvenir sont :
 - le design des [primitives (svg)](./starter/assets) via n'importe quel logiciel (illustrator, figma etc.)
 	- forme (conseil: rester simple, mais multiplier les primitives)
 	- couleur (possibilité de revenir sur la gamme proposée)
+  <br>
   <div style="display: flex; width: 100%">
 	<img width="100px" src="starter/assets/bigstar.svg">
 	<img width="100px" src="starter/assets/circle.svg">
