@@ -4,6 +4,8 @@
 
 A partir du fichier [starter.zip](./starter.zip?raw=true), réalisez une déclinaison de la grille de sorte que les images produites soit originales.
 
+[demo starter/index.html](https://jniac.github.io/education/javascript/azulejos/starter/)
+
 Les moyens pour y parvenir sont :
 - le design des [primitives (svg)](./starter/assets) via n'importe quel logiciel (illustrator, figma etc.)
 	- forme (conseil: rester simple, mais multiplier les primitives)
