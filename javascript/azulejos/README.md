@@ -2,7 +2,7 @@
 
 ## Brief exercice — Design génératif
 
-A partir du fichier [starter.zip](./starter.zip), réalisez une déclinaison de la grille de sorte que les images produites soit originales.
+A partir du fichier [starter.zip](./starter.zip?raw=true), réalisez une déclinaison de la grille de sorte que les images produites soit originales.
 
 Les moyens pour y parvenir sont :
 - le design des [primitives (svg)](./starter/assets) via n'importe quel logiciel (illustrator, figma etc.)
