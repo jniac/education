@@ -59,3 +59,45 @@ Liens utiles :
 - [Three JS](https://threejs.org/) (3D temps réel dans le navigateur) pour les énervés. Là aussi la documentation est excellente (mais en anglais uniquement), [les exemples](https://threejs.org/examples/#webgl_interactive_cubes_ortho) couvrent plus de problématiques que votre imagination n'en autorise.
 
 - [La page github du kit-js](https://jniac.github.io/js-kit/test/random/) que je mets à disposition, avec notamment [une page démo de kit.Random.](https://jniac.github.io/js-kit/test/random/)
+
+
+
+
+### minimal code pour main.js
+
+Note: Code minimal pour calculé le valeur `scroll` dans main.js
+
+```javascript
+let scroll = 0, scrollOld = 0
+
+let scrollInside = (min, max) => scroll >= min && scroll <= max
+let scrollOutside = (min, max) => scroll < min || scroll > max
+let scrollOldInside = (min, max) => scrollOld >= min && scrollOld <= max
+let scrollOldOutside = (min, max) => scrollOld < min || scrollOld > max
+let scrollEnter = (min, max) => scrollInside(min, max) && scrollOldOutside(min, max)
+let scrollExit = (min, max) => scrollOutside(min, max) && scrollOldInside(min, max)
+
+let splitToSpan = (element) => {
+
+	let text = element.innerHTML
+	let spans = [...text].map(char => `<span>${char}</span>`)
+	element.innerHTML = spans.join('')
+
+}
+
+let update = () => {
+
+	scrollOld = scroll
+	scroll = (
+		document.querySelector('html').scrollTop ||
+		document.querySelector('body').scrollTop
+	) / window.innerHeight
+
+	document.querySelector('header div.scroll span').innerHTML = scroll.toFixed(2)
+
+    // someFunctionToCallHere()
+}
+
+document.querySelector('body').onscroll = update
+update()
+```
