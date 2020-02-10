@@ -67,6 +67,20 @@ Liens utiles :
 
 Note: Code minimal pour calculé le valeur `scroll` dans main.js
 
+Dans body doit se trouver quelque chose du genre :
+```html
+<body>
+	...
+	<header>
+		...
+		<div class="scroll">
+			scroll: <span></span>
+		</div>
+	</header>
+	...
+</body>
+```
+
 ```javascript
 let scroll = 0, scrollOld = 0
 
