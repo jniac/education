@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    position: relative;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main canvas {
+    position: absolute;
+    background: #eee;
+}
+
+main .search {
+    background-color: white;
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: #a25c0066 2px 5px 10px;
+}
+main .search input {
+    font-size: 18px;
+    border: none;
+    background-color: #eee;
+    border-radius: 4px;
+    padding: 8px;
+    outline: none;
+}
+main .search svg {
+    width: 20px;
+    opacity: .4;
+    margin-left: 12px;
+}
