@@ -23,5 +23,5 @@ Changer la compression et la résolution suffit généralement à résoudre un p
 ### Comment re-compresser une vidéo ? 
 - Avec Adobe Media Encoder
 - Avec des outils en ligne, par exemple https://video.online-convert.com/fr/convertir-en-mp4  
-  Ce dernier outil est très complet, il permet notamment couper la vidéo, de définir une taille approximative finale.
+  Ce dernier outil est très complet, il permet notamment de couper la vidéo (indispensable si la vidéo dure plus de 30 secondes), de définir une taille approximative finale.
   
