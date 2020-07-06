@@ -12,7 +12,7 @@
                 font-family: 'Roboto', sans-serif;
             }
 
-            body, a {
+            html, a {
                 cursor: none !important; /* f*** important! */
             }
 
@@ -87,8 +87,9 @@
 
                 requestAnimationFrame(centerLoop)
 
-                centerX += (cursorX - centerX) / 4
-                centerY += (cursorY - centerY) / 4
+                // here's the famous trick, 'center' tends to equal 'cursor', but with some delay
+                centerX += (cursorX - centerX) / 6
+                centerY += (cursorY - centerY) / 6
 
                 document.querySelector('.fake-cursor__center').style.left = `${centerX}px`
                 document.querySelector('.fake-cursor__center').style.top = `${centerY}px`
@@ -102,13 +103,14 @@
 
             for (const element of document.querySelectorAll('.cursor-hover-effect')) {
 
-                console.log(element)
+                // on 'mouseover', for any '.cursor-hover-effect' element ADD the class 'hover' to cursors
                 element.addEventListener('mouseover', () => {
 
                     document.querySelector('.fake-cursor').classList.add('hover')
                     document.querySelector('.fake-cursor__center').classList.add('hover')
                 })
 
+                // on 'mouseout', for any '.cursor-hover-effect' element REMOVE the class 'hover' to cursors
                 element.addEventListener('mouseout', () => {
 
                     document.querySelector('.fake-cursor').classList.remove('hover')
