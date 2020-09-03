@@ -44,7 +44,7 @@ let makeGrid = (col, row, tileSize) => {
 		// mettre une couleur en arrière plan ?
 		// div.style.background = ['red', 'blue', '#fc0', 'purple', '#09f'][i % 5]
 
-		let appendImage = (url) => {
+		let addNewLayer = (url) => {
 
 			let layer = document.createElement('div')
 			div.append(layer)
@@ -55,19 +55,19 @@ let makeGrid = (col, row, tileSize) => {
 
 		// le design génératif commence ici:
 		if (Math.random() < 0.2) {
-			appendImage('assets/circle.svg')
+			addNewLayer('assets/circle.svg')
 		}
 
 		if (Math.random() < 0.5) {
-			appendImage('assets/bigstar.svg')
+			addNewLayer('assets/bigstar.svg')
 		}
 
 		if (Math.random() < 0.1) {
-			appendImage('assets/four.svg')
+			addNewLayer('assets/four.svg')
 		}
 
 		if (Math.random() < 0.5) {
-			appendImage('assets/redline-3.svg')
+			addNewLayer('assets/redline-3.svg')
 		}
 
 	}
