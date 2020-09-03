@@ -2,9 +2,11 @@
 
 ## Brief exercice — Design génératif
 
-A partir du fichier [starter.zip](./starter.zip?raw=true), réalisez une déclinaison de la grille de sorte que les images produites soit originales.
+A partir du fichier [starter.zip](./starter.zip?raw=true), réalisez une déclinaison originale de la page ([original en ligne](https://jniac.github.io/education/javascript/azulejos/starter/)).
 
-[demo starter/index.html](https://jniac.github.io/education/javascript/azulejos/starter/)
+Est attendu : 
+- une gamme de couleurs originales (appliqué de la page web (CSS) aux motifs de la grille (SVG)).
+- un design original de la grille, des différentes tuiles composées aléatoirement.
 
 Les moyens pour y parvenir sont :
 - le design des [primitives (svg)](./starter/assets) via n'importe quel logiciel (illustrator, figma etc.)
