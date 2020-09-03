@@ -11,6 +11,7 @@ Est attendu :
 - un design original de la grille, des différentes tuiles composées aléatoirement.
 
 Les moyens pour y parvenir sont :
+- La modification du fichier [style.css](./starter/style.css) pour modifier les codes couleurs (par exemple [ici](./starter/style.css#L8) ou [ici](./starter/style.css#L31)).
 - le design des [primitives (svg)](./starter/assets) via n'importe quel logiciel (illustrator, figma etc.)
 	- forme (conseil: rester simple, mais multiplier le nombre de primitives pour augmenter les combinaisons possibles)
 	- couleur (en prenant soin de mettre en place des couleurs dominantes et d'autres sous forme de rehauts)
@@ -21,7 +22,7 @@ Les moyens pour y parvenir sont :
 	<img width="100px" src="starter/assets/four.svg">
 	<img width="100px" src="starter/assets/redline-3.svg">
   </div>
-- le code javascript [(main.js)](./starter/main.js#L56-L71), par la modification des règles qui commandent au sein de la fonction `makeGrid` l'ajout de nouvelles `div`.
+- le code javascript (main.js), par la modification [des règles](./starter/main.js#L56-L71) qui commandent au sein de la fonction `makeGrid()` l'ajout de nouvelles `div`.
 
 <br><br>
 ## Notes
@@ -63,12 +64,13 @@ Pour contrôler l'apparition des différents motifs SVG, il faut ajuster la prob
 - `if (Math.random() < 0.1) {...}`: rare (10% de chance d'apparaître)
 
 <br><br>
-### Mode de fusion (blend modes) [Avancé]
+### ⚠️ [Avancé] Mode de fusion (blend modes)
 Le CSS autorise l'usage de modes de fusion (Produit, Superposition, Incrustation, Différence etc.), ce qui augmente de beaucoup les possibilités offertes par la combinaison des motifs.
 
 L'option n'est pas actuellement permise, mais elle peut être implémenté facilement par en appliquant au code les modifications suivantes :
 
-- la fonction `addNewLayer`:
+- la fonction `addNewLayer()`:
+
 ```javascript
 let addNewLayer = (url, blendMode = 'normal') => {
 
@@ -81,8 +83,18 @@ let addNewLayer = (url, blendMode = 'normal') => {
 }
 ```
 
+- l'invocation de `addNewLayer()`:
+
+
+```javascript
+if (Math.random() < 0.1) {
+	addNewLayer('assets/four.svg', 'difference')
+}
+```
+
+[Liste des modes de fusion (MDN).](https://developer.mozilla.org/fr/docs/Web/CSS/mix-blend-mode)
 
 <br><br>
 ## Liens externes
-[Azulejo sur wikipédia](https://en.wikipedia.org/wiki/Azulejo)
-[Mode de fusion sur MDN](https://developer.mozilla.org/fr/docs/Web/CSS/mix-blend-mode)
+- [Azulejo sur wikipédia](https://en.wikipedia.org/wiki/Azulejo)
+- [Mode de fusion sur MDN](https://developer.mozilla.org/fr/docs/Web/CSS/mix-blend-mode)
