@@ -1,5 +1,7 @@
 # Azulejo
 
+<image src='./azulejos.jpg' width='500'>
+
 ## Brief exercice — Design génératif
 
 A partir du fichier [starter.zip](./starter.zip?raw=true), réalisez une déclinaison originale de la page ([original en ligne](https://jniac.github.io/education/javascript/azulejos/starter/)).
@@ -21,12 +23,13 @@ Les moyens pour y parvenir sont :
   </div>
 - le code javascript [(main.js)](./starter/main.js#L56-L71), par la modification des règles qui commandent au sein de la fonction `makeGrid` l'ajout de nouvelles `div`.
 
-## Mémo
+<br><br><br><br>
+## Notes
 ### Design & Layout :  
   Chaque tuile est composée d'un certain nombre de `div` superposées. Chaque `div` référence une image SVG qui sera utilisé comme motif d'arrière plan. C'est la combinaison aléatoire de ces `div` qui créé le design final. Pour que la superposition permette de riches interactions graphiques, il faut penser à laisser des espaces vides dans les différentes primitives.
 
 ### Javascript et Design génératif :  
-  Le code de la fonction `makeGrid` répète cet ensemble de ligne plusieurs fois : 
+Le code de la fonction `makeGrid` répète cet ensemble de ligne plusieurs fois : 
 ```javascript
 if (Math.random() < 0.2) {
 	appendImage('assets/circle.svg')
@@ -43,6 +46,9 @@ Pour contrôler l'apparition des différents motifs SVG, il faut ajuster la prob
 - `if (Math.random() < 0.9) {...}`: très fréquent (90% de chance d'apparaître)
 - `if (Math.random() < 0.1) {...}`: rare (10% de chance d'apparaître)
 
-<image src='./azulejos.jpg' width='500'>
+### Mode de fusion (blend modes) [Avancé]
+Le CSS autorise des modes de fusion ce qui augmente beaucoup les possibilités offertes par la combinaison des motifs.
 
+## Liens externes
 [Azulejo sur wikipédia](https://en.wikipedia.org/wiki/Azulejo)
+[Mode de fusion sur MDN](https://developer.mozilla.org/fr/docs/Web/CSS/mix-blend-mode)
