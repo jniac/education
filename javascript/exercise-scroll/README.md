@@ -65,9 +65,9 @@ Liens utiles :
 
 ### minimal code pour main.js
 
-Note: Code minimal pour calculé le valeur `scroll` dans main.js
+Note: Code minimal pour calculer la valeur `scroll` dans main.js
 
-Dans body doit se trouver quelque chose du genre :
+Dans <body/> doit se trouver quelque chose du genre :
 ```html
 <body>
 	...
