@@ -58,6 +58,13 @@ A vous de jouer avec ces expressions pour obtenir une gamme chromatique intéres
 
 
 <div style="display:flex; flex-direction:column; align-items:center; font-family: serif; font-style:italic; ">
-    <img src="images/zoeld-v-1967-vasarely.jpg">
-    Victor Vasarely  Zoeld V(1967)
+    <img width="80%" src="images/zoeld-v-1967-vasarely.jpg">
+    Victor Vasarely — Zoeld V (1967)
+<div>
+
+<br>
+
+<div style="display:flex; flex-direction:column; align-items:center; font-family: serif; font-style:italic; ">
+    <img width="80%" src="images/aurelie-nemours-echiquier-1972.jpg">
+    Aurélie Nemours - Échiquier I (1972)
 <div>
