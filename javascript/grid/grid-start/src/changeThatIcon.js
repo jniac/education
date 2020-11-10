@@ -9,7 +9,7 @@ const getRandomColor = () => {
         return 'red'
     }
 
-    return '#blue'
+    return 'blue'
 }
 
 export const changeThatIcon = (div) => {
