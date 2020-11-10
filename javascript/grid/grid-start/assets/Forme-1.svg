@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-Forme-1">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="Forme-1" clip-path="url(#clip-Forme-1)">
+    <path id="Soustraction_2" data-name="Soustraction 2" d="M38,46H0V42H.005a11.958,11.958,0,0,0,8.143-3.19A11.956,11.956,0,0,0,11.959,31H12V0H38V4H16A18.02,18.02,0,0,0,26.994,20.585,17.888,17.888,0,0,0,34,22h4V46Zm8-20H38V22h4V4H38V0h8V26Z" transform="translate(9 10)"/>
+  </g>
+</svg>

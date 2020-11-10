@@ -1,0 +1,53 @@
+@import url(../assets/icomoon-v1.0/style.css);
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+body {
+    background-color: #eee;
+    /* mettre le code pour centre "main" dans "body" */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    width: calc(4 * 200px);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.cell {
+    width: 200px;
+    height: 200px;
+}
+
+/* ">": direct child */
+div.cell > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 120px;
+    z-index: 2;
+}
+
+div.cell div.text {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    font-size: 32px;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+}

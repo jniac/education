@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-Forme-2">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="Forme-2" clip-path="url(#clip-Forme-2)">
+    <rect id="Rectangle_5" data-name="Rectangle 5" width="10" height="48" transform="translate(27 9)"/>
+    <path id="Soustraction_3" data-name="Soustraction 3" d="M24,28H12V24H12A12,12,0,0,0,23.959,13H24V28Z" transform="translate(3 29)"/>
+    <path id="Soustraction_5" data-name="Soustraction 5" d="M24,28H12V24H12A12,12,0,0,0,23.959,13H24V28Z" transform="translate(3 4)"/>
+    <path id="Soustraction_4" data-name="Soustraction 4" d="M12,0H0V4H.005A11.956,11.956,0,0,1,8.148,7.19,11.958,11.958,0,0,1,11.96,15H12V0Z" transform="translate(49 57) rotate(180)"/>
+    <path id="Soustraction_6" data-name="Soustraction 6" d="M12,0H0V4H.005A11.956,11.956,0,0,1,8.148,7.19,11.958,11.958,0,0,1,11.96,15H12V0Z" transform="translate(49 32) rotate(180)"/>
+  </g>
+</svg>
