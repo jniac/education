@@ -1,6 +1,8 @@
 # Une grille
 Svg + font icon
 
+<img src="images/grid-start.png">
+
 ## Attentes, enjeux : 
 - Produire un jeu d’icône original à partir de l’application en ligne [icomoon/app](https://icomoon.io/app/#/select).
 - Maîtriser les règles aléatoires des fonctions « getRandomColor() » pour produire une gamme de couleur originale cohérentes (contraste, dominante).
@@ -51,3 +53,11 @@ const getRandomColor = () => {
 La fonction `getRandomColor` renvoie `"blue"` dans 80% des cas, `"red"` dans 20%.
 
 A vous de jouer avec ces expressions pour obtenir une gamme chromatique intéressante (avec des teintes dominantes, et d'autre plus rares). 
+
+## Références artistiques
+
+
+<div style="display:flex; flex-direction:column; align-items:center; font-family: serif; font-style:italic; ">
+    <img src="images/zoeld-v-1967-vasarely.jpg">
+    Victor Vasarely  Zoeld V(1967)
+<div>
