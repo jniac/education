@@ -1,6 +1,6 @@
 # Une grille
 Svg + font icon  
-[fichier source grid-start.zip](./grid-start.zip)
+[fichier source grid-start.zip](./grid-start.zip?raw=true)
 
 <p align="center"><img width="500px" src="images/grid-start.png"></p>
 <p align="center">
