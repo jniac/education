@@ -1,16 +1,26 @@
 # Une grille
-Svg + font icon
+Svg + font icon  
+[fichier source grid-start.zip](./grid-start.zip)
 
 <p align="center"><img width="500px" src="images/grid-start.png"></p>
+<p align="center">
+Une base sobre à modifier
+</p>
 
-## Attentes, enjeux : 
+- [Attentes, enjeux](#attentes-enjeux)
+- [Critères d'évaluation](#critères-dévaluation)
+- [Icomoon](#icomoon)
+- [getRandomColor()](#getrandomcolor)
+- [Références artistiques ](#références-artistiques)
+
+## Attentes, enjeux
 - Produire un jeu d’icône original à partir de l’application en ligne [icomoon/app](https://icomoon.io/app/#/select).
 - Maîtriser les règles aléatoires des fonctions « getRandomColor() » pour produire une gamme de couleur originale cohérentes (contraste, dominante).
 - Enjeu artistique / design : 
 
 ## Critères d'évaluation
 Hm, la vrai évaluation c'est vous qui la ferez, en votre âme et conscience. "Qu'ai-je appris ? Que suis-je capable de faire que je ne savais pas faire avant ?". Pour ma part, puisqu'il faut vous évaluer, voici les critères retenus : 
-- Mise en œuvre technique (Javascript, CSS) **50%**
+- Mise en œuvre technique (Javascript, CSS, icomoon) **50%**
 - Sensibilité artistique (comment avec du code faire du beau et de l'original, ou comment faire passer sa sensibilité dans la programmation). **50%**
 - Originalité / Grain de folie. Parce qu'il est toujours possible de trouver un usage nouveau, inattendu. Et que c'est par là que passe la nouveauté, et derrière l'avenir. Rien que ça. **50%**
 
@@ -56,12 +66,17 @@ A vous de jouer avec ces expressions pour obtenir une gamme chromatique intéres
 
 ## Références artistiques
 
+<p align="center"><img width="500px" src="images/zoeld-v-1967-vasarely.jpg"></p>
 <p align="center">
-    <img width="500px" src="images/zoeld-v-1967-vasarely.jpg">
-</p>
-<p align="center" style="font-family:serif;">
-    Victor Vasarely — Zoeld V (1967)
+Victor Vasarely — Zoeld V (1967)
 </p>
 
 <p align="center"><img width="500px" src="images/aurelie-nemours-echiquier-1972.jpg"></p>
-<p align="center">Aurélie Nemours - Échiquier I (1972)</p>
+<p align="center">
+Aurélie Nemours - Échiquier I (1972)
+</p>
+
+<p align="center"><img width="500px" src="images/Anton-Stankowski-06.jpg"></p>
+<p align="center">
+Anton Stankowski
+</p>
