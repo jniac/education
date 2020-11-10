@@ -1,7 +1,7 @@
 # Une grille
 Svg + font icon
 
-<img src="images/grid-start.png">
+<p align="center"><img width="500px" src="images/grid-start.png"></p>
 
 ## Attentes, enjeux : 
 - Produire un jeu d’icône original à partir de l’application en ligne [icomoon/app](https://icomoon.io/app/#/select).
@@ -56,15 +56,12 @@ A vous de jouer avec ces expressions pour obtenir une gamme chromatique intéres
 
 ## Références artistiques
 
-
-<div style="display:flex; flex-direction:column; align-items:center; font-family: serif; font-style:italic; ">
-    <img width="80%" src="images/zoeld-v-1967-vasarely.jpg">
+<p align="center">
+    <img width="500px" src="images/zoeld-v-1967-vasarely.jpg">
+</p>
+<p align="center" style="font-family:serif;">
     Victor Vasarely — Zoeld V (1967)
-<div>
+</p>
 
-<br>
-
-<div style="display:flex; flex-direction:column; align-items:center; font-family: serif; font-style:italic; ">
-    <img width="80%" src="images/aurelie-nemours-echiquier-1972.jpg">
-    Aurélie Nemours - Échiquier I (1972)
-<div>
+<p align="center"><img width="500px" src="images/aurelie-nemours-echiquier-1972.jpg"></p>
+<p align="center">Aurélie Nemours - Échiquier I (1972)</p>
