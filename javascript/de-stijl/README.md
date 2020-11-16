@@ -18,4 +18,10 @@ Compositie IX, 1917
 <br>Theo Van Doesburg
 </p>
 
+<p align="center"><img width="500px" src="images/GUGG_Composition_in_Gray_(Rag-time).jpg"></p>
+<p align="center">
+Composition in Gray (Rag-time), 1919
+<br>Theo Van Doesburg
+</p>
+
 https://afasiaarchzine.com/2015/06/theo-van-doesburg/
