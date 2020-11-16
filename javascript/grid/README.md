@@ -80,3 +80,26 @@ Aurélie Nemours - Échiquier I (1972)
 <p align="center">
 Anton Stankowski
 </p>
+
+<p align="center"><img width="500px" src="images/Basquiat-In-Italian-1983.jpg"></p>
+<p align="center">
+In italian, 1983<br>
+Jean Michel Basquiat
+</p>
+
+<p align="center"><img width="500px" src="images/warhol-Basquiat-WIN-s-1984.jpg"></p>
+<p align="center">
+Win $ 1’000’000, 1984<br>
+Jean Michel Basquiat
+</p>
+
+<p align="center"><img width="500px" src="images/Basquiat-Zenith.jpg"></p>
+<p align="center">
+Zenith, 1985<br>
+Jean Michel Basquiat
+</p>
+
+Pourquoi Jean Michel Basquiat dans les références ci-dessus ? Il ne s'y trouve aucune grille !
+
+C'est vrai, mais le sujet demande de faire cohabiter grille ET pictogrammes. La manière brutale de faire vivre ensemble aplats de couleurs, logotypes et caractères typographiques de Jean Michel Basquiat, peut ici être source d'inspiration.
+[Plus de Jean-Michel Basquiat](https://www.kazoart.com/blog/en/basquiat-in-10-works/)
