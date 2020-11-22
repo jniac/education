@@ -1,0 +1,122 @@
+@import url(../assets/Rubik.css);
+@import url(../assets/BaronDidotThin.css);
+@import url(UI.css);
+
+* {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: #999999;
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'BaronDidotThin', serif;
+}
+p {
+    text-align: center;
+    margin-top: 8px;
+    letter-spacing: .05em;
+    font-size: 12px;
+}
+
+.absolute-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+#scene {
+    background-color: #bbbbbb;
+    overflow: hidden;
+    margin: 32px;
+}
+
+#player {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: -50px;
+    top: -50px;
+    background-image: url(../assets/playership.svg);
+    z-index: 2;
+}
+
+#player .player-core {
+    --radius: 5px;
+    width: calc(var(--radius) * 2);
+    height: calc(var(--radius) * 2);
+    left: calc(50px - var(--radius));
+    top: calc(50px - var(--radius));
+    border-radius: var(--radius);
+    background-color: white;
+}
+
+.particle {
+    position: absolute;
+    z-index: 3;
+    --radius: 100px;
+    width: calc(var(--radius) * 2);
+    height: calc(var(--radius) * 2);
+    left: calc(var(--radius) * -1);
+    top: calc(var(--radius) * -1);
+    border-radius: var(--radius);
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle {
+    flex-direction: column;
+    font-family: 'BaronDidotThin';
+    z-index: 0;
+}
+.circle .name {
+    font-size: calc(var(--radius) * 0.5);
+    line-height: 0.8em;
+}
+.circle .life {
+    font-size: 24px;
+}
+.circle.black {
+    color: #bbbbbb;
+}
+
+.gameover, 
+.youwin {
+    font-size: 290px;
+    font-weight: 900;
+    line-height: 0.8em;
+    text-align: center;
+    z-index: 1;
+    color: #ffeb3a;
+    text-shadow: #d6001e 20px 20px 0;
+    animation: blink 1s steps(2, jump-none) infinite;
+}
+@keyframes blink {
+    from {
+        color: #ffeb3b;
+    }
+    to {
+        color: #2340d3;
+    }
+}

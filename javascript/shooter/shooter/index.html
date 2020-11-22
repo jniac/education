@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooter</title>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+    <h1>Kill the yellow.</h1>
+    <p>
+        [Arrows] to move, [Space] to shoot.<br>
+        It's all about colors...
+    </p>
+    <div id="scene">
+        <div id="player">
+            <div class="player-core"></div>
+        </div>
+        <div class="gameover absolute-fill flex-center" style="display: none;">
+            GAME<br>
+            OVER
+        </div>
+        <div class="youwin absolute-fill flex-center" style="display: none;">
+            YOU<br>
+            WIN!!!
+        </div>
+    </div>
+    <button id="restart">restart</button>
+
+    <script src="src/index.js" type="module"></script>
+</body>
+</html>
