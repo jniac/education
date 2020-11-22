@@ -27,6 +27,12 @@ p {
     letter-spacing: .05em;
     font-size: 12px;
 }
+p span {
+    display: inline-block;
+    background-color: #bbbbbb99;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
 
 .absolute-fill {
     position: absolute;
