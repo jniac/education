@@ -1,7 +1,7 @@
 # Shooter
 
-[en ligne](https://jniac.github.io/education/javascript/shooter/shooter/)  
-[shooter.zip](https://github.com/jniac/education/raw/master/javascript/shooter/shooter.zip)
+[version en ligne](https://jniac.github.io/education/javascript/shooter/shooter/)  
+[fichiers source zippés (shooter.zip)](https://github.com/jniac/education/raw/master/javascript/shooter/shooter.zip)
 
 Difficile, difficile d'avoir cet écran :  
 <img width="600px" src="screenshots/youwin.gif">
@@ -10,8 +10,11 @@ Difficile, difficile d'avoir cet écran :
 Le code ne contient quasiment aucun commentaire.  
 En revanche il a été écrit de telle manière qu'il se veut "lisible".  
 Reste que la lecture peut être déroutante.  
+
 Un exemple sur le code servant à détecter la collision entre le joueur et une particule :  
 <img width="600px" src="screenshots/collision.png">
+
+[Code source ici.](./shooter/src/core/player.js#L52-L63)
 ```javascript
 const update = () => {
     //...
@@ -19,7 +22,7 @@ const update = () => {
     for (const particle of particles.particles) {
         // si la particule est du type "basic"
         if (particle.type === 'basic') {
-            // la particule est blue ou jaune ?
+            // la particule est-elle bleu ou jaune ?
             const particleIsBlueOrYellow = particle.color === colors.BLUE || particle.color === colors.YELLOW
             // si la particule est bleu ou jaune
             if (particleIsBlueOrYellow) {
