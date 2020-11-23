@@ -53,9 +53,9 @@ const update = () => {
         if (particle.type === 'basic') {
             const particleIsBlueOrYellow = particle.color === colors.BLUE || particle.color === colors.YELLOW
             if (particleIsBlueOrYellow) {
-                const tolerance = 0.9
-                const distanceMin = (radius + particle.radius) * tolerance
-                if (distance(particle.position, position) < distanceMin) {
+                const gameplayTolerance = 0.9
+                const collisionDistance = (radius + particle.radius) * gameplayTolerance
+                if (distance(particle.position, position) < collisionDistance) {
                     gameover(particle)
                 }
             }

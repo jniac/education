@@ -24,8 +24,14 @@ window.addEventListener('keyup', event => {
     const KEY = key.toUpperCase()
     downKeys.delete(key)
     downKeys.delete(KEY)
+
+    for (const callback of onKeyup) {
+        callback(key, KEY)
+    }
 })
 
 export {
     downKeys,
+    onKeydown,
+    onKeyup,
 }

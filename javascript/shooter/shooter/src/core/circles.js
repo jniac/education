@@ -29,17 +29,18 @@ const create = ({
      * @param {{ x:number, y:number }} target 
      * @param {string} color 
      */
-    const fire = (direction, color) => {
+    const fire = (direction, color, velocity = 250) => {
 
         if (!direction || ('x' in direction && 'y' in direction) === false) {
             throw new Error(`invalid direction!`)
         }
 
-        const distance = radius + 14 + 1
+        const particleRadius = 14
+        const distance = radius + particleRadius + 1
         const positionX = innerParticle.position.x + direction.x * distance
         const positionY = innerParticle.position.y + direction.y * distance
-        const velocityX = direction.x * 250
-        const velocityY = direction.y * 250
+        const velocityX = direction.x * velocity
+        const velocityY = direction.y * velocity
         return particles.create({
             color,
             positionX,
@@ -53,7 +54,7 @@ const create = ({
      * @param {{ x:number, y:number }} target 
      * @param {string} color 
      */
-    const fireToward = (target, color) => {
+    const fireToward = (target, color, velocity = 250) => {
 
         if (!target || ('x' in target && 'y' in target) === false) {
             throw new Error(`invalid target!`)
@@ -61,7 +62,7 @@ const create = ({
 
         const v = subtract(innerParticle.position, target)
         const direction = normalize(v)
-        fire(direction, color)
+        fire(direction, color, velocity)
     }
     
     const onCollision = new Set()
