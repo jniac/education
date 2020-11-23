@@ -4,7 +4,13 @@
 [fichiers source zippés (shooter.zip)](https://github.com/jniac/education/raw/master/javascript/shooter/shooter.zip)
 
 Difficile, difficile d'avoir cet écran :  
-<img width="600px" src="screenshots/youwin.gif">
+
+<p align="center">
+    <img width="600px" src="screenshots/youwin.gif">
+<p>
+<p align="center">
+    YOU WIN!!!
+</p>
 
 ## comprendre le code
 Le code ne contient quasiment aucun commentaire.  
@@ -12,7 +18,12 @@ En revanche il a été écrit de telle manière qu'il se veut "lisible".
 Reste que la lecture peut être déroutante.  
 
 Un exemple sur le code servant à détecter la collision entre le joueur et une particule :  
-<img width="600px" src="screenshots/collision.png">
+<p align="center">
+    <img width="600px" src="screenshots/collision.png">
+<p>
+<p align="center">
+    Une collision.
+</p>
 
 [Code source ici.](./shooter/src/core/player.js#L52-L63)
 ```javascript
