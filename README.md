@@ -1,22 +1,8 @@
-# education
+# Programming & Designing
 
-[exercise scroll](./javascript/exercise-scroll/)  
+- [javascript](./javascript)
+  - [azulejos](./javascript/azulejos)
+  - [grid](./javascript/grid)
+  - [shooter](./javascript/shooter)
+- [motion](./motion)
 
-[Azulejo](./javascript/azulejos)
-
-[threejs](./javascript/threejs/)  
-
-[rendu-pas-cher](./motion/c4d/rendering/rendu-pas-cher/)
-
-### base-threejs
-[misc/three/base-threejs-1.0.8.zip](https://github.com/jniac/education/raw/master/misc/three/base-threejs-1.0.8.zip)  
-
-
-[javascript/js-getting-started-0.0.1.zip](https://github.com/jniac/education/raw/master/javascript/js-getting-started-0.0.1.zip)
-
-Atom Babel config:
-```cson
-  core:
-    customFileTypes:
-      "source.js.jsx": ["js"]
-```
