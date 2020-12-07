@@ -1,0 +1,35 @@
+.dark body {
+    background-color: #17174c;
+}
+.dark .toggle-button {
+    --color: #276b82;
+}
+.dark .toggle-button:hover {
+    --color: #d5c653;
+}
+
+.dark .leaf {
+    background-image: linear-gradient(to right, #d5c653, #b68109 40%, #00002b);
+}
+.dark .leaf-dots {
+    background-color: transparent;
+    background-image: linear-gradient(to right, #b6096100 30%, #18091f);
+}
+.dark .leaf-dots .dots {
+    opacity: 0;
+}
+
+.dark .square {
+    background-color: #095d7d;
+    border-radius: 50%;
+    border: #ac7a10 solid;
+}
+
+.dark .drop {
+    background-image: linear-gradient(to left, #064861 10%, #64b2ca);
+}
+
+.dark .arrow {
+    background-color: #c5a132;
+    /* background-image: linear-gradient(1deg, #d1bc4a00 10%, #bea946 69%); */
+}

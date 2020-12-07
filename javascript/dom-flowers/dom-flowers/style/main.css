@@ -1,0 +1,108 @@
+@import url(toggle-button.css);
+@import url(dark.css);
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+body {
+    background-color: #ddd;
+    padding: 16px;
+    overflow: hidden;
+    /* zoom: .75; */
+    /* filter: grayscale(0.7); */
+}
+
+body > div {
+    margin-bottom: 4px;
+}
+
+main {
+    zoom: .7;
+    overflow: hidden;
+}
+
+#library {
+    z-index: 1;
+    position: absolute;
+    width: 33%;
+    display: flex;
+    flex-wrap: wrap;
+    visibility: hidden;
+}
+.library #library {
+    visibility: visible;
+}
+#library > * {
+    margin: 16px;
+}
+
+.absolute-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.square {
+    background-color: red;
+    width: 50px;
+    height: 50px;
+}
+
+.leaf {
+    background-color: white;
+    width: 200px;
+    height: 100px;
+    mask-image: url(../assets/leaf.svg);
+    -webkit-mask-image: url(../assets/leaf.svg);
+}
+
+.leaf-dots {
+    background-color: black;
+    width: 200px;
+    height: 100px;
+    mask-image: url(../assets/leaf.svg);
+    -webkit-mask-image: url(../assets/leaf.svg);
+}
+.leaf-dots .dots {
+    background-color: red;
+    mask-image: url(../assets/dots.png);
+    -webkit-mask-image: url(../assets/dots.png);
+    mask-size: 10%;
+    -webkit-mask-size: 6%;
+    mask-position: center;
+    -webkit-mask-position: center;
+    transform: rotate(45deg);
+    height: 200px;
+    top: -50px;
+}
+
+
+
+.drop {
+    width: 200px;
+    height: 200px;
+    background-image: linear-gradient(to right, white 10%, red 90%);
+    mask-image: url(../assets/drop.svg);
+    -webkit-mask-image: url(../assets/drop.svg);
+}
+
+
+
+.arrow {
+    width: 200px;
+    height: 200px;
+    background-color: #000000;
+    /* background-image: linear-gradient(180deg, #d1bc4a00 30%, #bea946 80%); */
+    mask-image: url(../assets/arrow.svg);
+    -webkit-mask-image: url(../assets/arrow.svg);
+}
+
+
+
+
+
