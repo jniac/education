@@ -1,9 +1,9 @@
-# dom-flowers
+# flowers-dom
 
 fleurs en HTML / CSS
 
-[version en ligne](https://jniac.github.io/education/javascript/dom-flowers/dom-flowers/)  
-[fichiers source zippés (dom-flowers.zip)](https://github.com/jniac/education/raw/master/javascript/dom-flowers/dom-flowers.zip)
+[version en ligne](https://jniac.github.io/education/javascript/flowers-dom/flowers-dom/)  
+[fichiers source zippés (flowers-dom.zip)](https://github.com/jniac/education/raw/master/javascript/flowers-dom/flowers-dom.zip)
 
 Un bouton "toggle" permet de changer le "theme" de la fleur.
 

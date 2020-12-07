@@ -1,4 +1,4 @@
-zip -vr dom-flowers.zip dom-flowers/ -x "*.DS_Store"
-git add dom-flowers.zip
-git commit -m "dom-flowers zip update"
+zip -vr flowers-dom.zip flowers-dom/ -x "*.DS_Store"
+git add flowers-dom.zip
+git commit -m "flowers-dom zip update"
 
