@@ -11,6 +11,9 @@ document.body.appendChild(renderer.domElement)
 
 camera.position.z = 5;
 
+const textureLoader = new THREE.TextureLoader()
+const getTexture = url => textureLoader.load(url)
+
 
 const loop = function () {
     requestAnimationFrame(loop)
@@ -23,4 +26,5 @@ export {
     scene,
     camera,
     renderer,
+    getTexture,
 }

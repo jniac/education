@@ -1,15 +1,11 @@
 import THREE from './THREE.js'
 
-import { scene } from './setup.js'
-
-const img = new Image()
-img.src = './assets/leave-1.svg'
-const texture = new THREE.TextureLoader().load('./assets/leave-1.svg')
+import { scene, getTexture } from './setup.js'
 
 const geometry = new THREE.BoxGeometry()
 const material = new THREE.MeshBasicMaterial({ 
     color: 0x00ff00,
-    alphaMap: texture, 
+    alphaMap: getTexture('./assets/leave-1.svg'), 
     side: THREE.DoubleSide,
     transparent: true,
     depthWrite: false,
