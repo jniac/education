@@ -1,8 +1,4 @@
 
-const getStyleTransform = (angle, radius, scale) => {
-    return `translate(-50%, -50%) rotate(${angle}deg) translateX(${radius}px) scale(${scale})`
-}
-
 export const makeFlower = (sourceSelector, { 
     petalCount = 5,
     radius = 300,
@@ -25,7 +21,12 @@ export const makeFlower = (sourceSelector, {
         petal.style.top = '50%'
 
         const angle = angleOffset + 360 * index / petalCount
-        petal.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translate(${radius}px, 0) scale(${scale}) rotate(${rotation}deg)`
+        petal.style.transform = `
+            translate(-50%, -50%)
+            rotate(${angle}deg)
+            translate(${radius}px, 0)
+            scale(${scale})
+            rotate(${rotation}deg)`
 
         forEachPetal?.(petal, index)
     }
