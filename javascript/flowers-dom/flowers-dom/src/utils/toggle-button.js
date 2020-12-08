@@ -16,6 +16,9 @@ export const initToggleButton = token => {
             document.documentElement.classList.remove(token)
             hash.remove(token)
         }
+
+        // HACK: there is a tricky bug with "overflow:hidden" body, this is a shitty fix
+        document.body.scrollTop = 0
     }
     
     const setActive = (value) => {
