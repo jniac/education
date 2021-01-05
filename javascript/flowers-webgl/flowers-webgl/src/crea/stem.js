@@ -22,3 +22,4 @@ const material = new THREE.MeshBasicMaterial({
 // Create the final object to add to the scene
 const curveObject = new THREE.Mesh(geometry, material)
 scene.add(curveObject)
+curveObject.position.y = -0.5
