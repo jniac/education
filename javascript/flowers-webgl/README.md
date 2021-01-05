@@ -1,4 +1,4 @@
-# Shooter
+# WebGL Flowers
 
 Fleurs réalisées avec ThreeJS.
 
