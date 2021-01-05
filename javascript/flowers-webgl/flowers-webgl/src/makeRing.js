@@ -25,7 +25,7 @@ export const makeRing = ({
         obj.position.y = position.y
         obj.position.z = position.z + radius * Math.sin(angle)
 
-        obj.rotation.y = Math.PI / 2 - baseAngle
+        obj.rotation.y = Math.PI / 2 - angle
         obj.rotation.x = rotationX * Math.PI / 180
         obj.rotation.z = rotationZ * Math.PI / 180
         obj.rotation.order = 'YXZ'
