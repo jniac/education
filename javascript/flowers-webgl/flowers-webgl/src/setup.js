@@ -30,8 +30,11 @@ const getTexture = url => {
 let autoPauseDelay = 1
 let autoPauseTime = 0
 const autoPauseReset = () => autoPauseTime = 0
+const setAutoPauseDelay = value => autoPauseDelay = parseFloat(value)
 
 const dt = 1 / 60
+let time = 0
+let frame = 0
 
 const loop = function () {
     requestAnimationFrame(loop)
@@ -39,19 +42,32 @@ const loop = function () {
     autoPauseTime += dt
 
     if (autoPauseTime <= autoPauseDelay) {
+
+        const args = { time, frame }
+        scene.traverse(child => {
+            if(typeof child.update === 'function') {
+                child.update(args)
+            }
+        })
+
         renderer.render(scene, camera)
+        time += dt
+        frame++
     }
 }
 
 loop()
 
-window.addEventListener('pointermove', autoPauseReset)
-window.addEventListener('keydown', autoPauseReset)
-window.addEventListener('mousewheel', autoPauseReset)
+window.addEventListener('pointermove', autoPauseReset, true)
+window.addEventListener('keydown', autoPauseReset, true)
+window.addEventListener('mousewheel', autoPauseReset, true)
 
 export {
     scene,
     camera,
     renderer,
     getTexture,
+    
+    autoPauseReset,
+    setAutoPauseDelay,
 }

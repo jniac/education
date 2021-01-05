@@ -15,9 +15,9 @@ let objs = makeRing({
 
 let useOrange = true
 for (const obj of objs) {
-    const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2)
+    const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1)
 
-    const purple = '#8E0047'
+    const purple = '#42008E'
     const orange = '#F05F3C'
     const color = useOrange ? orange : purple
     useOrange = !useOrange
@@ -35,6 +35,7 @@ for (const obj of makeRing({
     count: 8, 
     // debug: true,
 })) {
+
     const geometry = new THREE.PlaneGeometry()
 
     const material = new THREE.MeshBasicMaterial({
@@ -45,7 +46,9 @@ for (const obj of makeRing({
         transparent: true,
         depthWrite: false,
         // wireframe: true,
-    } )
-    const cube = new THREE.Mesh( geometry, material )
-    obj.add(cube)
+    })
+
+    const plane = new THREE.Mesh( geometry, material )
+    plane.rotation.x = rad(30)
+    obj.add(plane)
 }
