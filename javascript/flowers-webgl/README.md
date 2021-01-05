@@ -6,4 +6,4 @@ Fleurs réalisées avec ThreeJS.
 [fichiers source zippés (flowers-webgl.zip)](https://github.com/jniac/education/raw/master/javascript/flowers-webgl/flowers-webgl.zip)
 
 <p align="center"><img width="500px" src="screenshots/flower-webgl-1.jpg"></p>
-<p align="center">dark theme</p>
+<p align="center">Une fleur</p>
