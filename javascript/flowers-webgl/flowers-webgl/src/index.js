@@ -4,31 +4,19 @@ import { scene, camera, getTexture } from './setup.js'
 import { makeRing } from './makeRing.js'
 import { rad } from './utils/utils.js'
 
+// creations importées
+import './crea/rotating.js'
+import './crea/cube-ring.js'
+import './crea/diagonal-ring.js'
+import './crea/stem.js'
+
+
+
+
 camera.position.y = 2
 camera.lookAt(0, 0, 0)
 
-let objs = makeRing({
-    // debug: true,
-    count: 30,
-    radius: 2,
-})
 
-let useOrange = true
-for (const obj of objs) {
-    const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1)
-
-    const purple = '#42008E'
-    const orange = '#F05F3C'
-    const color = useOrange ? orange : purple
-    useOrange = !useOrange
-
-    const material = new THREE.MeshBasicMaterial({
-        color,
-        // wireframe: true,
-    } )
-    const cube = new THREE.Mesh( geometry, material )
-    obj.add(cube)
-}
 
 for (const obj of makeRing({ 
     radius:1.5,
