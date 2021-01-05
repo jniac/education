@@ -15,7 +15,17 @@ camera.position.z = 5
 const controls = new OrbitControls(camera, renderer.domElement)
 
 const textureLoader = new THREE.TextureLoader()
-const getTexture = url => textureLoader.load(url)
+const textures = new Map()
+const getTexture = url => {
+    
+    if (textures.has(url)) {
+        return textures.get(url)
+    }
+
+    const texture = textureLoader.load(url)
+    textures.set(url, texture)
+    return texture
+}
 
 let autoPauseDelay = 1
 let autoPauseTime = 0

@@ -1,23 +1,51 @@
 import THREE from './THREE.js'
 
-import { scene, getTexture } from './setup.js'
+import { scene, camera, getTexture } from './setup.js'
 import { makeRing } from './makeRing.js'
+import { rad } from './utils/utils.js'
 
-// const geometry = new THREE.BoxGeometry()
-// const material = new THREE.MeshBasicMaterial({ 
-//     color: 0x00ff00,
-//     alphaMap: getTexture('./assets/leaf-1.svg'), 
-//     side: THREE.DoubleSide,
-//     transparent: true,
-//     depthWrite: false,
-// })
-// const cube = new THREE.Mesh(geometry, material)
-// scene.add(cube)
-// cube.onBeforeRender = () => cube.rotation.y += 0.01
+camera.position.y = 2
+camera.lookAt(0, 0, 0)
 
-for (const obj of makeRing({
-    count: 6,
-    debug: true,
+let objs = makeRing({
+    // debug: true,
+    count: 30,
+    radius: 2,
+})
+
+let useOrange = true
+for (const obj of objs) {
+    const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2)
+
+    const purple = '#8E0047'
+    const orange = '#F05F3C'
+    const color = useOrange ? orange : purple
+    useOrange = !useOrange
+
+    const material = new THREE.MeshBasicMaterial({
+        color,
+        // wireframe: true,
+    } )
+    const cube = new THREE.Mesh( geometry, material )
+    obj.add(cube)
+}
+
+for (const obj of makeRing({ 
+    radius:1.5,
+    count: 8, 
+    // debug: true,
 })) {
-    
+    const geometry = new THREE.PlaneGeometry()
+
+    const material = new THREE.MeshBasicMaterial({
+        color: '#fff',
+        side: THREE.DoubleSide,
+        map: getTexture('./assets/paper-grunge.jpg'),
+        alphaMap: getTexture('./assets/leaf-2.png'),
+        transparent: true,
+        depthWrite: false,
+        // wireframe: true,
+    } )
+    const cube = new THREE.Mesh( geometry, material )
+    obj.add(cube)
 }
