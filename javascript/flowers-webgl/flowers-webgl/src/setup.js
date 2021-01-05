@@ -1,4 +1,5 @@
 import THREE from './THREE.js'
+import { OrbitControls } from './utils/OrbitControls.js'
 
 // https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene
 const scene = new THREE.Scene()
@@ -9,18 +10,34 @@ renderer.setPixelRatio(devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
-camera.position.z = 5;
+camera.position.z = 5
+
+const controls = new OrbitControls(camera, renderer.domElement)
 
 const textureLoader = new THREE.TextureLoader()
 const getTexture = url => textureLoader.load(url)
 
+let autoPauseDelay = 1
+let autoPauseTime = 0
+const autoPauseReset = () => autoPauseTime = 0
+
+const dt = 1 / 60
 
 const loop = function () {
     requestAnimationFrame(loop)
-    renderer.render(scene, camera)
+    
+    autoPauseTime += dt
+
+    if (autoPauseTime <= autoPauseDelay) {
+        renderer.render(scene, camera)
+    }
 }
 
 loop()
+
+window.addEventListener('pointermove', autoPauseReset)
+window.addEventListener('keydown', autoPauseReset)
+window.addEventListener('mousewheel', autoPauseReset)
 
 export {
     scene,
