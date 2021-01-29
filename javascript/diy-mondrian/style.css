@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: #ddd;
+}
+
+main #click {
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    text-align: center;
+}
+main #click * {
+    flex: 0;
+}
+
+body, main, main * {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+main {
+    margin: 120px;
+    background-color: white;
+}
+
+main .vertical {
+    flex-direction: column;
+}
+main .vertical {
+    flex-direction: row;
+}
+main .first {
+    background-color: #666;
+}
+main .second {
+    background-color: #fff;
+}
+main .separator {
+    flex: 0 0 10px;
+    background-color: #000;
+}
